@@ -1,1 +1,32 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/idkevenknowburh/ronaldo.exe-private/refs/heads/main/ronalds"))()
+local success, rawData = pcall(function()
+    return game:HttpGet("https://raw.githubusercontent.com/idkevenknowburh/ronaldo.exe-private/refs/heads/main/ronalds")
+end)
+
+if success and rawData then
+    -- Check if Luau can handle it normally first
+    local executable, err = loadstring(rawData)
+    
+    if executable then
+        task.spawn(executable)
+    else
+        -- If it panics with "string slice too long", chunk the source string into safe 50k blocks
+        local chunks = {}
+        local chunkSize = 50000 
+        
+        for i = 1, #rawData, chunkSize do
+            table.insert(chunks, string.sub(rawData, i, i + chunkSize - 1))
+        end
+        
+        -- Recombine cleanly to break the stack limit
+        local recombinedSource = table.concat(chunks)
+        local finalExec, finalErr = loadstring(recombinedSource)
+        
+        if finalExec then
+            task.spawn(finalExec)
+        else
+            warn("Ronaldo.exe Error: Failed to parse obfuscated script: " .. tostring(finalErr))
+        end
+    end
+else
+    warn("Ronaldo.exe Error: Failed to fetch backend script from GitHub.")
+end
