@@ -1,32 +1,39 @@
+local old_sub = string.sub
+local mt = getrawmetatable("") or debug.getmetatable("")
+if mt then
+    local old_index = mt.__index
+    setreadonly(mt, false)
+    mt.__index = function(t, k)
+        if k == "sub" or k == "slice" then
+            return function(str, start, stop)
+                -- Safely handle overflow limits
+                start = math.clamp(start or 1, -#str, #str)
+                stop = math.clamp(stop or #str, -#str, #str)
+                return old_sub(str, start, stop)
+            end
+        end
+        if type(old_index) == "function" then
+            return old_index(t, k)
+        else
+            return old_index[k]
+        end
+    end
+    setreadonly(mt, true)
+end
+
 local success, rawData = pcall(function()
     return game:HttpGet("https://raw.githubusercontent.com/idkevenknowburh/ronaldo.exe-private/refs/heads/main/ronalds")
 end)
 
 if success and rawData then
-    -- Check if Luau can handle it normally first
+    -- 3. Execute using an isolated coroutine thread to reset the call stack
     local executable, err = loadstring(rawData)
-    
     if executable then
-        task.spawn(executable)
+        local thread = coroutine.create(executable)
+        coroutine.resume(thread)
     else
-        -- If it panics with "string slice too long", chunk the source string into safe 50k blocks
-        local chunks = {}
-        local chunkSize = 50000 
-        
-        for i = 1, #rawData, chunkSize do
-            table.insert(chunks, string.sub(rawData, i, i + chunkSize - 1))
-        end
-        
-        -- Recombine cleanly to break the stack limit
-        local recombinedSource = table.concat(chunks)
-        local finalExec, finalErr = loadstring(recombinedSource)
-        
-        if finalExec then
-            task.spawn(finalExec)
-        else
-            warn("Ronaldo.exe Error: Failed to parse obfuscated script: " .. tostring(finalErr))
-        end
+        warn("Error compiling obfuscated code: " .. tostring(err))
     end
 else
-    warn("Ronaldo.exe Error: Failed to fetch backend script from GitHub.")
+    warn("Failed to fetch script.")
 end
