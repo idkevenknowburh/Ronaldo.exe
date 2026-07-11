@@ -1,35 +1,96 @@
--- [[ ronalds.exe - Premium Core Framework ]]
+-- [[ ronalds.exe - Complete Core Interface Framework ]]
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
--- Scopes generic environment safely for any running user
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local SoundService = game:GetService("SoundService")
 local CoreGui = game:GetService("CoreGui")
 local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
 
--- System Audio Engine (Premium Micro-feedback sound effect)
+-- Duplicate prevention
+local oldBtn = CoreGui:FindFirstChild("RonaldsButton_Independent")
+if oldBtn then oldBtn:Destroy() end
+
 local function playClickSound()
     local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://6895079853" -- Sleek, tactile interface click asset
+    sound.SoundId = "rbxassetid://6895079853"
     sound.Volume = 0.5
     sound.Parent = SoundService
     sound:Play()
     game:GetService("Debris"):AddItem(sound, 1)
 end
 
--- Assemble Master Window Container
-local Window = Fluent:CreateWindow({
-    Title = "ronalds.exe",
-    SubTitle = "v1.0.0 | User: " .. LocalPlayer.Name,
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
-    Acrylic = true, 
-    Theme = "Rose", 
-    MinimizeKey = Enum.KeyCode.Unknown -- Disables default key tracking so our button handles it
-})
+-- ==========================================
+-- [[ ANTI-CHEAT BYPASS FOR NOCLIP ]]
+-- ==========================================
+-- NOTE: We do NOT use hookmetamethod(game, "__namecall") because the game
+-- detects it and kicks with "namecallInstance detector detected".
+-- Instead we use targeted hookfunction on the specific remote only.
+
+local AntiCheatRemote = game:GetService("ReplicatedStorage"):FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
+local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNCTION")
+
+local noclipEnabled = false
+
+if AntiCheatFunc then
+    -- Method 1: Replace OnClientInvoke callback to return clean data when noclipping
+    pcall(function()
+        local realCallback = getcallbackvalue(AntiCheatFunc, "OnClientInvoke")
+        if realCallback then
+            AntiCheatFunc.OnClientInvoke = function(...)
+                if noclipEnabled then
+                    return { true, n = 1 }
+                end
+                return realCallback(...)
+            end
+        end
+    end)
+
+    -- Method 2: Hook FireServer on THIS remote only (not __namecall on game)
+    if AntiCheatFunc:IsA("RemoteEvent") then
+        pcall(function()
+            local oldFire = hookfunction(AntiCheatFunc.FireServer, function(self, ...)
+                if noclipEnabled then
+                    return
+                end
+                return oldFire(self, ...)
+            end)
+        end)
+    end
+
+    -- Method 3: Hook InvokeServer on THIS remote only
+    if AntiCheatFunc:IsA("RemoteFunction") then
+        pcall(function()
+            local oldInvoke = hookfunction(AntiCheatFunc.InvokeServer, function(self, ...)
+                if noclipEnabled then
+                    return { true, n = 1 }
+                end
+                return oldInvoke(self, ...)
+            end)
+        end)
+    end
+end
+
+-- Noclip Stepped connection (runs every frame)
+local noclipConnection = nil
+
+local function startNoclip()
+    if noclipConnection then return end
+    noclipConnection = RunService.Stepped:Connect(function()
+        if noclipEnabled and LocalPlayer.Character then
+            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = false
+                end
+            end
+        end
+    end)
+end
+
+startNoclip()
 
 -- ==========================================
 -- [[ FLOATING ROSE SQUARE TOGGLE BUTTON ]]
@@ -40,24 +101,22 @@ local ToggleButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
 
-ToggleGui.Name = "RonaldsExe_Toggle"
+ToggleGui.Name = "RonaldsButton_Independent"
 ToggleGui.Parent = CoreGui
 ToggleGui.ResetOnSpawn = false
 
--- Square aspect ratio button initialization
-ToggleButton.Name = "MainToggle"
+ToggleButton.Name = "InteractionTarget"
 ToggleButton.Parent = ToggleGui
-ToggleButton.BackgroundColor3 = Color3.fromRGB(244, 63, 94) -- Beautiful Rose Pink Accent
-ToggleButton.Position = UDim2.new(0.05, 0, 0.15, 0) -- Default top-left placement
-ToggleButton.Size = UDim2.fromOffset(45, 45) -- Perfect square ratio
-ToggleButton.Text = "R" -- Stylish single character representation for ronalds.exe
+ToggleButton.BackgroundColor3 = Color3.fromRGB(244, 63, 94)
+ToggleButton.Position = UDim2.new(0.05, 0, 0.15, 0)
+ToggleButton.Size = UDim2.fromOffset(45, 45)
+ToggleButton.Text = "R"
 ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleButton.Font = Enum.Font.GothamBold
 ToggleButton.TextSize = 18
 ToggleButton.Active = true
-ToggleButton.Draggable = true -- Allows user to repositon the square anywhere seamlessly
 
-UICorner.CornerRadius = UDim.new(0, 8) -- Soft modern rounded square edges
+UICorner.CornerRadius = UDim.new(0, 8)
 UICorner.Parent = ToggleButton
 
 UIStroke.Color = Color3.fromRGB(255, 255, 255)
@@ -65,86 +124,160 @@ UIStroke.Thickness = 1.5
 UIStroke.Transparency = 0.3
 UIStroke.Parent = ToggleButton
 
--- Button Click Interaction Logic
-ToggleButton.MouseButton1Click:Connect(function()
-    playClickSound()
-    Window:Minimize() -- Built-in smooth Fluent minimize/maximize animation trigger
+-- Custom Drag Logic to Prevent Interference
+local dragging = false
+local hasMoved = false
+local dragInput, dragStart, startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    if delta.Magnitude > 7 then
+        hasMoved = true
+    end
+    ToggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+ToggleButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        hasMoved = false
+        dragStart = input.Position
+        startPos = ToggleButton.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+                if not hasMoved then
+                    playClickSound()
+                    Window:Minimize()
+                end
+            end
+        end)
+    end
+end)
+
+ToggleButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
 end)
 
 -- ==========================================
--- [[ TAB COMPONENT STRUCTURING ]]
+-- [[ WINDOW ]]
+-- ==========================================
+
+local Window = Fluent:CreateWindow({
+    Title = "ronalds.exe",
+    SubTitle = "v1.0.0 | User: " .. LocalPlayer.Name,
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Rose",
+    MinimizeKey = Enum.KeyCode.RightControl
+})
+
+-- ==========================================
+-- [[ TABS ]]
 -- ==========================================
 
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main Farm", Icon = "swords" }),
-    Teleports = Window:AddTab({ Title = "Teleports", Icon = "map-pin" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "user" }),
+    Car = Window:AddTab({ Title = "Car", Icon = "car" }),
+    Credits = Window:AddTab({ Title = "Credits", Icon = "info" })
 }
 
-Fluent:Notify({
-    Title = "ronalds.exe",
-    Content = "Welcome, " .. LocalPlayer.DisplayName .. "! Drag the Rose square icon to re-position your menu toggle.",
-    Duration = 5
-})
-
+-- [[ PLAYER TAB ]]
 do
-    Tabs.Main:AddParagraph({
-        Title = "Automation Dashboard",
-        Content = "Ready to receive Cobalt tracking data and remote structure values."
+    local NoclipToggle = Tabs.Player:AddToggle("NoclipToggle", {
+        Title = "Bypass Noclip",
+        Default = false
     })
 
-    local AutoFarmToggle = Tabs.Main:AddToggle("AutoFarm", {
-        Title = "Enable Master Autofarm Loop", 
-        Default = false 
-    })
-
-    AutoFarmToggle:OnChanged(function(state)
+    NoclipToggle:OnChanged(function(state)
         playClickSound()
-        _G.AutoFarmActive = state
-        
-        if state then
-            task.spawn(function()
-                while _G.AutoFarmActive do
-                    task.wait(0.1)
-                end
-            end)
-        end
+        noclipEnabled = state
     end)
 
-    Tabs.Main:AddSlider("AttackSpeed", {
-        Title = "Speed Adjustment Override",
-        Description = "Adjusts background microtask repetition delay boundaries.",
-        Default = 1,
-        Min = 1,
-        Max = 10,
+    local SpeedSlider = Tabs.Player:AddSlider("WalkSpeedSlider", {
+        Title = "WalkSpeed Override",
+        Description = "Adjust local character movement speed.",
+        Default = 16,
+        Min = 16,
+        Max = 150,
         Rounding = 1,
         Callback = function(Value)
             playClickSound()
-            _G.AttackVelocity = Value
+            local character = LocalPlayer.Character
+            if character and character:FindFirstChildOfClass("Humanoid") then
+                character:FindFirstChildOfClass("Humanoid").WalkSpeed = Value
+            end
         end
     })
 
-    Tabs.Main:AddButton({
-        Title = "Force Manual Remote Request",
-        Description = "Executes immediate synchronization with game handlers.",
-        Callback = function()
+    local JumpSlider = Tabs.Player:AddSlider("JumpPowerSlider", {
+        Title = "JumpPower Override",
+        Description = "Adjust local character upward velocity.",
+        Default = 50,
+        Min = 50,
+        Max = 200,
+        Rounding = 1,
+        Callback = function(Value)
             playClickSound()
-            Window:Dialog({
-                Title = "Execute Trigger",
-                Content = "Are you sure you want to test send an immediate manual sequence to the servers?",
-                Buttons = {
-                    {
-                        Title = "Confirm",
-                        Callback = function()
-                            print("Manual trigger processing via engine client layer.")
-                        end
-                    },
-                    {
-                        Title = "Cancel"
-                    }
-                }
+            local character = LocalPlayer.Character
+            if character and character:FindFirstChildOfClass("Humanoid") then
+                local humanoid = character:FindFirstChildOfClass("Humanoid")
+                humanoid.UseJumpPower = true
+                humanoid.JumpPower = Value
+            end
+        end
+    })
+
+    -- Locked Controls
+    local FlyToggle = Tabs.Player:AddToggle("FlyToggle", {
+        Title = "Grant Fly [LOCKED]",
+        Default = false
+    })
+
+    FlyToggle:OnChanged(function(state)
+        if state then
+            playClickSound()
+            Fluent:Notify({
+                Title = "System",
+                Content = "This feature is currently locked.",
+                Duration = 3
             })
         end
+    end)
+
+    local EmoteToggle = Tabs.Player:AddToggle("EmoteToggle", {
+        Title = "FE Emotes [LOCKED]",
+        Default = false
+    })
+
+    EmoteToggle:OnChanged(function(state)
+        if state then
+            playClickSound()
+            Fluent:Notify({
+                Title = "System",
+                Content = "This feature is currently locked.",
+                Duration = 3
+            })
+        end
+    end)
+end
+
+-- [[ CREDITS TAB ]]
+do
+    Tabs.Credits:AddParagraph({
+        Title = "Credits",
+        Content = "made by Sheitsa"
     })
 end
 
@@ -152,19 +285,10 @@ end
 -- [[ SYSTEM INTERFACE MANAGERS ]]
 -- ==========================================
 
-SaveManager:SetLibrary(Fluent)
-InterfaceManager:SetLibrary(Fluent)
-
-SaveManager:IgnoreThemeSettings()
-SaveManager:SetIgnoreIndexes({})
-
-InterfaceManager:SetFolder("RonaldsExeConfig")
-SaveManager:SetFolder("RonaldsExeConfig/profiles")
-
-InterfaceManager:BuildInterfaceSection(Tabs.Settings)
-SaveManager:BuildConfigSection(Tabs.Settings)
-
 Window:SelectTab(1)
-SaveManager:LoadAutoloadConfig()
 
-Fluent:SetTheme("Rose")
+Fluent:Notify({
+    Title = "ronalds.exe",
+    Content = "Interface framework loaded successfully.",
+    Duration = 5
+})
