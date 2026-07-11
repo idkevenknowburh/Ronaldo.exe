@@ -85,6 +85,10 @@ local function startNoclip()
             for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
                 if part:IsA("BasePart") then
                     part.CanCollide = false
+                    -- CanTouch = false prevents .Touched events from firing.
+                    -- Invisible boundary / kill-zone parts detect you via .Touched;
+                    -- without it they never know you passed through.
+                    part.CanTouch = false
                 end
             end
         end
