@@ -1,39 +1,64 @@
+-- Force-patch the string library to prevent "string slice too long" inside the obfuscated script
+local old_char = string.char
 local old_sub = string.sub
-local mt = getrawmetatable("") or debug.getmetatable("")
-if mt then
-    local old_index = mt.__index
-    setreadonly(mt, false)
-    mt.__index = function(t, k)
-        if k == "sub" or k == "slice" then
-            return function(str, start, stop)
-                -- Safely handle overflow limits
-                start = math.clamp(start or 1, -#str, #str)
-                stop = math.clamp(stop or #str, -#str, #str)
-                return old_sub(str, start, stop)
-            end
-        end
-        if type(old_index) == "function" then
-            return old_index(t, k)
-        else
-            return old_index[k]
-        end
+
+-- 1. Replace string.char with a safe chunk-unpacker
+string.char = function(...)
+    local args = {...}
+    local len = #args
+    if len <= 1000 then
+        return old_char(unpack(args))
     end
-    setreadonly(mt, true)
+    
+    local result = {}
+    for i = 1, len, 1000 do
+        local chunk = {unpack(args, i, math.min(i + 999, len))}
+        table.insert(result, old_char(unpack(chunk)))
+    end
+    return table.concat(result)
 end
 
+-- 2. Replace string.sub with a safety-clamped version
+string.sub = function(str, start, stop)
+    start = start or 1
+    stop = stop or #str
+    
+    -- Handle negative indices
+    if start < 0 then start = #str + start + 1 end
+    if stop < 0 then stop = #str + stop + 1 end
+    
+    start = math.clamp(start, 1, #str + 1)
+    stop = math.clamp(stop, 0, #str)
+    
+    if start > stop then return "" end
+    
+    -- Split huge slices into smaller concatenations to bypass Luau's memory limit
+    local length = (stop - start) + 1
+    if length <= 50000 then
+        return old_sub(str, start, stop)
+    end
+    
+    local chunks = {}
+    for i = start, stop, 50000 do
+        local chunkEnd = math.min(i + 49999, stop)
+        table.insert(chunks, old_sub(str, i, chunkEnd))
+    end
+    return table.concat(chunks)
+end
+
+-- 3. Fetch the obfuscated script safely
 local success, rawData = pcall(function()
     return game:HttpGet("https://raw.githubusercontent.com/idkevenknowburh/ronaldo.exe-private/refs/heads/main/ronalds")
 end)
 
 if success and rawData then
-    -- 3. Execute using an isolated coroutine thread to reset the call stack
+    -- 4. Compile and run it in a brand-new, clean stack thread
     local executable, err = loadstring(rawData)
     if executable then
-        local thread = coroutine.create(executable)
-        coroutine.resume(thread)
+        task.spawn(executable)
     else
-        warn("Error compiling obfuscated code: " .. tostring(err))
+        warn("Failed to compile code: " .. tostring(err))
     end
 else
-    warn("Failed to fetch script.")
+    warn("Failed to fetch backend script.")
 end
