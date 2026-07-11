@@ -26,11 +26,17 @@ end
 -- ==========================================
 -- [[ ANTI-CHEAT BYPASS FOR NOCLIP ]]
 -- ==========================================
--- NO hookfunction, NO hookmetamethod — the game detects both.
--- Strategy: silently replace OnClientInvoke callback (property assignment,
--- not a hook) so the server always gets "clean" data back when it
--- polls the client.  We also disconnect any FireClient listeners so
--- server-to-client checks are swallowed.
+-- Based on Cobalt decompilation of the anti-cheat remote:
+--   - Game hooks __newindex on game to track OnClientInvoke replacements
+--   - OnClientInvoke callback uses isexecutorclosure, getscriptfromthread,
+--     debug.info, getthreadidentity to detect tampering
+--   - Game periodically verifies OnClientInvoke hasn't changed
+--
+-- Strategy (3-layer stealth):
+--   1. Hook __newindex  → block game from restoring/detecting our replacement
+--   2. Hook __index    → fake-read OnClientInvoke so game thinks it's unchanged
+--   3. Replace OnClientInvoke with clean callback (returns {true, n=1})
+--   4. CanTouch = false in noclip loop (blocks .Touched boundary triggers)
 
 local AntiCheatRemote = game:GetService("ReplicatedStorage"):FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
 local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNCTION")
@@ -38,34 +44,75 @@ local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNC
 local noclipEnabled = false
 
 if AntiCheatFunc then
-    -- Step 1: Replace OnClientInvoke — pure property write, NOT a hook
+    -- Save original callback BEFORE any tampering
+    local originalCallback = nil
     pcall(function()
-        local realCallback = getcallbackvalue(AntiCheatFunc, "OnClientInvoke")
+        originalCallback = getcallbackvalue(AntiCheatFunc, "OnClientInvoke")
+    end)
+
+    -- Layer 1: Hook __newindex on game
+    -- The game hooks __newindex to detect when OnClientInvoke is replaced.
+    -- We wrap it so the game NEVER sees our replacement go through.
+    -- When the game tries to re-set OnClientInvoke (restore original),
+    -- we silently block it — our replacement stays in place.
+    pcall(function()
+        local oldNewIndex = hookmetamethod(game, "__newindex", newcclosure(function(self, key, value, ...)
+            if AntiCheatFunc and rawequal(self, AntiCheatFunc) and rawequal(key, "OnClientInvoke") then
+                if not checkcaller() then
+                    -- Game script trying to set OnClientInvoke — silently swallow
+                    -- so it can't restore the original or detect our change
+                    return
+                end
+            end
+            return oldNewIndex(self, key, value, ...)
+        end))
+    end)
+
+    -- Layer 2: Hook __index on game
+    -- The game may periodically read OnClientInvoke to verify it's unchanged.
+    -- We intercept the read and return the original callback so the game
+    -- always sees the "untampered" function.
+    -- Roblox's internal InvokeClient uses the REAL property (bypasses __index),
+    -- so our replacement still gets called when the server polls.
+    pcall(function()
+        local oldIndex = hookmetamethod(game, "__index", newcclosure(function(self, key)
+            if AntiCheatFunc and rawequal(self, AntiCheatFunc) and rawequal(key, "OnClientInvoke") then
+                if not checkcaller() then
+                    -- Game script reading OnClientInvoke — return original
+                    return originalCallback
+                end
+            end
+            return oldIndex(self, key)
+        end))
+    end)
+
+    -- Layer 3: Replace OnClientInvoke with our clean callback
+    -- Our __newindex hook ensures the game never detects this replacement.
+    -- checkcaller() = true here so our hook lets it through.
+    pcall(function()
         AntiCheatFunc.OnClientInvoke = function(...)
             if noclipEnabled then
-                -- Return a table that looks like a normal (non-noclipping) response
+                -- Return clean "not noclipping" data to the server
                 return { true, n = 1 }
             end
-            if realCallback then
-                return realCallback(...)
+            -- When noclip is off, pass through to original (or return clean anyway)
+            if originalCallback then
+                return originalCallback(...)
             end
         end
     end)
 
-    -- Step 2: If it's a RemoteEvent, disconnect any OnClientEvent so the
-    -- server's periodic checks are silently dropped (no handler = no reply).
+    -- Layer 4: Swallow incoming FireClient events from anti-cheat
     if AntiCheatFunc:IsA("RemoteEvent") then
         pcall(function()
             local conn = AntiCheatFunc.OnClientEvent
             if typeof(conn) == "RBXScriptSignal" then
-                -- Wire a no-op to eat all incoming events
                 conn:Connect(function() end)
             end
         end)
     end
 
-    -- Step 3 (safety net): If the anti-cheat also polls via a child
-    -- RemoteEvent, swallow those events too.
+    -- Layer 5: Swallow child remote events (additional anti-cheat channels)
     for _, child in ipairs(AntiCheatFunc:GetChildren()) do
         if child:IsA("RemoteEvent") then
             pcall(function()
