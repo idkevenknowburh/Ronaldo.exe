@@ -1,0 +1,170 @@
+-- [[ ronalds.exe - Premium Core Framework ]]
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+-- Scopes generic environment safely for any running user
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local SoundService = game:GetService("SoundService")
+local CoreGui = game:GetService("CoreGui")
+local UserInputService = game:GetService("UserInputService")
+
+-- System Audio Engine (Premium Micro-feedback sound effect)
+local function playClickSound()
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://6895079853" -- Sleek, tactile interface click asset
+    sound.Volume = 0.5
+    sound.Parent = SoundService
+    sound:Play()
+    game:GetService("Debris"):AddItem(sound, 1)
+end
+
+-- Assemble Master Window Container
+local Window = Fluent:CreateWindow({
+    Title = "ronalds.exe",
+    SubTitle = "v1.0.0 | User: " .. LocalPlayer.Name,
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true, 
+    Theme = "Rose", 
+    MinimizeKey = Enum.KeyCode.Unknown -- Disables default key tracking so our button handles it
+})
+
+-- ==========================================
+-- [[ FLOATING ROSE SQUARE TOGGLE BUTTON ]]
+-- ==========================================
+
+local ToggleGui = Instance.new("ScreenGui")
+local ToggleButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+
+ToggleGui.Name = "RonaldsExe_Toggle"
+ToggleGui.Parent = CoreGui
+ToggleGui.ResetOnSpawn = false
+
+-- Square aspect ratio button initialization
+ToggleButton.Name = "MainToggle"
+ToggleButton.Parent = ToggleGui
+ToggleButton.BackgroundColor3 = Color3.fromRGB(244, 63, 94) -- Beautiful Rose Pink Accent
+ToggleButton.Position = UDim2.new(0.05, 0, 0.15, 0) -- Default top-left placement
+ToggleButton.Size = UDim2.fromOffset(45, 45) -- Perfect square ratio
+ToggleButton.Text = "R" -- Stylish single character representation for ronalds.exe
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.Font = Enum.Font.GothamBold
+ToggleButton.TextSize = 18
+ToggleButton.Active = true
+ToggleButton.Draggable = true -- Allows user to repositon the square anywhere seamlessly
+
+UICorner.CornerRadius = UDim.new(0, 8) -- Soft modern rounded square edges
+UICorner.Parent = ToggleButton
+
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+UIStroke.Thickness = 1.5
+UIStroke.Transparency = 0.3
+UIStroke.Parent = ToggleButton
+
+-- Button Click Interaction Logic
+ToggleButton.MouseButton1Click:Connect(function()
+    playClickSound()
+    Window:Minimize() -- Built-in smooth Fluent minimize/maximize animation trigger
+end)
+
+-- ==========================================
+-- [[ TAB COMPONENT STRUCTURING ]]
+-- ==========================================
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main Farm", Icon = "swords" }),
+    Teleports = Window:AddTab({ Title = "Teleports", Icon = "map-pin" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+Fluent:Notify({
+    Title = "ronalds.exe",
+    Content = "Welcome, " .. LocalPlayer.DisplayName .. "! Drag the Rose square icon to re-position your menu toggle.",
+    Duration = 5
+})
+
+do
+    Tabs.Main:AddParagraph({
+        Title = "Automation Dashboard",
+        Content = "Ready to receive Cobalt tracking data and remote structure values."
+    })
+
+    local AutoFarmToggle = Tabs.Main:AddToggle("AutoFarm", {
+        Title = "Enable Master Autofarm Loop", 
+        Default = false 
+    })
+
+    AutoFarmToggle:OnChanged(function(state)
+        playClickSound()
+        _G.AutoFarmActive = state
+        
+        if state then
+            task.spawn(function()
+                while _G.AutoFarmActive do
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end)
+
+    Tabs.Main:AddSlider("AttackSpeed", {
+        Title = "Speed Adjustment Override",
+        Description = "Adjusts background microtask repetition delay boundaries.",
+        Default = 1,
+        Min = 1,
+        Max = 10,
+        Rounding = 1,
+        Callback = function(Value)
+            playClickSound()
+            _G.AttackVelocity = Value
+        end
+    })
+
+    Tabs.Main:AddButton({
+        Title = "Force Manual Remote Request",
+        Description = "Executes immediate synchronization with game handlers.",
+        Callback = function()
+            playClickSound()
+            Window:Dialog({
+                Title = "Execute Trigger",
+                Content = "Are you sure you want to test send an immediate manual sequence to the servers?",
+                Buttons = {
+                    {
+                        Title = "Confirm",
+                        Callback = function()
+                            print("Manual trigger processing via engine client layer.")
+                        end
+                    },
+                    {
+                        Title = "Cancel"
+                    }
+                }
+            })
+        end
+    })
+end
+
+-- ==========================================
+-- [[ SYSTEM INTERFACE MANAGERS ]]
+-- ==========================================
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+
+InterfaceManager:SetFolder("RonaldsExeConfig")
+SaveManager:SetFolder("RonaldsExeConfig/profiles")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+Window:SelectTab(1)
+SaveManager:LoadAutoloadConfig()
+
+Fluent:SetTheme("Rose")
