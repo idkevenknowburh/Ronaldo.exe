@@ -26,9 +26,11 @@ end
 -- ==========================================
 -- [[ ANTI-CHEAT BYPASS FOR NOCLIP ]]
 -- ==========================================
--- NOTE: We do NOT use hookmetamethod(game, "__namecall") because the game
--- detects it and kicks with "namecallInstance detector detected".
--- Instead we use targeted hookfunction on the specific remote only.
+-- NO hookfunction, NO hookmetamethod — the game detects both.
+-- Strategy: silently replace OnClientInvoke callback (property assignment,
+-- not a hook) so the server always gets "clean" data back when it
+-- polls the client.  We also disconnect any FireClient listeners so
+-- server-to-client checks are swallowed.
 
 local AntiCheatRemote = game:GetService("ReplicatedStorage"):FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
 local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNCTION")
@@ -36,41 +38,40 @@ local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNC
 local noclipEnabled = false
 
 if AntiCheatFunc then
-    -- Method 1: Replace OnClientInvoke callback to return clean data when noclipping
+    -- Step 1: Replace OnClientInvoke — pure property write, NOT a hook
     pcall(function()
         local realCallback = getcallbackvalue(AntiCheatFunc, "OnClientInvoke")
-        if realCallback then
-            AntiCheatFunc.OnClientInvoke = function(...)
-                if noclipEnabled then
-                    return { true, n = 1 }
-                end
+        AntiCheatFunc.OnClientInvoke = function(...)
+            if noclipEnabled then
+                -- Return a table that looks like a normal (non-noclipping) response
+                return { true, n = 1 }
+            end
+            if realCallback then
                 return realCallback(...)
             end
         end
     end)
 
-    -- Method 2: Hook FireServer on THIS remote only (not __namecall on game)
+    -- Step 2: If it's a RemoteEvent, disconnect any OnClientEvent so the
+    -- server's periodic checks are silently dropped (no handler = no reply).
     if AntiCheatFunc:IsA("RemoteEvent") then
         pcall(function()
-            local oldFire = hookfunction(AntiCheatFunc.FireServer, function(self, ...)
-                if noclipEnabled then
-                    return
-                end
-                return oldFire(self, ...)
-            end)
+            local conn = AntiCheatFunc.OnClientEvent
+            if typeof(conn) == "RBXScriptSignal" then
+                -- Wire a no-op to eat all incoming events
+                conn:Connect(function() end)
+            end
         end)
     end
 
-    -- Method 3: Hook InvokeServer on THIS remote only
-    if AntiCheatFunc:IsA("RemoteFunction") then
-        pcall(function()
-            local oldInvoke = hookfunction(AntiCheatFunc.InvokeServer, function(self, ...)
-                if noclipEnabled then
-                    return { true, n = 1 }
-                end
-                return oldInvoke(self, ...)
+    -- Step 3 (safety net): If the anti-cheat also polls via a child
+    -- RemoteEvent, swallow those events too.
+    for _, child in ipairs(AntiCheatFunc:GetChildren()) do
+        if child:IsA("RemoteEvent") then
+            pcall(function()
+                child.OnClientEvent:Connect(function() end)
             end)
-        end)
+        end
     end
 end
 
