@@ -1,69 +1,95 @@
--- [[ ronalds.exe - Complete Core Interface Framework ]]
+-- [[ ronalds.exe v1.1.0 - by Sheitsa ]]
+
+-- ============================================
+-- [[ LIBRARIES ]]
+-- ============================================
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
+-- ============================================
+-- [[ SERVICES ]]
+-- ============================================
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 local SoundService = game:GetService("SoundService")
 local CoreGui = game:GetService("CoreGui")
-local UserInputService = game:GetService("UserInputService")
-local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local MarketplaceService = game:GetService("MarketplaceService")
+local TeleportService = game:GetService("TeleportService")
+local Debris = game:GetService("Debris")
 
--- Duplicate prevention
-local oldBtn = CoreGui:FindFirstChild("RonaldsButton_Independent")
-if oldBtn then oldBtn:Destroy() end
+-- ============================================
+-- [[ CONSTANTS ]]
+-- ============================================
+local VERSION = "1.1.0"
 
+-- ============================================
+-- [[ DUPLICATE PREVENTION ]]
+-- ============================================
+local oldGui = CoreGui:FindFirstChild("RonaldsButton_Independent")
+if oldGui then oldGui:Destroy() end
+
+-- ============================================
+-- [[ UTILITIES ]]
+-- ============================================
 local function playClickSound()
-    local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://6895079853"
-    sound.Volume = 0.5
-    sound.Parent = SoundService
-    sound:Play()
-    game:GetService("Debris"):AddItem(sound, 1)
+    pcall(function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://6895079853"
+        sound.Volume = 0.5
+        sound.Parent = SoundService
+        sound:Play()
+        Debris:AddItem(sound, 1)
+    end)
 end
 
--- ==========================================
--- [[ ANTI-CHEAT BYPASS FOR NOCLIP ]]
--- ==========================================
--- NO global __index / __newindex hooks — those intercept every property
--- read/write on every instance and cause massive lag (kills Fluent UI).
---
--- Strategy:
---   1. Replace OnClientInvoke once with clean callback
---   2. Heartbeat loop re-sets it every frame if game restores original
---      (O(1) per frame — one property compare, zero lag)
---   3. CanTouch = false in noclip loop (blocks .Touched boundary triggers)
+local function getExecutorName()
+    pcall(function()
+        if identifyexecutor then return identifyexecutor() end
+    end)
+    return "Unknown"
+end
 
-local AntiCheatRemote = ReplicatedStorage:FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
-local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNCTION")
+local function getGameName()
+    local ok, info = pcall(function()
+        return MarketplaceService:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+    end)
+    if ok and info and info.Name then
+        return info.Name
+    end
+    return "Unknown Game"
+end
 
-local noclipEnabled = false
+-- ============================================
+-- [[ ANTI-CHEAT BYPASS ]]
+-- ============================================
+-- Always returns {true, n = 1} — the server always gets "clean" data.
+-- Heartbeat loop re-sets if game restores original (O(1) per frame, zero lag).
+-- This handles barrier detection which uses the same remote.
+
+local AntiCheatFunc = nil
+pcall(function()
+    local remote = ReplicatedStorage:FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
+    if remote then
+        AntiCheatFunc = remote:FindFirstChild("__FUNCTION")
+    end
+end)
 
 if AntiCheatFunc then
-    local originalCallback = nil
-    pcall(function()
-        originalCallback = getcallbackvalue(AntiCheatFunc, "OnClientInvoke")
-    end)
-
-    -- Our clean replacement — returns "not noclipping" data to server
+    -- Always return clean data — never run the original callback
+    -- (the original runs isexecutorclosure, getscriptfromthread, debug.info, etc.)
     local cleanCallback = function(...)
-        if noclipEnabled then
-            return { true, n = 1 }
-        end
-        if originalCallback then
-            return originalCallback(...)
-        end
+        return { true, n = 1 }
     end
 
-    -- Set it once
     pcall(function()
         AntiCheatFunc.OnClientInvoke = cleanCallback
     end)
 
-    -- Re-set every frame if the game restores the original
-    -- This is O(1) — just one reference compare per heartbeat, no lag
+    -- Re-set every frame if game restores the original
     RunService.Heartbeat:Connect(function()
         pcall(function()
             if AntiCheatFunc.OnClientInvoke ~= cleanCallback then
@@ -72,57 +98,242 @@ if AntiCheatFunc then
         end)
     end)
 
-    -- Swallow incoming FireClient events from anti-cheat
-    if AntiCheatFunc:IsA("RemoteEvent") then
-        pcall(function()
+    -- Swallow incoming FireClient events
+    pcall(function()
+        if AntiCheatFunc:IsA("RemoteEvent") then
             AntiCheatFunc.OnClientEvent:Connect(function() end)
-        end)
-    end
-
-    -- Swallow child remote events
-    for _, child in ipairs(AntiCheatFunc:GetChildren()) do
-        if child:IsA("RemoteEvent") then
-            pcall(function()
-                child.OnClientEvent:Connect(function() end)
-            end)
         end
-    end
-end
-
--- Noclip Stepped connection (runs every frame)
-local noclipConnection = nil
-
-local function startNoclip()
-    if noclipConnection then return end
-    noclipConnection = RunService.Stepped:Connect(function()
-        if noclipEnabled and LocalPlayer.Character then
-            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    part.CanCollide = false
-                    -- CanTouch = false prevents .Touched events from firing.
-                    -- Invisible boundary / kill-zone parts detect you via .Touched;
-                    -- without it they never know you passed through.
-                    part.CanTouch = false
-                end
+        for _, child in ipairs(AntiCheatFunc:GetChildren()) do
+            if child:IsA("RemoteEvent") then
+                child.OnClientEvent:Connect(function() end)
             end
         end
     end)
 end
 
-startNoclip()
+-- ============================================
+-- [[ PLAYER NOCLIP ]]
+-- ============================================
+local noclipEnabled = false
 
--- ==========================================
+RunService.Stepped:Connect(function()
+    if noclipEnabled and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
+                part.CanTouch = false
+            end
+        end
+    end
+end)
+
+-- ============================================
+-- [[ VEHICLE NOCLIP ]]
+-- ============================================
+-- Same approach as player noclip but targets the vehicle model
+-- when the player is seated in it.
+local vehicleNoclipEnabled = false
+
+RunService.Stepped:Connect(function()
+    if not vehicleNoclipEnabled then return end
+    local char = LocalPlayer.Character
+    if not char then return end
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if not humanoid or not humanoid.SeatPart then return end
+    local vehicle = humanoid.SeatPart.Parent
+    if not vehicle then return end
+    -- Apply to the vehicle model and all its descendants
+    for _, part in pairs(vehicle:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+            part.CanTouch = false
+        end
+    end
+end)
+
+-- ============================================
+-- [[ FE FLY SYSTEM ]]
+-- ============================================
+-- Uses BodyVelocity + BodyGyro on HumanoidRootPart.
+-- WASD = horizontal (camera-relative), Space = up, LShift = down.
+
+local flyEnabled = false
+local flySpeed = 50
+local flyBodyVelocity = nil
+local flyBodyGyro = nil
+local flyKeys = {
+    w = false, a = false, s = false, d = false,
+    space = false, shift = false
+}
+
+local function createFlyInstances()
+    local char = LocalPlayer.Character
+    if not char then return false end
+    local hrp = char:FindFirstChild("HumanoidRootPart")
+    if not hrp then return false end
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return false end
+
+    -- Clean up old
+    if flyBodyVelocity then pcall(function() flyBodyVelocity:Destroy() end) end
+    if flyBodyGyro then pcall(function() flyBodyGyro:Destroy() end) end
+
+    flyBodyVelocity = Instance.new("BodyVelocity")
+    flyBodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+    flyBodyVelocity.Velocity = Vector3.new(0, 0, 0)
+    flyBodyVelocity.Parent = hrp
+
+    flyBodyGyro = Instance.new("BodyGyro")
+    flyBodyGyro.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+    flyBodyGyro.P = 9000
+    flyBodyGyro.D = 100
+    flyBodyGyro.CFrame = hrp.CFrame
+    flyBodyGyro.Parent = hrp
+
+    humanoid.PlatformStand = true
+    return true
+end
+
+local function destroyFlyInstances()
+    if flyBodyVelocity then pcall(function() flyBodyVelocity:Destroy() end) flyBodyVelocity = nil end
+    if flyBodyGyro then pcall(function() flyBodyGyro:Destroy() end) flyBodyGyro = nil end
+    local char = LocalPlayer.Character
+    if char then
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.PlatformStand = false
+        end
+    end
+end
+
+-- Recreate fly instances on character respawn
+LocalPlayer.CharacterAdded:Connect(function(char)
+    if flyEnabled then
+        task.wait(1)
+        createFlyInstances()
+    end
+end)
+
+-- Input handling
+UserInputService.InputBegan:Connect(function(input, processed)
+    if processed then return end
+    local kc = input.KeyCode
+    if kc == Enum.KeyCode.W then flyKeys.w = true end
+    if kc == Enum.KeyCode.A then flyKeys.a = true end
+    if kc == Enum.KeyCode.S then flyKeys.s = true end
+    if kc == Enum.KeyCode.D then flyKeys.d = true end
+    if kc == Enum.KeyCode.Space then flyKeys.space = true end
+    if kc == Enum.KeyCode.LeftShift then flyKeys.shift = true end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    local kc = input.KeyCode
+    if kc == Enum.KeyCode.W then flyKeys.w = false end
+    if kc == Enum.KeyCode.A then flyKeys.a = false end
+    if kc == Enum.KeyCode.S then flyKeys.s = false end
+    if kc == Enum.KeyCode.D then flyKeys.d = false end
+    if kc == Enum.KeyCode.Space then flyKeys.space = false end
+    if kc == Enum.KeyCode.LeftShift then flyKeys.shift = false end
+end)
+
+-- Movement loop
+RunService.RenderStepped:Connect(function()
+    if not flyEnabled then return end
+    -- Recreate if instances were destroyed
+    if not flyBodyVelocity or not flyBodyVelocity.Parent then
+        if not createFlyInstances() then return end
+    end
+
+    local cam = workspace.CurrentCamera
+    if not cam then return end
+    local cf = cam.CFrame
+    local dir = Vector3.new(0, 0, 0)
+
+    if flyKeys.w then dir = dir + cf.LookVector end
+    if flyKeys.s then dir = dir - cf.LookVector end
+    if flyKeys.a then dir = dir - cf.RightVector end
+    if flyKeys.d then dir = dir + cf.RightVector end
+    if flyKeys.space then dir = dir + Vector3.new(0, 1, 0) end
+    if flyKeys.shift then dir = dir - Vector3.new(0, 1, 0) end
+
+    if dir.Magnitude > 0 then
+        flyBodyVelocity.Velocity = dir.Unit * flySpeed
+    else
+        flyBodyVelocity.Velocity = Vector3.new(0, 0, 0)
+    end
+
+    if flyBodyGyro and flyBodyGyro.Parent then
+        flyBodyGyro.CFrame = cf
+    end
+end)
+
+-- ============================================
+-- [[ FE EMOTE SYSTEM ]]
+-- ============================================
+local emoteList = {
+    { Name = "Wave",         Id = 507771019 },
+    { Name = "Point",        Id = 507770239 },
+    { Name = "Dance",        Id = 507777726 },
+    { Name = "Dance 2",      Id = 507781525 },
+    { Name = "Dance 3",      Id = 507782593 },
+    { Name = "Laugh",        Id = 507770621 },
+    { Name = "Cheer",        Id = 507770456 },
+    { Name = "Air Guitar",   Id = 507776043 },
+    { Name = "Flex Muscles", Id = 507768731 },
+    { Name = "Salute",       Id = 507769468 },
+}
+
+local currentEmoteTrack = nil
+
+local function playEmote(animId)
+    local char = LocalPlayer.Character
+    if not char then return false end
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return false end
+
+    -- Stop previous emote
+    if currentEmoteTrack and currentEmoteTrack.IsPlaying then
+        pcall(function() currentEmoteTrack:Stop() end)
+    end
+
+    local anim = Instance.new("Animation")
+    anim.AnimationId = "rbxassetid://" .. tostring(animId)
+    currentEmoteTrack = humanoid:LoadAnimation(anim)
+    currentEmoteTrack:Play()
+    return true
+end
+
+-- ============================================
 -- [[ CAR SPAWNER ]]
--- ==========================================
-local CarSpawnRemote = ReplicatedStorage:FindFirstChild("Services")
-    and ReplicatedStorage.Services:FindFirstChild("CarSpawner")
-    and ReplicatedStorage.Services.CarSpawner:FindFirstChild("Remotes")
-    and ReplicatedStorage.Services.CarSpawner.Remotes:FindFirstChild("Spawn")
+-- ============================================
+local CarSpawnRemote = nil
+pcall(function()
+    CarSpawnRemote = ReplicatedStorage.Services.CarSpawner.Remotes.Spawn
+end)
 
+-- Try to load car list from the game's config module
+local carNames = {}
+pcall(function()
+    local CarConfig = require(ReplicatedStorage.Services.CarConfiguration.CarConfigurationClient)
+    local cars = CarConfig.GetCars()
+    if cars then
+        for _, car in ipairs(cars) do
+            if car.Name then
+                table.insert(carNames, car.Name)
+            end
+        end
+    end
+end)
+
+-- Fallback if require fails
+if #carNames == 0 then
+    carNames = { "Arc R7", "Surge Viper" }
+end
+
+local currentCarName = carNames[1] or "Arc R7"
 local spamSpawnEnabled = false
-local spamSpawnConnection = nil
 
-local function spawnCar(carName)
+local function spawnCar(name)
     if not CarSpawnRemote then
         Fluent:Notify({
             Title = "Car Spawner",
@@ -131,32 +342,41 @@ local function spawnCar(carName)
         })
         return false
     end
-    pcall(function()
-        CarSpawnRemote:InvokeServer(carName)
+    local ok = pcall(function()
+        CarSpawnRemote:InvokeServer(name)
     end)
-    return true
+    return ok
 end
 
-local function startSpamSpawn(carName)
-    if spamSpawnConnection then return end
-    spamSpawnConnection = RunService.Heartbeat:Connect(function()
+-- Spam spawn loop
+task.spawn(function()
+    while task.wait(0.5) do
         if spamSpawnEnabled then
-            spawnCar(carName)
-            task.wait(0.5)
+            spawnCar(currentCarName)
         end
-    end)
-end
+    end
+end)
 
-startSpamSpawn("Arc R7")
+-- ============================================
+-- [[ FLUENT WINDOW — created BEFORE toggle button ]]
+-- ============================================
+local Window = Fluent:CreateWindow({
+    Title = "ronalds.exe",
+    SubTitle = "v" .. VERSION .. " | " .. LocalPlayer.Name,
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Rose",
+    MinimizeKey = Enum.KeyCode.RightControl
+})
 
--- ==========================================
--- [[ FLOATING ROSE SQUARE TOGGLE BUTTON ]]
--- ==========================================
-
+-- ============================================
+-- [[ FLOATING TOGGLE BUTTON ]]
+-- ============================================
 local ToggleGui = Instance.new("ScreenGui")
 local ToggleButton = Instance.new("TextButton")
-local UICorner = Instance.new("UICorner")
-local UIStroke = Instance.new("UIStroke")
+local BtnCorner = Instance.new("UICorner")
+local BtnStroke = Instance.new("UIStroke")
 
 ToggleGui.Name = "RonaldsButton_Independent"
 ToggleGui.Parent = CoreGui
@@ -172,30 +392,33 @@ ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleButton.Font = Enum.Font.GothamBold
 ToggleButton.TextSize = 18
 ToggleButton.Active = true
+ToggleButton.ZIndex = 100 -- Always on top
 
-UICorner.CornerRadius = UDim.new(0, 8)
-UICorner.Parent = ToggleButton
+BtnCorner.CornerRadius = UDim.new(0, 8)
+BtnCorner.Parent = ToggleButton
 
-UIStroke.Color = Color3.fromRGB(255, 255, 255)
-UIStroke.Thickness = 1.5
-UIStroke.Transparency = 0.3
-UIStroke.Parent = ToggleButton
+BtnStroke.Color = Color3.fromRGB(255, 255, 255)
+BtnStroke.Thickness = 1.5
+BtnStroke.Transparency = 0.3
+BtnStroke.Parent = ToggleButton
 
--- Custom Drag Logic to Prevent Interference
+-- Drag logic
 local dragging = false
 local hasMoved = false
 local dragInput, dragStart, startPos
 
-local function update(input)
+local function updateDrag(input)
     local delta = input.Position - dragStart
-    if delta.Magnitude > 7 then
-        hasMoved = true
-    end
-    ToggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    if delta.Magnitude > 7 then hasMoved = true end
+    ToggleButton.Position = UDim2.new(
+        startPos.X.Scale, startPos.X.Offset + delta.X,
+        startPos.Y.Scale, startPos.Y.Offset + delta.Y
+    )
 end
 
 ToggleButton.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
         hasMoved = false
         dragStart = input.Position
@@ -206,7 +429,9 @@ ToggleButton.InputBegan:Connect(function(input)
                 dragging = false
                 if not hasMoved then
                     playClickSound()
-                    Window:Minimize()
+                    pcall(function()
+                        Window:Minimize()
+                    end)
                 end
             end
         end)
@@ -214,139 +439,212 @@ ToggleButton.InputBegan:Connect(function(input)
 end)
 
 ToggleButton.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+    if input.UserInputType == Enum.UserInputType.MouseMovement
+    or input.UserInputType == Enum.UserInputType.Touch then
         dragInput = input
     end
 end)
 
 UserInputService.InputChanged:Connect(function(input)
     if input == dragInput and dragging then
-        update(input)
+        updateDrag(input)
     end
 end)
 
--- ==========================================
--- [[ WINDOW ]]
--- ==========================================
-
-local Window = Fluent:CreateWindow({
-    Title = "ronalds.exe",
-    SubTitle = "v1.0.0 | User: " .. LocalPlayer.Name,
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
-    Acrylic = true,
-    Theme = "Rose",
-    MinimizeKey = Enum.KeyCode.RightControl
-})
-
--- ==========================================
+-- ============================================
 -- [[ TABS ]]
--- ==========================================
-
+-- ============================================
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
-    Player = Window:AddTab({ Title = "Player", Icon = "user" }),
-    Car = Window:AddTab({ Title = "Car", Icon = "car" }),
+    Main    = Window:AddTab({ Title = "Main",    Icon = "home" }),
+    Player  = Window:AddTab({ Title = "Player",  Icon = "user" }),
+    Car     = Window:AddTab({ Title = "Car",     Icon = "car" }),
     Credits = Window:AddTab({ Title = "Credits", Icon = "info" })
 }
 
--- [[ PLAYER TAB ]]
+-- ============================================
+-- [[ MAIN TAB ]]
+-- ============================================
 do
-    local NoclipToggle = Tabs.Player:AddToggle("NoclipToggle", {
-        Title = "Bypass Noclip",
-        Default = false
+    Tabs.Main:AddParagraph({
+        Title = "ronalds.exe v" .. VERSION,
+        Content = "Made by Sheitsa\nExecutor: " .. getExecutorName()
     })
 
+    Tabs.Main:AddParagraph({
+        Title = "Update Log",
+        Content =
+            "v1.1.0  —  FE Fly, FE Emotes, Vehicle Noclip,\n" ..
+            "           Car Spawner (dropdown), Update Logs\n" ..
+            "v1.0.0  —  Initial release, Bypass Noclip,\n" ..
+            "           WalkSpeed / JumpPower"
+    })
+
+    Tabs.Main:AddParagraph({
+        Title = "Server Info",
+        Content =
+            "Game: " .. getGameName() .. "\n" ..
+            "Place ID: " .. tostring(game.PlaceId) .. "\n" ..
+            "Job ID: " .. tostring(game.JobId) .. "\n" ..
+            "Players: " .. tostring(#Players:GetPlayers()) .. "/" .. tostring(Players.MaxPlayers)
+    })
+
+    Tabs.Main:AddButton("RejoinServer", {
+        Title = "Rejoin Server",
+        Description = "Teleport back into this server.",
+        Callback = function()
+            playClickSound()
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+        end
+    })
+end
+
+-- ============================================
+-- [[ PLAYER TAB ]]
+-- ============================================
+do
+    -- Bypass Noclip
+    local NoclipToggle = Tabs.Player:AddToggle("NoclipToggle", {
+        Title = "Bypass Noclip",
+        Description = "Pass through walls. Barrier bypass depends on server.",
+        Default = false
+    })
     NoclipToggle:OnChanged(function(state)
         playClickSound()
         noclipEnabled = state
     end)
 
-    local SpeedSlider = Tabs.Player:AddSlider("WalkSpeedSlider", {
-        Title = "WalkSpeed Override",
-        Description = "Adjust local character movement speed.",
+    -- Vehicle Noclip
+    local VehNoclipToggle = Tabs.Player:AddToggle("VehicleNoclipToggle", {
+        Title = "Vehicle Noclip",
+        Description = "Noclip for the vehicle you are seated in.",
+        Default = false
+    })
+    VehNoclipToggle:OnChanged(function(state)
+        playClickSound()
+        vehicleNoclipEnabled = state
+    end)
+
+    -- WalkSpeed
+    Tabs.Player:AddSlider("WalkSpeedSlider", {
+        Title = "WalkSpeed",
+        Description = "Adjust character movement speed.",
         Default = 16,
         Min = 16,
         Max = 150,
         Rounding = 1,
         Callback = function(Value)
-            playClickSound()
-            local character = LocalPlayer.Character
-            if character and character:FindFirstChildOfClass("Humanoid") then
-                character:FindFirstChildOfClass("Humanoid").WalkSpeed = Value
+            local char = LocalPlayer.Character
+            if char then
+                local hum = char:FindFirstChildOfClass("Humanoid")
+                if hum then hum.WalkSpeed = Value end
             end
         end
     })
 
-    local JumpSlider = Tabs.Player:AddSlider("JumpPowerSlider", {
-        Title = "JumpPower Override",
-        Description = "Adjust local character upward velocity.",
+    -- JumpPower
+    Tabs.Player:AddSlider("JumpPowerSlider", {
+        Title = "JumpPower",
+        Description = "Adjust character jump height.",
         Default = 50,
         Min = 50,
         Max = 200,
         Rounding = 1,
         Callback = function(Value)
-            playClickSound()
-            local character = LocalPlayer.Character
-            if character and character:FindFirstChildOfClass("Humanoid") then
-                local humanoid = character:FindFirstChildOfClass("Humanoid")
-                humanoid.UseJumpPower = true
-                humanoid.JumpPower = Value
+            local char = LocalPlayer.Character
+            if char then
+                local hum = char:FindFirstChildOfClass("Humanoid")
+                if hum then
+                    hum.UseJumpPower = true
+                    hum.JumpPower = Value
+                end
             end
         end
     })
 
-    -- Locked Controls
+    -- FE Fly
     local FlyToggle = Tabs.Player:AddToggle("FlyToggle", {
-        Title = "Grant Fly [LOCKED]",
+        Title = "FE Fly",
+        Description = "WASD + Space / LShift to fly.",
         Default = false
     })
-
     FlyToggle:OnChanged(function(state)
+        playClickSound()
+        flyEnabled = state
         if state then
-            playClickSound()
+            createFlyInstances()
             Fluent:Notify({
-                Title = "System",
-                Content = "This feature is currently locked.",
+                Title = "Fly",
+                Content = "Enabled — WASD + Space / LShift",
                 Duration = 3
+            })
+        else
+            destroyFlyInstances()
+            Fluent:Notify({
+                Title = "Fly",
+                Content = "Disabled.",
+                Duration = 2
             })
         end
     end)
 
-    local EmoteToggle = Tabs.Player:AddToggle("EmoteToggle", {
-        Title = "FE Emotes [LOCKED]",
-        Default = false
+    -- Fly Speed
+    Tabs.Player:AddSlider("FlySpeedSlider", {
+        Title = "Fly Speed",
+        Description = "Adjust fly movement speed.",
+        Default = 50,
+        Min = 10,
+        Max = 300,
+        Rounding = 1,
+        Callback = function(Value)
+            flySpeed = Value
+        end
     })
 
-    EmoteToggle:OnChanged(function(state)
-        if state then
-            playClickSound()
-            Fluent:Notify({
-                Title = "System",
-                Content = "This feature is currently locked.",
-                Duration = 3
-            })
+    -- FE Emotes
+    local emoteNames = {}
+    for _, e in ipairs(emoteList) do
+        table.insert(emoteNames, e.Name)
+    end
+
+    Tabs.Player:AddDropdown("EmoteDropdown", {
+        Title = "FE Emotes",
+        Description = "Select an emote to play.",
+        Values = emoteNames,
+        Default = 1,
+        Callback = function(Value)
+            for _, e in ipairs(emoteList) do
+                if e.Name == Value then
+                    playClickSound()
+                    playEmote(e.Id)
+                    Fluent:Notify({
+                        Title = "Emote",
+                        Content = "Playing: " .. e.Name,
+                        Duration = 2
+                    })
+                    break
+                end
+            end
         end
-    end)
+    })
 end
 
+-- ============================================
 -- [[ CAR TAB ]]
+-- ============================================
 do
-    local currentCarName = "Arc R7"
-
-    local CarInput = Tabs.Car:AddInput("CarNameInput", {
-        Title = "Car Name",
-        Description = "Name of the car to spawn.",
-        Default = "Arc R7",
-        Placeholder = "e.g. Arc R7",
-        Changed = function(Value)
+    Tabs.Car:AddDropdown("CarDropdown", {
+        Title = "Select Car",
+        Description = "Choose a car to spawn.",
+        Values = carNames,
+        Default = 1,
+        Callback = function(Value)
             currentCarName = Value
         end
     })
 
     Tabs.Car:AddButton("SpawnCarButton", {
         Title = "Spawn Car",
-        Description = "Spawn a single car by name.",
+        Description = "Spawn the selected car.",
         Callback = function()
             playClickSound()
             if spawnCar(currentCarName) then
@@ -364,7 +662,6 @@ do
         Description = "Rapidly spawn cars every 0.5s (glitch test).",
         Default = false
     })
-
     SpamToggle:OnChanged(function(state)
         playClickSound()
         spamSpawnEnabled = state
@@ -378,22 +675,23 @@ do
     end)
 end
 
+-- ============================================
 -- [[ CREDITS TAB ]]
+-- ============================================
 do
     Tabs.Credits:AddParagraph({
         Title = "Credits",
-        Content = "made by Sheitsa"
+        Content = "Made by Sheitsa\nUI Library: dawid-scripts/Fluent"
     })
 end
 
--- ==========================================
--- [[ SYSTEM INTERFACE MANAGERS ]]
--- ==========================================
-
+-- ============================================
+-- [[ INIT ]]
+-- ============================================
 Window:SelectTab(1)
 
 Fluent:Notify({
     Title = "ronalds.exe",
-    Content = "Interface framework loaded successfully.",
-    Duration = 5
+    Content = "v" .. VERSION .. " loaded successfully.",
+    Duration = 4
 })
