@@ -9,6 +9,7 @@ local SoundService = game:GetService("SoundService")
 local CoreGui = game:GetService("CoreGui")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Duplicate prevention
 local oldBtn = CoreGui:FindFirstChild("RonaldsButton_Independent")
@@ -26,93 +27,59 @@ end
 -- ==========================================
 -- [[ ANTI-CHEAT BYPASS FOR NOCLIP ]]
 -- ==========================================
--- Based on Cobalt decompilation of the anti-cheat remote:
---   - Game hooks __newindex on game to track OnClientInvoke replacements
---   - OnClientInvoke callback uses isexecutorclosure, getscriptfromthread,
---     debug.info, getthreadidentity to detect tampering
---   - Game periodically verifies OnClientInvoke hasn't changed
+-- NO global __index / __newindex hooks — those intercept every property
+-- read/write on every instance and cause massive lag (kills Fluent UI).
 --
--- Strategy (3-layer stealth):
---   1. Hook __newindex  → block game from restoring/detecting our replacement
---   2. Hook __index    → fake-read OnClientInvoke so game thinks it's unchanged
---   3. Replace OnClientInvoke with clean callback (returns {true, n=1})
---   4. CanTouch = false in noclip loop (blocks .Touched boundary triggers)
+-- Strategy:
+--   1. Replace OnClientInvoke once with clean callback
+--   2. Heartbeat loop re-sets it every frame if game restores original
+--      (O(1) per frame — one property compare, zero lag)
+--   3. CanTouch = false in noclip loop (blocks .Touched boundary triggers)
 
-local AntiCheatRemote = game:GetService("ReplicatedStorage"):FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
+local AntiCheatRemote = ReplicatedStorage:FindFirstChild("c5a6fcf5-232d-4ed3-acc8-622222e596ac")
 local AntiCheatFunc = AntiCheatRemote and AntiCheatRemote:FindFirstChild("__FUNCTION")
 
 local noclipEnabled = false
 
 if AntiCheatFunc then
-    -- Save original callback BEFORE any tampering
     local originalCallback = nil
     pcall(function()
         originalCallback = getcallbackvalue(AntiCheatFunc, "OnClientInvoke")
     end)
 
-    -- Layer 1: Hook __newindex on game
-    -- The game hooks __newindex to detect when OnClientInvoke is replaced.
-    -- We wrap it so the game NEVER sees our replacement go through.
-    -- When the game tries to re-set OnClientInvoke (restore original),
-    -- we silently block it — our replacement stays in place.
-    pcall(function()
-        local oldNewIndex = hookmetamethod(game, "__newindex", newcclosure(function(self, key, value, ...)
-            if AntiCheatFunc and rawequal(self, AntiCheatFunc) and rawequal(key, "OnClientInvoke") then
-                if not checkcaller() then
-                    -- Game script trying to set OnClientInvoke — silently swallow
-                    -- so it can't restore the original or detect our change
-                    return
-                end
-            end
-            return oldNewIndex(self, key, value, ...)
-        end))
-    end)
-
-    -- Layer 2: Hook __index on game
-    -- The game may periodically read OnClientInvoke to verify it's unchanged.
-    -- We intercept the read and return the original callback so the game
-    -- always sees the "untampered" function.
-    -- Roblox's internal InvokeClient uses the REAL property (bypasses __index),
-    -- so our replacement still gets called when the server polls.
-    pcall(function()
-        local oldIndex = hookmetamethod(game, "__index", newcclosure(function(self, key)
-            if AntiCheatFunc and rawequal(self, AntiCheatFunc) and rawequal(key, "OnClientInvoke") then
-                if not checkcaller() then
-                    -- Game script reading OnClientInvoke — return original
-                    return originalCallback
-                end
-            end
-            return oldIndex(self, key)
-        end))
-    end)
-
-    -- Layer 3: Replace OnClientInvoke with our clean callback
-    -- Our __newindex hook ensures the game never detects this replacement.
-    -- checkcaller() = true here so our hook lets it through.
-    pcall(function()
-        AntiCheatFunc.OnClientInvoke = function(...)
-            if noclipEnabled then
-                -- Return clean "not noclipping" data to the server
-                return { true, n = 1 }
-            end
-            -- When noclip is off, pass through to original (or return clean anyway)
-            if originalCallback then
-                return originalCallback(...)
-            end
+    -- Our clean replacement — returns "not noclipping" data to server
+    local cleanCallback = function(...)
+        if noclipEnabled then
+            return { true, n = 1 }
         end
+        if originalCallback then
+            return originalCallback(...)
+        end
+    end
+
+    -- Set it once
+    pcall(function()
+        AntiCheatFunc.OnClientInvoke = cleanCallback
     end)
 
-    -- Layer 4: Swallow incoming FireClient events from anti-cheat
+    -- Re-set every frame if the game restores the original
+    -- This is O(1) — just one reference compare per heartbeat, no lag
+    RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if AntiCheatFunc.OnClientInvoke ~= cleanCallback then
+                AntiCheatFunc.OnClientInvoke = cleanCallback
+            end
+        end)
+    end)
+
+    -- Swallow incoming FireClient events from anti-cheat
     if AntiCheatFunc:IsA("RemoteEvent") then
         pcall(function()
-            local conn = AntiCheatFunc.OnClientEvent
-            if typeof(conn) == "RBXScriptSignal" then
-                conn:Connect(function() end)
-            end
+            AntiCheatFunc.OnClientEvent:Connect(function() end)
         end)
     end
 
-    -- Layer 5: Swallow child remote events (additional anti-cheat channels)
+    -- Swallow child remote events
     for _, child in ipairs(AntiCheatFunc:GetChildren()) do
         if child:IsA("RemoteEvent") then
             pcall(function()
@@ -143,6 +110,44 @@ local function startNoclip()
 end
 
 startNoclip()
+
+-- ==========================================
+-- [[ CAR SPAWNER ]]
+-- ==========================================
+local CarSpawnRemote = ReplicatedStorage:FindFirstChild("Services")
+    and ReplicatedStorage.Services:FindFirstChild("CarSpawner")
+    and ReplicatedStorage.Services.CarSpawner:FindFirstChild("Remotes")
+    and ReplicatedStorage.Services.CarSpawner.Remotes:FindFirstChild("Spawn")
+
+local spamSpawnEnabled = false
+local spamSpawnConnection = nil
+
+local function spawnCar(carName)
+    if not CarSpawnRemote then
+        Fluent:Notify({
+            Title = "Car Spawner",
+            Content = "Spawn remote not found.",
+            Duration = 3
+        })
+        return false
+    end
+    pcall(function()
+        CarSpawnRemote:InvokeServer(carName)
+    end)
+    return true
+end
+
+local function startSpamSpawn(carName)
+    if spamSpawnConnection then return end
+    spamSpawnConnection = RunService.Heartbeat:Connect(function()
+        if spamSpawnEnabled then
+            spawnCar(carName)
+            task.wait(0.5)
+        end
+    end)
+end
+
+startSpamSpawn("Arc R7")
 
 -- ==========================================
 -- [[ FLOATING ROSE SQUARE TOGGLE BUTTON ]]
@@ -320,6 +325,54 @@ do
                 Title = "System",
                 Content = "This feature is currently locked.",
                 Duration = 3
+            })
+        end
+    end)
+end
+
+-- [[ CAR TAB ]]
+do
+    local currentCarName = "Arc R7"
+
+    local CarInput = Tabs.Car:AddInput("CarNameInput", {
+        Title = "Car Name",
+        Description = "Name of the car to spawn.",
+        Default = "Arc R7",
+        Placeholder = "e.g. Arc R7",
+        Changed = function(Value)
+            currentCarName = Value
+        end
+    })
+
+    Tabs.Car:AddButton("SpawnCarButton", {
+        Title = "Spawn Car",
+        Description = "Spawn a single car by name.",
+        Callback = function()
+            playClickSound()
+            if spawnCar(currentCarName) then
+                Fluent:Notify({
+                    Title = "Car Spawner",
+                    Content = "Spawning: " .. currentCarName,
+                    Duration = 2
+                })
+            end
+        end
+    })
+
+    local SpamToggle = Tabs.Car:AddToggle("SpamSpawnToggle", {
+        Title = "Spam Spawn",
+        Description = "Rapidly spawn cars every 0.5s (glitch test).",
+        Default = false
+    })
+
+    SpamToggle:OnChanged(function(state)
+        playClickSound()
+        spamSpawnEnabled = state
+        if state then
+            Fluent:Notify({
+                Title = "Car Spawner",
+                Content = "Spam spawning: " .. currentCarName,
+                Duration = 2
             })
         end
     end)
