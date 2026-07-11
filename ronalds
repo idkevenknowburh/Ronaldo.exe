@@ -1,63 +1,53 @@
--- Force-patch the string library to prevent "string slice too long" inside the obfuscated script
-local old_char = string.char
-local old_sub = string.sub
+-- [[ Put this inside Ronaldo.exe/refs/heads/main/ronalds ]]
 
--- 1. Replace string.char with a safe chunk-unpacker
-string.char = function(...)
-    local args = {...}
-    local len = #args
-    if len <= 1000 then
-        return old_char(unpack(args))
-    end
-    
-    local result = {}
-    for i = 1, len, 1000 do
-        local chunk = {unpack(args, i, math.min(i + 999, len))}
-        table.insert(result, old_char(unpack(chunk)))
-    end
-    return table.concat(result)
-end
+-- Ultimate bypass: Override loadstring to chunk-load massive strings dynamically
+local old_loadstring = loadstring
 
--- 2. Replace string.sub with a safety-clamped version
-string.sub = function(str, start, stop)
-    start = start or 1
-    stop = stop or #str
-    
-    -- Handle negative indices
-    if start < 0 then start = #str + start + 1 end
-    if stop < 0 then stop = #str + stop + 1 end
-    
-    start = math.clamp(start, 1, #str + 1)
-    stop = math.clamp(stop, 0, #str)
-    
-    if start > stop then return "" end
-    
-    -- Split huge slices into smaller concatenations to bypass Luau's memory limit
-    local length = (stop - start) + 1
-    if length <= 50000 then
-        return old_sub(str, start, stop)
+local function safe_loadstring(source, chunkname)
+    -- If the source string is small, run it normally
+    if #source < 100000 then
+        return old_loadstring(source, chunkname)
     end
-    
+
+    -- Split the massive text into an iterable stream table to prevent Luau stack flooding
     local chunks = {}
-    for i = start, stop, 50000 do
-        local chunkEnd = math.min(i + 49999, stop)
-        table.insert(chunks, old_sub(str, i, chunkEnd))
+    local step = 40000
+    for i = 1, #source, step do
+        table.insert(chunks, string.sub(source, i, i + step - 1))
     end
-    return table.concat(chunks)
+
+    local index = 0
+    -- Pass a custom iterator function to loadstring instead of a raw string
+    -- This forces Luau to load the script in bite-sized fragments sequentially
+    local function stream_iterator()
+        index = index + 1
+        return chunks[index]
+    end
+
+    return old_loadstring(stream_iterator, chunkname or "=(Ronaldo_Streamed)")
 end
 
--- 3. Fetch the obfuscated script safely
+-- Hook into the global execution environment
+loadstring = safe_loadstring
+
+-- Fetch your obfuscated script from your private repo
 local success, rawData = pcall(function()
     return game:HttpGet("https://raw.githubusercontent.com/idkevenknowburh/ronaldo.exe-private/refs/heads/main/ronalds")
 end)
 
 if success and rawData then
-    -- 4. Compile and run it in a brand-new, clean stack thread
-    local executable, err = loadstring(rawData)
+    -- Compile the data using our stream loader
+    local executable, err = safe_loadstring(rawData)
     if executable then
-        task.spawn(executable)
+        -- Execute on a completely separate thread to clean up remaining registers
+        local success_run, run_err = pcall(function()
+            task.spawn(executable)
+        end)
+        if not success_run then
+            warn("Execution crash: " .. tostring(run_err))
+        end
     else
-        warn("Failed to compile code: " .. tostring(err))
+        warn("Compilation failed: " .. tostring(err))
     end
 else
     warn("Failed to fetch backend script.")
