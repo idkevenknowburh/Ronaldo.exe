@@ -1,4 +1,4 @@
--- [[ ronalds.exe v1.1.0 - by Sheitsa ]]
+-- [[ ronalds.exe v1.2.0 - by Sheitsa ]]
 
 -- ============================================
 -- [[ LIBRARIES ]]
@@ -24,7 +24,7 @@ local Debris = game:GetService("Debris")
 -- ============================================
 -- [[ CONSTANTS ]]
 -- ============================================
-local VERSION = "1.1.0"
+local VERSION = "1.2.0"
 
 -- ============================================
 -- [[ DUPLICATE PREVENTION ]]
@@ -47,28 +47,29 @@ local function playClickSound()
 end
 
 local function getExecutorName()
-    pcall(function()
-        if identifyexecutor then return identifyexecutor() end
+    local ok, name = pcall(function()
+        if identifyexecutor then
+            return identifyexecutor()
+        end
+        return "Unknown"
     end)
-    return "Unknown"
+    return ok and name or "Unknown"
 end
 
 local function getGameName()
     local ok, info = pcall(function()
         return MarketplaceService:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
     end)
-    if ok and info and info.Name then
-        return info.Name
-    end
+    if ok and info and info.Name then return info.Name end
     return "Unknown Game"
 end
 
 -- ============================================
 -- [[ ANTI-CHEAT BYPASS ]]
 -- ============================================
--- Always returns {true, n = 1} — the server always gets "clean" data.
--- Heartbeat loop re-sets if game restores original (O(1) per frame, zero lag).
--- This handles barrier detection which uses the same remote.
+-- Always returns {true, n = 1} — the original callback (which runs
+-- isexecutorclosure, getscriptfromthread, debug.info, etc.) never executes.
+-- Heartbeat re-set (O(1) per frame, zero lag) in case game restores it.
 
 local AntiCheatFunc = nil
 pcall(function()
@@ -79,8 +80,6 @@ pcall(function()
 end)
 
 if AntiCheatFunc then
-    -- Always return clean data — never run the original callback
-    -- (the original runs isexecutorclosure, getscriptfromthread, debug.info, etc.)
     local cleanCallback = function(...)
         return { true, n = 1 }
     end
@@ -89,7 +88,6 @@ if AntiCheatFunc then
         AntiCheatFunc.OnClientInvoke = cleanCallback
     end)
 
-    -- Re-set every frame if game restores the original
     RunService.Heartbeat:Connect(function()
         pcall(function()
             if AntiCheatFunc.OnClientInvoke ~= cleanCallback then
@@ -98,7 +96,6 @@ if AntiCheatFunc then
         end)
     end)
 
-    -- Swallow incoming FireClient events
     pcall(function()
         if AntiCheatFunc:IsA("RemoteEvent") then
             AntiCheatFunc.OnClientEvent:Connect(function() end)
@@ -130,7 +127,7 @@ end)
 -- ============================================
 -- [[ VEHICLE NOCLIP ]]
 -- ============================================
--- Same approach as player noclip but targets the vehicle model
+-- Same CanCollide/CanTouch approach applied to the vehicle model
 -- when the player is seated in it.
 local vehicleNoclipEnabled = false
 
@@ -142,7 +139,6 @@ RunService.Stepped:Connect(function()
     if not humanoid or not humanoid.SeatPart then return end
     local vehicle = humanoid.SeatPart.Parent
     if not vehicle then return end
-    -- Apply to the vehicle model and all its descendants
     for _, part in pairs(vehicle:GetDescendants()) do
         if part:IsA("BasePart") then
             part.CanCollide = false
@@ -154,8 +150,8 @@ end)
 -- ============================================
 -- [[ FE FLY SYSTEM ]]
 -- ============================================
--- Uses BodyVelocity + BodyGyro on HumanoidRootPart.
--- WASD = horizontal (camera-relative), Space = up, LShift = down.
+-- BodyVelocity + BodyGyro on HumanoidRootPart.
+-- WASD = camera-relative, Space = up, LShift = down.
 
 local flyEnabled = false
 local flySpeed = 50
@@ -174,7 +170,6 @@ local function createFlyInstances()
     local humanoid = char:FindFirstChildOfClass("Humanoid")
     if not humanoid then return false end
 
-    -- Clean up old
     if flyBodyVelocity then pcall(function() flyBodyVelocity:Destroy() end) end
     if flyBodyGyro then pcall(function() flyBodyGyro:Destroy() end) end
 
@@ -200,13 +195,10 @@ local function destroyFlyInstances()
     local char = LocalPlayer.Character
     if char then
         local humanoid = char:FindFirstChildOfClass("Humanoid")
-        if humanoid then
-            humanoid.PlatformStand = false
-        end
+        if humanoid then humanoid.PlatformStand = false end
     end
 end
 
--- Recreate fly instances on character respawn
 LocalPlayer.CharacterAdded:Connect(function(char)
     if flyEnabled then
         task.wait(1)
@@ -214,7 +206,6 @@ LocalPlayer.CharacterAdded:Connect(function(char)
     end
 end)
 
--- Input handling
 UserInputService.InputBegan:Connect(function(input, processed)
     if processed then return end
     local kc = input.KeyCode
@@ -236,10 +227,8 @@ UserInputService.InputEnded:Connect(function(input)
     if kc == Enum.KeyCode.LeftShift then flyKeys.shift = false end
 end)
 
--- Movement loop
 RunService.RenderStepped:Connect(function()
     if not flyEnabled then return end
-    -- Recreate if instances were destroyed
     if not flyBodyVelocity or not flyBodyVelocity.Parent then
         if not createFlyInstances() then return end
     end
@@ -291,7 +280,6 @@ local function playEmote(animId)
     local humanoid = char:FindFirstChildOfClass("Humanoid")
     if not humanoid then return false end
 
-    -- Stop previous emote
     if currentEmoteTrack and currentEmoteTrack.IsPlaying then
         pcall(function() currentEmoteTrack:Stop() end)
     end
@@ -311,7 +299,6 @@ pcall(function()
     CarSpawnRemote = ReplicatedStorage.Services.CarSpawner.Remotes.Spawn
 end)
 
--- Try to load car list from the game's config module
 local carNames = {}
 pcall(function()
     local CarConfig = require(ReplicatedStorage.Services.CarConfiguration.CarConfigurationClient)
@@ -325,7 +312,6 @@ pcall(function()
     end
 end)
 
--- Fallback if require fails
 if #carNames == 0 then
     carNames = { "Arc R7", "Surge Viper" }
 end
@@ -335,11 +321,7 @@ local spamSpawnEnabled = false
 
 local function spawnCar(name)
     if not CarSpawnRemote then
-        Fluent:Notify({
-            Title = "Car Spawner",
-            Content = "Spawn remote not found.",
-            Duration = 3
-        })
+        Fluent:Notify({ Title = "Car Spawner", Content = "Spawn remote not found.", Duration = 3 })
         return false
     end
     local ok = pcall(function()
@@ -348,7 +330,6 @@ local function spawnCar(name)
     return ok
 end
 
--- Spam spawn loop
 task.spawn(function()
     while task.wait(0.5) do
         if spamSpawnEnabled then
@@ -358,7 +339,7 @@ task.spawn(function()
 end)
 
 -- ============================================
--- [[ FLUENT WINDOW — created BEFORE toggle button ]]
+-- [[ FLUENT WINDOW ]]
 -- ============================================
 local Window = Fluent:CreateWindow({
     Title = "ronalds.exe",
@@ -366,7 +347,7 @@ local Window = Fluent:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
-    Theme = "Rose",
+    Theme = "Aqua",
     MinimizeKey = Enum.KeyCode.RightControl
 })
 
@@ -384,7 +365,7 @@ ToggleGui.ResetOnSpawn = false
 
 ToggleButton.Name = "InteractionTarget"
 ToggleButton.Parent = ToggleGui
-ToggleButton.BackgroundColor3 = Color3.fromRGB(244, 63, 94)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(56, 189, 248)
 ToggleButton.Position = UDim2.new(0.05, 0, 0.15, 0)
 ToggleButton.Size = UDim2.fromOffset(45, 45)
 ToggleButton.Text = "R"
@@ -392,7 +373,7 @@ ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleButton.Font = Enum.Font.GothamBold
 ToggleButton.TextSize = 18
 ToggleButton.Active = true
-ToggleButton.ZIndex = 100 -- Always on top
+ToggleButton.ZIndex = 100
 
 BtnCorner.CornerRadius = UDim.new(0, 8)
 BtnCorner.Parent = ToggleButton
@@ -402,7 +383,6 @@ BtnStroke.Thickness = 1.5
 BtnStroke.Transparency = 0.3
 BtnStroke.Parent = ToggleButton
 
--- Drag logic
 local dragging = false
 local hasMoved = false
 local dragInput, dragStart, startPos
@@ -455,235 +435,245 @@ end)
 -- [[ TABS ]]
 -- ============================================
 local Tabs = {
-    Main    = Window:AddTab({ Title = "Main",    Icon = "home" }),
-    Player  = Window:AddTab({ Title = "Player",  Icon = "user" }),
-    Car     = Window:AddTab({ Title = "Car",     Icon = "car" }),
-    Credits = Window:AddTab({ Title = "Credits", Icon = "info" })
+    Main     = Window:AddTab({ Title = "Main",     Icon = "home" }),
+    Player   = Window:AddTab({ Title = "Player",   Icon = "user" }),
+    Car      = Window:AddTab({ Title = "Car",      Icon = "car" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" }),
+    Credits  = Window:AddTab({ Title = "Credits",  Icon = "info" })
 }
 
 -- ============================================
 -- [[ MAIN TAB ]]
 -- ============================================
-do
-    Tabs.Main:AddParagraph({
-        Title = "ronalds.exe v" .. VERSION,
-        Content = "Made by Sheitsa\nExecutor: " .. getExecutorName()
-    })
+Tabs.Main:AddParagraph({
+    Title = "ronalds.exe v" .. VERSION,
+    Content = "Made by Sheitsa\nExecutor: " .. getExecutorName()
+})
 
-    Tabs.Main:AddParagraph({
-        Title = "Update Log",
-        Content =
-            "v1.1.0  —  FE Fly, FE Emotes, Vehicle Noclip,\n" ..
-            "           Car Spawner (dropdown), Update Logs\n" ..
-            "v1.0.0  —  Initial release, Bypass Noclip,\n" ..
-            "           WalkSpeed / JumpPower"
-    })
+Tabs.Main:AddParagraph({
+    Title = "Update Log",
+    Content =
+        "v1.2.0  —  UI Settings tab, Aqua theme, API fixes\n" ..
+        "v1.1.0  —  FE Fly, FE Emotes, Vehicle Noclip,\n" ..
+        "           Car Spawner dropdown, Update Logs\n" ..
+        "v1.0.0  —  Initial release, Bypass Noclip,\n" ..
+        "           WalkSpeed / JumpPower"
+})
 
-    Tabs.Main:AddParagraph({
-        Title = "Server Info",
-        Content =
-            "Game: " .. getGameName() .. "\n" ..
-            "Place ID: " .. tostring(game.PlaceId) .. "\n" ..
-            "Job ID: " .. tostring(game.JobId) .. "\n" ..
-            "Players: " .. tostring(#Players:GetPlayers()) .. "/" .. tostring(Players.MaxPlayers)
-    })
+Tabs.Main:AddParagraph({
+    Title = "Server Info",
+    Content =
+        "Game: " .. getGameName() .. "\n" ..
+        "Place ID: " .. tostring(game.PlaceId) .. "\n" ..
+        "Job ID: " .. string.sub(tostring(game.JobId), 1, 12) .. "...\n" ..
+        "Players: " .. tostring(#Players:GetPlayers()) .. "/" .. tostring(Players.MaxPlayers)
+})
 
-    Tabs.Main:AddButton("RejoinServer", {
-        Title = "Rejoin Server",
-        Description = "Teleport back into this server.",
-        Callback = function()
-            playClickSound()
-            TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
-        end
-    })
-end
+Tabs.Main:AddButton({
+    Title = "Rejoin Server",
+    Description = "Teleport back into this server.",
+    Callback = function()
+        playClickSound()
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+    end
+})
 
 -- ============================================
 -- [[ PLAYER TAB ]]
 -- ============================================
-do
-    -- Bypass Noclip
-    local NoclipToggle = Tabs.Player:AddToggle("NoclipToggle", {
-        Title = "Bypass Noclip",
-        Description = "Pass through walls. Barrier bypass depends on server.",
-        Default = false
-    })
-    NoclipToggle:OnChanged(function(state)
-        playClickSound()
-        noclipEnabled = state
-    end)
 
-    -- Vehicle Noclip
-    local VehNoclipToggle = Tabs.Player:AddToggle("VehicleNoclipToggle", {
-        Title = "Vehicle Noclip",
-        Description = "Noclip for the vehicle you are seated in.",
-        Default = false
-    })
-    VehNoclipToggle:OnChanged(function(state)
-        playClickSound()
-        vehicleNoclipEnabled = state
-    end)
+-- Bypass Noclip
+local NoclipToggle = Tabs.Player:AddToggle("NoclipToggle", {
+    Title = "Bypass Noclip",
+    Default = false
+})
 
-    -- WalkSpeed
-    Tabs.Player:AddSlider("WalkSpeedSlider", {
-        Title = "WalkSpeed",
-        Description = "Adjust character movement speed.",
-        Default = 16,
-        Min = 16,
-        Max = 150,
-        Rounding = 1,
-        Callback = function(Value)
-            local char = LocalPlayer.Character
-            if char then
-                local hum = char:FindFirstChildOfClass("Humanoid")
-                if hum then hum.WalkSpeed = Value end
-            end
+NoclipToggle:OnChanged(function()
+    playClickSound()
+    noclipEnabled = Fluent.Options.NoclipToggle.Value
+end)
+
+-- Vehicle Noclip
+local VehNoclipToggle = Tabs.Player:AddToggle("VehicleNoclipToggle", {
+    Title = "Vehicle Noclip",
+    Default = false
+})
+
+VehNoclipToggle:OnChanged(function()
+    playClickSound()
+    vehicleNoclipEnabled = Fluent.Options.VehicleNoclipToggle.Value
+end)
+
+-- WalkSpeed
+local SpeedSlider = Tabs.Player:AddSlider("WalkSpeedSlider", {
+    Title = "WalkSpeed",
+    Description = "Adjust character movement speed.",
+    Default = 16,
+    Min = 16,
+    Max = 150,
+    Rounding = 1,
+    Callback = function(Value)
+        local char = LocalPlayer.Character
+        if char then
+            local hum = char:FindFirstChildOfClass("Humanoid")
+            if hum then hum.WalkSpeed = Value end
         end
-    })
-
-    -- JumpPower
-    Tabs.Player:AddSlider("JumpPowerSlider", {
-        Title = "JumpPower",
-        Description = "Adjust character jump height.",
-        Default = 50,
-        Min = 50,
-        Max = 200,
-        Rounding = 1,
-        Callback = function(Value)
-            local char = LocalPlayer.Character
-            if char then
-                local hum = char:FindFirstChildOfClass("Humanoid")
-                if hum then
-                    hum.UseJumpPower = true
-                    hum.JumpPower = Value
-                end
-            end
-        end
-    })
-
-    -- FE Fly
-    local FlyToggle = Tabs.Player:AddToggle("FlyToggle", {
-        Title = "FE Fly",
-        Description = "WASD + Space / LShift to fly.",
-        Default = false
-    })
-    FlyToggle:OnChanged(function(state)
-        playClickSound()
-        flyEnabled = state
-        if state then
-            createFlyInstances()
-            Fluent:Notify({
-                Title = "Fly",
-                Content = "Enabled — WASD + Space / LShift",
-                Duration = 3
-            })
-        else
-            destroyFlyInstances()
-            Fluent:Notify({
-                Title = "Fly",
-                Content = "Disabled.",
-                Duration = 2
-            })
-        end
-    end)
-
-    -- Fly Speed
-    Tabs.Player:AddSlider("FlySpeedSlider", {
-        Title = "Fly Speed",
-        Description = "Adjust fly movement speed.",
-        Default = 50,
-        Min = 10,
-        Max = 300,
-        Rounding = 1,
-        Callback = function(Value)
-            flySpeed = Value
-        end
-    })
-
-    -- FE Emotes
-    local emoteNames = {}
-    for _, e in ipairs(emoteList) do
-        table.insert(emoteNames, e.Name)
     end
+})
 
-    Tabs.Player:AddDropdown("EmoteDropdown", {
-        Title = "FE Emotes",
-        Description = "Select an emote to play.",
-        Values = emoteNames,
-        Default = 1,
-        Callback = function(Value)
-            for _, e in ipairs(emoteList) do
-                if e.Name == Value then
-                    playClickSound()
-                    playEmote(e.Id)
-                    Fluent:Notify({
-                        Title = "Emote",
-                        Content = "Playing: " .. e.Name,
-                        Duration = 2
-                    })
-                    break
-                end
+SpeedSlider:OnChanged(function(Value)
+    local char = LocalPlayer.Character
+    if char then
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.WalkSpeed = Value end
+    end
+end)
+
+-- JumpPower
+local JumpSlider = Tabs.Player:AddSlider("JumpPowerSlider", {
+    Title = "JumpPower",
+    Description = "Adjust character jump height.",
+    Default = 50,
+    Min = 50,
+    Max = 200,
+    Rounding = 1,
+    Callback = function(Value)
+        local char = LocalPlayer.Character
+        if char then
+            local hum = char:FindFirstChildOfClass("Humanoid")
+            if hum then
+                hum.UseJumpPower = true
+                hum.JumpPower = Value
             end
         end
-    })
+    end
+})
+
+JumpSlider:OnChanged(function(Value)
+    local char = LocalPlayer.Character
+    if char then
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if hum then
+            hum.UseJumpPower = true
+            hum.JumpPower = Value
+        end
+    end
+end)
+
+-- FE Fly
+local FlyToggle = Tabs.Player:AddToggle("FlyToggle", {
+    Title = "FE Fly",
+    Default = false
+})
+
+FlyToggle:OnChanged(function()
+    playClickSound()
+    flyEnabled = Fluent.Options.FlyToggle.Value
+    if flyEnabled then
+        createFlyInstances()
+        Fluent:Notify({ Title = "Fly", Content = "WASD + Space / LShift", Duration = 3 })
+    else
+        destroyFlyInstances()
+    end
+end)
+
+local FlySpeedSlider = Tabs.Player:AddSlider("FlySpeedSlider", {
+    Title = "Fly Speed",
+    Description = "Adjust fly movement speed.",
+    Default = 50,
+    Min = 10,
+    Max = 300,
+    Rounding = 1,
+    Callback = function(Value)
+        flySpeed = Value
+    end
+})
+
+FlySpeedSlider:OnChanged(function(Value)
+    flySpeed = Value
+end)
+
+-- FE Emotes
+local emoteNames = {}
+for _, e in ipairs(emoteList) do
+    table.insert(emoteNames, e.Name)
 end
+
+local EmoteDropdown = Tabs.Player:AddDropdown("EmoteDropdown", {
+    Title = "FE Emotes",
+    Description = "Select an emote to play.",
+    Values = emoteNames,
+    Default = 1,
+    Callback = function(Value)
+        playClickSound()
+        for _, e in ipairs(emoteList) do
+            if e.Name == Value then
+                playEmote(e.Id)
+                Fluent:Notify({ Title = "Emote", Content = "Playing: " .. e.Name, Duration = 2 })
+                break
+            end
+        end
+    end
+})
 
 -- ============================================
 -- [[ CAR TAB ]]
 -- ============================================
-do
-    Tabs.Car:AddDropdown("CarDropdown", {
-        Title = "Select Car",
-        Description = "Choose a car to spawn.",
-        Values = carNames,
-        Default = 1,
-        Callback = function(Value)
-            currentCarName = Value
-        end
-    })
+local CarDropdown = Tabs.Car:AddDropdown("CarDropdown", {
+    Title = "Select Car",
+    Description = "Choose a car to spawn.",
+    Values = carNames,
+    Default = 1,
+    Callback = function(Value)
+        currentCarName = Value
+    end
+})
 
-    Tabs.Car:AddButton("SpawnCarButton", {
-        Title = "Spawn Car",
-        Description = "Spawn the selected car.",
-        Callback = function()
-            playClickSound()
-            if spawnCar(currentCarName) then
-                Fluent:Notify({
-                    Title = "Car Spawner",
-                    Content = "Spawning: " .. currentCarName,
-                    Duration = 2
-                })
-            end
-        end
-    })
-
-    local SpamToggle = Tabs.Car:AddToggle("SpamSpawnToggle", {
-        Title = "Spam Spawn",
-        Description = "Rapidly spawn cars every 0.5s (glitch test).",
-        Default = false
-    })
-    SpamToggle:OnChanged(function(state)
+Tabs.Car:AddButton({
+    Title = "Spawn Car",
+    Description = "Spawn the selected car.",
+    Callback = function()
         playClickSound()
-        spamSpawnEnabled = state
-        if state then
-            Fluent:Notify({
-                Title = "Car Spawner",
-                Content = "Spam spawning: " .. currentCarName,
-                Duration = 2
-            })
+        if spawnCar(currentCarName) then
+            Fluent:Notify({ Title = "Car Spawner", Content = "Spawning: " .. currentCarName, Duration = 2 })
         end
-    end)
-end
+    end
+})
+
+local SpamToggle = Tabs.Car:AddToggle("SpamSpawnToggle", {
+    Title = "Spam Spawn",
+    Default = false
+})
+
+SpamToggle:OnChanged(function()
+    playClickSound()
+    spamSpawnEnabled = Fluent.Options.SpamSpawnToggle.Value
+    if spamSpawnEnabled then
+        Fluent:Notify({ Title = "Car Spawner", Content = "Spam: " .. currentCarName, Duration = 2 })
+    end
+end)
+
+-- ============================================
+-- [[ SETTINGS TAB — built by InterfaceManager ]]
+-- ============================================
+-- InterfaceManager auto-adds: Theme dropdown, Acrylic toggle,
+-- Transparency toggle, Minimize keybind — all with live preview.
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("ronalds-exe")
+SaveManager:SetFolder("ronalds-exe/" .. tostring(game.PlaceId))
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
 
 -- ============================================
 -- [[ CREDITS TAB ]]
 -- ============================================
-do
-    Tabs.Credits:AddParagraph({
-        Title = "Credits",
-        Content = "Made by Sheitsa\nUI Library: dawid-scripts/Fluent"
-    })
-end
+Tabs.Credits:AddParagraph({
+    Title = "Credits",
+    Content = "Made by Sheitsa\nUI: dawid-scripts/Fluent"
+})
 
 -- ============================================
 -- [[ INIT ]]
@@ -692,6 +682,8 @@ Window:SelectTab(1)
 
 Fluent:Notify({
     Title = "ronalds.exe",
-    Content = "v" .. VERSION .. " loaded successfully.",
+    Content = "v" .. VERSION .. " loaded.",
     Duration = 4
 })
+
+SaveManager:LoadAutoloadConfig()
