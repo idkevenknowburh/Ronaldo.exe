@@ -1,7 +1,7 @@
 --[[
-Encrypted by Hackers House
-Tool : https://hackershouse.tech/online-lua-obfuscator-free-unlimited
-Version: 1.1.0
+Encrypted by Sheitsa Hub V2
+Tool : Sheitsa Hub V2
+Version: 2.1.0
 ]]
 _G["LZ8cSsxQD4"]=function(src)
   local box={__src=src}
