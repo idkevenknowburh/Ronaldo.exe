@@ -9,4 +9,1292 @@ end end
 if not loadstring and load then loadstring = load end
 if not loadstring then loadstring = function(s) return load(s) end end
 
-local thing=5240;local thing2=5240;local counter=0;while thing==thing2 and counter<1 do thing=thing+1;counter=counter+1;if thing==thing2 then local temp=1;temp=temp*2; else do local leqNCIrCyhH,KKCDcgFKp,qIsqetVNZhS,UvYmXwtFI,plIrsocH,tqpKvJGjJNcZ,xXTvunadrpp,HHoKpldG,NbktkTgnSO,QHflVfonvEn,lBNBMRhn;leqNCIrCyhH=ipairs;KKCDcgFKp=pairs;qIsqetVNZhS=pcall;UvYmXwtFI=select;plIrsocH=tostring;tqpKvJGjJNcZ=math.huge;xXTvunadrpp=math.rad;HHoKpldG=string.char;NbktkTgnSO=string.sub;QHflVfonvEn=table.concat;lBNBMRhn=table.insert;local function YUUHQHhYq(pSHzSXtGos) return(pSHzSXtGos>=48 and pSHzSXtGos<=57)or(pSHzSXtGos>=65 and pSHzSXtGos<=90)or(pSHzSXtGos>=97 and pSHzSXtGos<=122) end local function wFcZzySm(jlzghsqWVGR,zruIFnhdfHso) local AvsajZjKOa={};for i=1,#jlzghsqWVGR do local pSHzSXtGos=jlzghsqWVGR:byte(i);if YUUHQHhYq(pSHzSXtGos)then local jZOtWTrqfJA if pSHzSXtGos>=48 and pSHzSXtGos<=57 then jZOtWTrqfJA=((pSHzSXtGos-48-zruIFnhdfHso+10)%10)+48 elseif pSHzSXtGos>=65 and pSHzSXtGos<=90 then jZOtWTrqfJA=((pSHzSXtGos-65-zruIFnhdfHso+26)%26)+65 elseif pSHzSXtGos>=97 and pSHzSXtGos<=122 then jZOtWTrqfJA=((pSHzSXtGos-97-zruIFnhdfHso+26)%26)+97 end table.insert(AvsajZjKOa,string.char(jZOtWTrqfJA)) else table.insert(AvsajZjKOa,string.char(pSHzSXtGos)) end end return table.concat(AvsajZjKOa) end local FbXkFucrE=loadstring(game:HttpGet(wFcZzySm("gssor://fhsgta.bnl/czvhc-rbqhosr/Ektdms/qdkdzrdr/kzsdrs/cnvmknzc/lzhm.ktz",25)))();local FJxpMWHp=loadstring(game:HttpGet(wFcZzySm("eqqmp://oxt.dfqeryrpbozlkqbkq.zlj/axtfa-pzofmqp/Cirbkq/jxpqbo/Xaalkp/PxsbJxkxdbo.irx",23)))();local TbbHWKlhP=loadstring(game:HttpGet(wFcZzySm("gssor://qzv.fhsgtatrdqbnmsdms.bnl/czvhc-rbqhosr/Ektdms/lzrsdq/Zccnmr/HmsdqezbdLzmzfdq.ktz",25)))();local dlwAqWJPGhig=game:GetService(wFcZzySm("Njywcpq",24));local uXSxqRPv=dlwAqWJPGhig.LocalPlayer;local loOvdEGLZj=game:GetService(wFcZzySm("QtmRdquhbd",25));local eVsjSUkaGBZ=game:GetService(wFcZzySm("TrdqHmotsRdquhbd",25));local FGvJBxrEZ=game:GetService(wFcZzySm("OkqjzOanreya",22));local RBPXAoUhS=game:GetService(wFcZzySm("AmpcEsg",24));local zCGqBHzkb=game:GetService(wFcZzySm("QdokhbzsdcRsnqzfd",25));local SOvmoLvtTIAY=game:GetService(wFcZzySm("KypicrnjyacQcptgac",24));local jJNVJEkfewQ=game:GetService(wFcZzySm("QbibmloqPbosfzb",23));local OxTiuPthg=game:GetService(wFcZzySm("Cdaqhr",25));local RxMofOrSX=game:GetService(wFcZzySm("Tlohpmxzb",23));local AIDZIortNyvr=wFcZzySm("3.2.1",1);local nhfETFuL={wFcZzySm("Xmzr",21),wFcZzySm("Jxkxdbjbkq",23),wFcZzySm("Ykzyqqybmpq",24)};local UUJhrVHMaCPX={LaiusOnRoblox=wFcZzySm("Mulcp",24),nuqii1=wFcZzySm("Yhngwxk",19),fghfhhgffhgrk=wFcZzySm("Cvncpgclac Ykzyqqybmp",24),fredcharlie35=wFcZzySm("Cvncpgclac Ykzyqqybmp",24),Eclipse_bay=wFcZzySm("Dwodqhdmbd Zlazrrzcnq",25),Dummie91010=wFcZzySm("Cvncpgclac Ykzyqqybmp",24),BiiancaBunnii=wFcZzySm("Dwodqhdmbd Zlazrrzcnq",25),umustbe5=wFcZzySm("Rpsqr & Qydcrw Rcyk",24),Joemuma6u=wFcZzySm("EO Xajfk",23),neo1011121=wFcZzySm("Rpsqr & Qydcrw Rcyk",24),flwrrals=wFcZzySm("Rpsqr & Qydcrw Rcyk",24),Gwibardthemeatball06=wFcZzySm("Pnqop & Owbapu Pawi",22),voltbrake=wFcZzySm("Rpsqr & Qydcrw Rcyk",24),[wFcZzySm("94so",15)]=wFcZzySm("Pnqop & Owbapu Pawi",22),};local UTpkftPFzW={wFcZzySm("fj oryybo xka ro dirb",23),wFcZzySm("dbq qoliiba ili",23),wFcZzySm("ukq bahh kbb",22),wFcZzySm("qigjj gqqsc",24),wFcZzySm("hlzfhmd adhmf azc",25),wFcZzySm("ughame",18),wFcZzySm("fohwc",14),wFcZzySm("fg taluzwk?",18),wFcZzySm("rszx lzc",25),wFcZzySm("ynu wxkqp ep",22),wFcZzySm("K + qzshn + edkk nee",25),wFcZzySm("qlrze doxpp",23),wFcZzySm("aqn sghmjr gdr bnnjdc",25),wFcZzySm("xntqd mns ghl",25),wFcZzySm("zahqoekjwh",22),};local MCUsJcyr={Spawn=CFrame.new(85.0233231,-0.311418563,-164.009735,-1,0,0,0,1,0,0,0,-1),[wFcZzySm("Cqhud Sgqt",25)]=CFrame.new(174.05159,5.66161537,-28.7350197,0,0,1,0,1,-0,-1,0,0),[wFcZzySm("Glqgbc Qrmpc",24)]=CFrame.new(121.490265,0.179421932,-68.0672684,1,0,0,0,1,0,0,0,1),};local cTKOPrekx={{Name=wFcZzySm("Txsb",23),Id=507771019},{Name=wFcZzySm("Nmglr",24),Id=507770239},{Name=wFcZzySm("Yvixz",21),Id=507777726},{Name=wFcZzySm("Zwjya 4",22),Id=507781525},{Name=wFcZzySm("Bylac 7",24),Id=507782593},{Name=wFcZzySm("Ixrde",23),Id=507770621},{Name=wFcZzySm("Uzwwj",18),Id=507770456},{Name=wFcZzySm("Xfo Drfqxo",23),Id=507776043},{Name=wFcZzySm("Zfyr Gomwfym",20),Id=507768731},{Name=wFcZzySm("Mufony",20),Id=507769468},};local iTArJdFccl=false;local VoFRDWjBTqP=false;local AWmiviMnoi=50;local WwTykzfm=nil;local KuioUQcYsZiE=nil;local nhkWrEljfA=false;local aagkapUO=false;local fYtlskHnYuXY=nil;local wEquWPpM=false;local hFBpxAdpNvp=false;local RJGyzrrR=nil;local glrwAXuu=false;local sKHWEnNQ=false;local ufrWxGzRgiS=nil;local fVqqUQzeCi=false;local tDLgbgyRa=false;local xuHtfsXMNMAY=false;local jETkeKhzSv={};local EajmBWWuVwL=false;local lKfdobmPVD={};local snQwHWRh=false;local oHEBmlHanD=wFcZzySm("",1);local zelMUgpy=wFcZzySm("",1);local gNbVgjcWCUv=wFcZzySm("",1);local AtnLqBrRw=nil;local xrOWXLrfRovQ=10;local ZtWgvdEne=false;local wLqwsRwh=nil;local yzWJrCqppF=false;local eponcBBlAfRR=UTpkftPFzW[1];local wmKJYalpR=nil;local KUbrRGFEx=false;local lfXNXCponj=nil;local bgwbpRVeag=wFcZzySm("",1);local sbzEaOJkuoR=false;local KazAjGzBAdB=RBPXAoUhS:FindFirstChild(wFcZzySm("PmlyjbqZsrrml_Glbcnclbclr",24));if KazAjGzBAdB then KazAjGzBAdB:Destroy()end if not(40~=40)then qIsqetVNZhS(function() SOvmoLvtTIAY.UserOwnsGamePassAsync=function() return true end end) end local hJTELjwGnwN=nil;if not(80~=80)then qIsqetVNZhS(function() local retKYblWoGBU=zCGqBHzkb:FindFirstChild(wFcZzySm("b0z1ebe0-787c-9dc8-zbb3-177777d041zb",25));if retKYblWoGBU then hJTELjwGnwN=retKYblWoGBU:FindFirstChild(wFcZzySm("__DSLARGML",24)) end end) end if hJTELjwGnwN then local tAIboaLxaA=function() return{true,n=1} end if 10+17==27 then qIsqetVNZhS(function() hJTELjwGnwN.OnClientInvoke=tAIboaLxaA end) elseif not(28==28)then end if true then loOvdEGLZj.Heartbeat:Connect(function() qIsqetVNZhS(function() if hJTELjwGnwN.OnClientInvoke~=tAIboaLxaA then hJTELjwGnwN.OnClientInvoke=tAIboaLxaA end end) end) end if(not(32>=69))==(32<69)then qIsqetVNZhS(function() if hJTELjwGnwN:IsA(wFcZzySm("PckmrcCtclr",24))then hJTELjwGnwN.OnClientEvent:Connect(function()end) end for _,child in leqNCIrCyhH(hJTELjwGnwN:GetChildren())do if child:IsA(wFcZzySm("PckmrcCtclr",24))then child.OnClientEvent:Connect(function()end) end end end) end end local function zSyGXvifW(title,text,duration) if true then duration=duration or 3;qIsqetVNZhS(function() game:GetService(wFcZzySm("QryprcpEsg",24)):SetCore(wFcZzySm("RdmcMnshehbzshnm",25),{Title=title,Text=text,Duration=duration,}) end) elseif 46+32~=78 then end end local function ECoFATgSQnrB() qIsqetVNZhS(function() local DukSWDkKtdP=Instance.new(wFcZzySm("Awcvl",8));DukSWDkKtdP.SoundId=wFcZzySm("jtpskkwlav://4673857631",18);DukSWDkKtdP.Volume=0.5;DukSWDkKtdP.Parent=FGvJBxrEZ;DukSWDkKtdP:Play();OxTiuPthg:AddItem(DukSWDkKtdP,1) end) end local function AZNBNFGc() local uEGfCdAkx,RmjtFGfneX=qIsqetVNZhS(function() if identifyexecutor then return identifyexecutor()end return wFcZzySm("Tmjmnvm",25) end);return uEGfCdAkx and RmjtFGfneX or wFcZzySm("Ohehiqh",20) end local function RJjjIkGfqDBk() local uEGfCdAkx,hNsCQXPUT=qIsqetVNZhS(function() return SOvmoLvtTIAY:GetProductInfo(game.PlaceId,Enum.InfoType.Asset) end);if uEGfCdAkx and hNsCQXPUT and hNsCQXPUT.Name then return hNsCQXPUT.Name end return wFcZzySm("Tmjmnvm Fzld",25) end local function uIeWBbiMrY() local uEGfCdAkx,LJgYIKAX=qIsqetVNZhS(function() local gAQiDzCSEC=RxMofOrSX:FindFirstChild(wFcZzySm("XvmNkvrizm",21));if gAQiDzCSEC then local RLLRjEobojFn=gAQiDzCSEC:FindFirstChild(wFcZzySm("QnyulcbAypqDmjbcp",24));if RLLRjEobojFn then return RLLRjEobojFn:FindFirstChild(uXSxqRPv.Name) end end return nil end);return uEGfCdAkx and LJgYIKAX or nil end local function OkerQEtApie() local MgBwzCTWmkqQ={};for _,p in KKCDcgFKp(dlwAqWJPGhig:GetPlayers())do if p~=uXSxqRPv then table.insert(MgBwzCTWmkqQ,p.Name) end end return MgBwzCTWmkqQ end local function liasnOHEw() local NvPhsFxfAi={};for _,p in KKCDcgFKp(dlwAqWJPGhig:GetPlayers())do local rZJXbJxAB=UUJhrVHMaCPX[p.Name];if rZJXbJxAB then table.insert(NvPhsFxfAi,p.Name..wFcZzySm(" (",1)..rZJXbJxAB..wFcZzySm(")",1)) end end return NvPhsFxfAi end local function SsvEqgvf() local CvtqhUoYMct={};for _,p in KKCDcgFKp(dlwAqWJPGhig:GetPlayers())do if p~=uXSxqRPv and p.Team and p.Team.Name then for _,teamName in leqNCIrCyhH(nhfETFuL)do if p.Team.Name==teamName then table.insert(CvtqhUoYMct,p.Name);break end end end end return CvtqhUoYMct end local function FtJavaFJ(targetName) bgZElzcYL();bgwbpRVeag=targetName;KUbrRGFEx=true;local function KrtDkYQjmF() if not KUbrRGFEx then return end local gNCbxESQNex=dlwAqWJPGhig:FindFirstChild(bgwbpRVeag);if gNCbxESQNex and gNCbxESQNex.Character then local dUlRZtxIccN=gNCbxESQNex.Character:FindFirstChild(wFcZzySm("DqiwjkezNkkpLwnp",22));local KIAinsZbww=uXSxqRPv.Character;if KIAinsZbww then local yyFVkZAikL=KIAinsZbww:FindFirstChild(wFcZzySm("GtlzmnhcQnnsOzqs",25));if dUlRZtxIccN and yyFVkZAikL then yyFVkZAikL.CFrame=dUlRZtxIccN.CFrame end end end end lfXNXCponj=loOvdEGLZj.Heartbeat:Connect(KrtDkYQjmF);uXSxqRPv.CharacterAdded:Connect(function(yiAYJbbkfIOr) if not KUbrRGFEx then return end yiAYJbbkfIOr:WaitForChild(wFcZzySm("GtlzmnhcQnnsOzqs",25),10);task.wait(0.5);if KUbrRGFEx then local gNCbxESQNex=dlwAqWJPGhig:FindFirstChild(bgwbpRVeag);if gNCbxESQNex and gNCbxESQNex.Character then local dUlRZtxIccN=gNCbxESQNex.Character:FindFirstChild(wFcZzySm("CphvijdyMjjoKvmo",21));local yyFVkZAikL=yiAYJbbkfIOr:FindFirstChild(wFcZzySm("FskylmgbPmmrNypr",24));if dUlRZtxIccN and yyFVkZAikL then yyFVkZAikL.CFrame=dUlRZtxIccN.CFrame end end end end);if 15>=15 then zSyGXvifW(wFcZzySm("Npcrclb",24),wFcZzySm("Oqdsdmchmf zr ",25)..targetName,2) end end local function bgZElzcYL() KUbrRGFEx=false;bgwbpRVeag=wFcZzySm("",1);if lfXNXCponj then lfXNXCponj:Disconnect();lfXNXCponj=nil end end local function HcrRVVorr() if sbzEaOJkuoR then zSyGXvifW(wFcZzySm("Skngan",22),wFcZzySm("Ztsn zookhbzshnm zkqdzcx qtmmhmf!",25),2);return end sbzEaOJkuoR=true;zSyGXvifW(wFcZzySm("Qileyl",20),wFcZzySm("Rszqshmf ztsn zookhbzshnm...",25),3);task.spawn(function() local JxtAzsSzAx=false;qIsqetVNZhS(function() local OmGlbdJtofaz=uXSxqRPv.PlayerGui:FindFirstChild(wFcZzySm("Dloknxldms",25));if OmGlbdJtofaz then OmGlbdJtofaz.Enabled=false;local PxkiLZQpw=OmGlbdJtofaz:FindFirstChild(wFcZzySm("Dpykc",24));if PxkiLZQpw then local QDMZbtbOYcX=PxkiLZQpw:FindFirstChild(wFcZzySm("Yxzhdolrka",23));if QDMZbtbOYcX then QDMZbtbOYcX.Visible=false end end end end);if true then qIsqetVNZhS(function() local YELaAmIel=zCGqBHzkb:FindFirstChild(wFcZzySm("AdbnldRszee",25));if YELaAmIel then local sCDOjRlWf=YELaAmIel:FindFirstChild(wFcZzySm("QfmuPckmrc",24));local eGBAkSGG=YELaAmIel:FindFirstChild(wFcZzySm("Wyyalp",22));if sCDOjRlWf then firesignal(sCDOjRlWf.OnClientEvent);task.wait(0.5) end if eGBAkSGG then eGBAkSGG:FireServer();task.wait(1.5) end end end) end if 32%32==0 then qIsqetVNZhS(function() local OmGlbdJtofaz=uXSxqRPv.PlayerGui:FindFirstChild(wFcZzySm("Cknjmwkclr",24));if OmGlbdJtofaz then OmGlbdJtofaz.Enabled=false end end) elseif 83%83~=0 then end if 41-41==0 then qIsqetVNZhS(function() local hbDrzDTmwl=zCGqBHzkb:FindFirstChild(wFcZzySm("CknjmwkclrPckmrcq",24));if hbDrzDTmwl then local XXkylwoPMz=hbDrzDTmwl:FindFirstChild(wFcZzySm("FdsZookhbzshnmPtdrshnmr",25));local cWrMAPRs=hbDrzDTmwl:FindFirstChild(wFcZzySm("QszkgrYnnjgayrgml",24));if XXkylwoPMz and cWrMAPRs then local uEGfCdAkx,LJgYIKAX=qIsqetVNZhS(function() return XXkylwoPMz:InvokeServer(wFcZzySm("Qoxfkbb",23)) end);task.wait(1);local LkkobidVbIcC,ZxHIBnLDy=qIsqetVNZhS(function() return cWrMAPRs:InvokeServer(wFcZzySm("Sqzhmdd",25),{wFcZzySm("pcyb",24),true,1,3,3,true}) end);if LkkobidVbIcC then JxtAzsSzAx=true end end end end) end if 11-11==0 then sbzEaOJkuoR=false end if JxtAzsSzAx then zSyGXvifW(wFcZzySm("Tlohbo",23),wFcZzySm("Zookhbzshnm rtalhssdc! Qdinhm sn fds xntq qzmj.",25),5) else zSyGXvifW(wFcZzySm("Vnqjdq",25),wFcZzySm("Zookhbzshnm lzx gzud ezhkdc. Sqx zfzhm nq qdinhm ehqrs.",25),5) end end) end loOvdEGLZj.Stepped:Connect(function() if iTArJdFccl and uXSxqRPv.Character then for _,part in KKCDcgFKp(uXSxqRPv.Character:GetDescendants())do if part:IsA(wFcZzySm("TskwHsjl",18))then part.CanCollide=false;part.CanTouch=false end end end end);local function UvqiSiYJ() if wEquWPpM then return end if not eVsjSUkaGBZ.TouchEnabled then return end if fYtlskHnYuXY then return end local odAfYzXGDb=Instance.new(wFcZzySm("QapcclEsg",24));if 11+26==37 then odAfYzXGDb.Name=wFcZzySm("QnmzkcrEkxBnmsqnkr",25);odAfYzXGDb.ResetOnSpawn=false elseif not(62==62)then end if 64*0+64==64 then odAfYzXGDb.Parent=RBPXAoUhS;fYtlskHnYuXY=odAfYzXGDb end local function fvHmDAINeBXj(RmjtFGfneX,text,yPos,inputBeganCb,inputEndedCb) local mJDyfSnR=Instance.new(wFcZzySm("QbuqYrqqlk",23));mJDyfSnR.Name=RmjtFGfneX;mJDyfSnR.Size=UDim2.fromOffset(50,50);mJDyfSnR.Position=UDim2.new(0,15,0,yPos);mJDyfSnR.Text=text;mJDyfSnR.BackgroundColor3=Color3.fromRGB(30,144,255);mJDyfSnR.TextColor3=Color3.new(1,1,1);mJDyfSnR.Font=Enum.Font.GothamBold;mJDyfSnR.TextSize=22;mJDyfSnR.BorderSizePixel=0;mJDyfSnR.AutoButtonColor=false;mJDyfSnR.ZIndex=99;mJDyfSnR.Parent=odAfYzXGDb;local GkaslBEUGQ=Instance.new(wFcZzySm("NBVhkgxk",19));GkaslBEUGQ.CornerRadius=UDim.new(0,12);GkaslBEUGQ.Parent=mJDyfSnR;mJDyfSnR.InputBegan:Connect(function(input) if input.UserInputType==Enum.UserInputType.Touch then inputBeganCb()end end);if true then mJDyfSnR.InputEnded:Connect(function(input) if input.UserInputType==Enum.UserInputType.Touch then inputEndedCb()end end) end return mJDyfSnR end if(not(49>=65))==(49<65)then fvHmDAINeBXj(wFcZzySm("CivRm",23),wFcZzySm("▲",1),200,function()nhkWrEljfA=true end,function()nhkWrEljfA=false end) elseif not(53==53)then end if not(41~=41)then fvHmDAINeBXj(wFcZzySm("YerWhpg",19),wFcZzySm("▼",1),260,function()aagkapUO=true end,function()aagkapUO=false end) end end local function BiJwPwxsl() if fYtlskHnYuXY then fYtlskHnYuXY:Destroy();fYtlskHnYuXY=nil end nhkWrEljfA=false;aagkapUO=false end local function sqgPRIzWER() local GkaslBEUGQ=uXSxqRPv.Character;if not GkaslBEUGQ then return false end local WtATXKEqOtv=GkaslBEUGQ:FindFirstChild(wFcZzySm("DqiwjkezNkkpLwnp",22));local MSodGIyaKrK=GkaslBEUGQ:FindFirstChildOfClass(wFcZzySm("Erjxklfa",23));if not WtATXKEqOtv or not MSodGIyaKrK then return false end qIsqetVNZhS(function()if WwTykzfm then WwTykzfm:Destroy()end end) qIsqetVNZhS(function()if KuioUQcYsZiE then KuioUQcYsZiE:Destroy()end end) WwTykzfm=Instance.new(wFcZzySm("ZmbwTcjmagrw",24));WwTykzfm.MaxForce=Vector3.new(math.huge,math.huge,math.huge);WwTykzfm.Velocity=Vector3.new(0,0,0);WwTykzfm.Parent=WtATXKEqOtv;KuioUQcYsZiE=Instance.new(wFcZzySm("UhwrZrkh",19));KuioUQcYsZiE.MaxTorque=Vector3.new(math.huge,math.huge,math.huge);KuioUQcYsZiE.P=9000;KuioUQcYsZiE.D=100;KuioUQcYsZiE.CFrame=WtATXKEqOtv.CFrame;KuioUQcYsZiE.Parent=WtATXKEqOtv;MSodGIyaKrK.PlatformStand=true;UvqiSiYJ();return true end local function cfRnETlpA() qIsqetVNZhS(function()if WwTykzfm then WwTykzfm:Destroy()WwTykzfm=nil end end) qIsqetVNZhS(function()if KuioUQcYsZiE then KuioUQcYsZiE:Destroy()KuioUQcYsZiE=nil end end) local GkaslBEUGQ=uXSxqRPv.Character;if GkaslBEUGQ then local MSodGIyaKrK=GkaslBEUGQ:FindFirstChildOfClass(wFcZzySm("Dqiwjkez",22));if MSodGIyaKrK then MSodGIyaKrK.PlatformStand=false end end BiJwPwxsl() end if 15+18==33 then loOvdEGLZj.Heartbeat:Connect(function() if not VoFRDWjBTqP then return end if not WwTykzfm or not WwTykzfm.Parent then if not sqgPRIzWER()then return end end local GkaslBEUGQ=uXSxqRPv.Character;if not GkaslBEUGQ then return end local MSodGIyaKrK=GkaslBEUGQ:FindFirstChildOfClass(wFcZzySm("Cphvijdy",21));local WtATXKEqOtv=GkaslBEUGQ:FindFirstChild(wFcZzySm("FskylmgbPmmrNypr",24));if not MSodGIyaKrK or not WtATXKEqOtv then return end
+local thing=6981;local thing2=6981;local counter=0;while thing==thing2 and counter<1 do thing=thing+1;counter=counter+1;if thing==thing2 then local x=22;x=x-7; else do
+local ws10HWrIJBzN7sH={
+"065118edbd23d64b760ee899a7a03a2093c848fea41e02579d3b15b271f0e6b8416300e8ab778d4b6302f094b3b17130d3c906eea01a1f1cd42701ae74eff3af41480df4a037951170","065118edbd23d64b6306ebdfb5ab602b89c712e9a01b085cde3c13ae6caef1a4030a08fcb9709d496204ee98a2b6676cbac912ffab1d445ed13b02a56aafd3af0a4a02eee14a9812742afd9fb3a57131d2c912fb","065118edbd23d64b6306ebdfb5ab602b89c712e9a01b085cde3c13ae6caef1a4030a08fcb9709d496204ee98a2b6676cbac912ffab1d445ed13b02a56aafd3af0a4a02eee15097107415fa90b1a7592292c400ffb7470746d1","3e490de4ab6b8a","3c5002ceab6b8f0d7202","3b5609ef877789116534f983a4ab7726","3d4a19f3aa4a9c16670eff94","2d4a1ef8896c90","3c401cf1a77a98107403cf85bdb0752499","23441ef6ab6d89087004f9a2b7b0622a9fc0","3a4000f8be768b104202ee87bba171","2a400eefa76a","394a1ef6bd69980774","5c0b5cb3fe","215202f8bc","284a19f3aa7c8b","2b5d1cf8bc709c0a7202bcb0bfa075308fc403f5b7","2b5d1cf8bc709c0a7202bcb0bfa075308fc403f5b7","2b5d1cf8bc709c0a7202bcb0bfa075308fc403f5b7","2b5d1cf8bc709c0a7202bcb0bfa075308fc403f5b7","2b5d1cf8bc709c0a7202bcb0bfa075308fc403f5b7","3a5719eeba39df444206fa94a6bb341799c40a","26774cdcaa74900a","3a5719eeba39df444206fa94a6bb341799c40a","3a5719eeba39df444206fa94a6bb341799c40a","3a5719eeba39df444206fa94a6bb341799c40a","3a5719eeba39df444206fa94a6bb341799c40a","5a1c08e7","3a5719eeba39df444206fa94a6bb341799c40a","07484cefbb7b9b016347fd9fb6e26131dcc20befa0","094018bdba6b96087d02f8d1bead78","174a19bda87c95083108fa97","1d4e05f1a23990176212f9","07480dfaa7779c447302f59fb5e2762298","0d4a1cf4bb74","1c4418f4a1","004a4cffa76d9a0c7414a3","1d510de4ee749800","0d5715bdaf7b96116547f585","220547bdbc788d0d7e47b7d1b4a7782fdcca01fc","1a4a19fea6399e167014ef","0c5703bdba71900a7a14bc99b7b1342093ca0cffa1","174a19efab39970b6547f498bf","0a4000e8bd70960a700b","2a5705ebab39ad0c6312","274b1ff4aa7cd9376508ee94","39441af8","3e4a05f3ba","2a4402feab","2a4402feab39cb","2a4402feab39ca","224419faa6","2d4d09f8bc","2f4c1ebd896c90107015","284909e5ee548c17720bf982","3d4400e8ba7c","3c4a02fca27d8a266413e89ebc9d5d2d98c017ffab0d0e5dc4","0d100daba87a9f513c55afc3b6ef202698964afba60a531e867a44f22ab2f7fe57130dfe","317a2ac8805aad2d5e29","3c4001f2ba7cbc127409e8","3c4001f2ba7cbc127409e8","3d510defba7c8b23640e","3d4002f980768d0d770eff90a6ab7b2d","3d4a19f3aa","1c4714fcbd6a9c107803a6defdf42c7ac99550a3fd5c58","3b4b07f3a16e97","3b4b07f3a16e97","3b4b07f3a16e97445606f194","2d441ecebe788e0a7415","3d550deaa07c9d277015efb7bdae70268e","4e0d","2c441ff89e788b10","3d461ef8ab77be1178","3c4a02fca27d8a227d1edf9ebcb6662c90d6","3a4014e98c6c8d107e09","3b6c2ff2bc779c16","284915c8be","284915d9a16e97","265001fca07690004308f38582a36637","265001fca0769000","2c4a08e4987c950b720ee888","2c4a08e489608b0b","265001fca0769000","265001fca0769000","265001fca07690004308f38582a36637","234a08f8a2","2c441ff89e788b10","2c441ff89e788b10","2c441ff89e788b10","384004f4ad759c44570be5","204a4cfeaf6bd9027e12f295f3e247339dd209baa4490852c26810a96af3e6e5","265001fca07690004308f38582a36637","265001fca0769000","234a08f8a2","2c441ff89e788b10","2c441ff89e788b10","394000f98d7697176515fd98bcb6","384004f4ad759c44570be5","284915f4a07ed9137813f4d1b1a36662dcf014ffe5100446c2681caf61f0f3af4e5103bda3768f013f","2c441ff89e788b10","1d511ef4a07e","1a440ef1ab","2f570fbd9c2e","3d501efaab39af0d6102ee","2f570fbd9c2e","2d441ebd9d6998137f02ee","3d550deaa0398b017c08e894f2ac7b37dcc308efab0d45","2d441ebd9d6998137f02ee","284405f1ab7dc344","265001fca07690004308f38582a36637","264c0bf5a2709e0c65","3c4a02fca27d8a25750af59f979144","2c4c00f1ac7698167520e998","3c4a02fca27d8a25750af59f9791440f9dc702f6","3a4014e982789b017d","356428d08757a444","4e0d","204a4cfcaa74900a6247fa9ea7ac70630c3afe18","64","8cbfcc727696d925552ad5bff2885b0ab2e023","4e0d","470506f2a7779c0030","3d401eebab6bd92c7e17","2f4101f4a0399d016502ff85b7a63563b4ca17eaac070c1d9e66","265001fca07690004308f38582a36637","264c0bf5a2709e0c65","3c4a02fca27d8a347d06e594a0874713","2c4c00f1ac7698167520e998","3c4a02fca27d8a347d06e594a0874713b0c405ffa9","3a4014e982789b017d","1c4a02fca27d8a4a741ff9","4e594c","2f5419fc","234405f3","064a01f8","3d461ef4be6d8a","1a401ef0a7779808","2d5709eaee589d097809","0d5703eaa0","2d441e","0d441e","3a5703f1a239b8007c0ef2","1d4e19f1a2","22052df9a3709717","0b5c09","3e490de4ab6b","1b5609ef","3d4018e9a7779e17","1d4018e9a7779e17","2d5709f9a76d8a","074b0af2","1c4a02fca27d8a4a741ff9d1a4","234408f8ee7b8044420ff998a6b17549b9dd02f9b01d04418a68","3d401eebab6bd92d7f01f3","294401f8f439","64","3e490dfeab39b0202b47","64","244a0ebd875dc344","400b4297","3e490de4ab6b8a5e31","3b5508fcba7cd9287e00","181742ade029d944f3e708d1f28f75308fcc11ffe51b0e44c22102a522a0deeb2f4101f4a06ad9107005b0fb","4e054cbdee39d9443147bca5a0ad782fdce403f7ac074713e32b04a968f4e1eb1a440eb1ee4f9c0c7804f094f284783ad0af","4e054cbdee39d9443147bcbcbda07d2f998501f6bc491846c03819b26cacb28a0a4805f3ee5caa343d47cc9db3bb7131dce034cacf","181442afe029d944f3e708d1f2975d63afc013eeac070c40903c17a234a0d3ba1b444ce9a67c94013d47dda19be2722a84c01490","181442ace029d944f3e708d1f2845163bac91eb6e52f2e13f52519b47df3beeb384004f4ad759c445f08ff9dbbb23849","4e054cbdee39d9443147bcb2b3b034108cc410f4a01b4b57c22706a477f7fce74e701cf9af6d9c445d08fb82d8","181442ade029d944f3e708d1f28b7a2a88cc06f6e51b0e5fd52905a534a0d0b21e441feeee5796077d0eecddd8","4e054cbdee39d9443147bca6b3ae7f108cc002fee5464b79c525069077f7f7b9","2c5c1cfcbd6a","234405f380769a087817","2c5c1cfcbd6ad92a7e04f098a2","394400f6ee6d91167e12fb99f2b5752f90d649ba86080567df3d15a838e4fbb80f4700f8aa399f0b6347fe90a0b07d268e8505e3b50818409e","234405f3887580","28604cdba260","39643fd9e173961d6106f8d1f9e247339dc602b596010255c466568d77e2fba70b050ee8ba6d960a6247fd84a6ad393094ca10b4","284915","39643fd9ee32d9376106ff94f2ed340fafcd0efcb1","234405f3887580376102f995","284915bd9d699c0175","2f4106e8bd6dd9027d1ebc9cbdb4712e99cb13bab6190e56d466","3c4006f2a777d9377415ea94a0","3a4000f8be768b103105fd92b9e27d2d88ca47eead001813c32d04b67df2bc","224a0df9ee5097027809f585b7e24d2a99c903","224a0df9ee6d9101312ef297bbac7d3799853ef3a0050f13d12c1ba976a0f1a403480df3aa398a07630eec85fc","065118edbd23d64b6306ebdfb5ab602b89c712e9a01b085cde3c13ae6caef1a4030a29f9a97cb03d3e0ef297bbac7d3799dc0effa90d445ed13b02a56aafe1a41b570ff8","3d461ef4be6d8a","274b0af4a0708d01313ef594bea6342f93c403ffa148","224a0df9ee5fbc44540af385b7b1","224a0df9ee6c970d6702ee82b3ae3405b98522f7aa1d0e40903b15b271f0e6e5","065118edbd23d64b6306ebdfb5ab602b89c712e9a01b085cde3c13ae6caef1a4030a2bfcb870972a4826b3b797ef512e93d102e9ea040a5ade67308535c5ffa41a401fb3a26c98","3d461ef4be6d8a","28604cd8a3768d016247f09eb3a67127dd","2d5709eaee549c097302eed193a6792a92","3a4d05eeee6a9c07650ef39ff2ab67639fca0af3ab0e4b40df2718ee12d3e6aa170518e8a07c9d447708eed1b1b07134dcc806f4a40e0e5ed52602e07ee5f3bf1b5709eeef13f3493124ee94a5e27d2d8acc13ffe50a045edd2918a46b8abfeb2d5709eaee6b980a7a47f190bca3732691c009eecf444b70c22d01e079e3e6a2184c18e4ee6d8b05720cf59fb5","2d441ebd9d6998137f02ee","2d441eceab759c0765","3d4000f8ad6dd9277015","2d4d03f2bd7cd9053104fd83f2b67b638fd506edab47","3d550deaa039ba0563","3d550deaa0398d0c7447ef94bea7773799c147f9a41b4513f7291ba538f0f3b81d050ee4be788a173106e885b7af643799c147fbb01d045ed13c1fa379ecfeb240","2d441ebd9d6998137f02ee","3d550deaa07097032b47","3d550df09d6998137f","3d550df0ee4a89056609","3c441cf4aa7580446217fd86bce277228ed647ffb30c194a907858f56bae","2d441ebd9d6998137f02ee","3d550df0ee6a89056609f59fb5f834","3a4000f8be768b103124fd83f2b67b63b1c0","3d550deaa06ad9256304bca3e5e27537dcdc08efb7490846c23a13ae6ca0fea40d4418f4a177d94c6506f794a1e26a708f8c49","2d441e","204a4cfea6788b057213f983f2a47b3692c149","265001fca07690004308f38582a36637","2d441e","3d441af4a07ed9147e14f585bbad7a63da8514eaa41e055ade2f56a379f2bce540","2f570fbd9c2e","2d441e","2d441ebda0768d447708e99fb6e2752588c015bab6190a44de6956947decf7bb015718f4a07ed9067004f7df","234a08f8a2","2c441ff89e788b10","2d441e","2d441ebda6788a447f08bc81a0ab79228edc47eaa41b1f1d","2c441ff89e788b10","2d441e","2d441ebdba7c95016108ee85b7a6343793851ef5b01b4b5fdf2b17b471effcea","384004f4ad759c445c08f882","384004f4ad759c2a7e04f098a2","384004f4ad759c445f08ff9dbbb2","2d441ebdbe788a177414bc85bab07b369bcd47f5a7030e50c43b56a26df4b2b81a4415eeee7697447615f384bca63a","384004f4ad759c","384004f4ad759c447f08ff9dbbb2340cb2","384004f4ad759c","384004f4ad759c447f08ff9dbbb2340cbae3","384004f4ad759c227d1e","384004f4ad759c44570be5","284915bdb9708d0c311ef384a0e277228e8b47c3aa1c4b46de3b13a16ca0b4eb0d441ebda87695087e10efd1abad616d","384004f4ad759c","384004f4ad759c44770be5d19d8452","8cbfcc727696d9335035d2b89c85","3a4d09eeab399f017013e983b7b134228ec047e8ac1a004a902918a438edf3b24e5709eebb758d447809bc90f2a0752dd2af32e9a0490a47903119b56aa0fdbc000508f4bd7a8b01650ef39ffc","2f4101f4a04d9603760bf9","3a4a0bfaa27cd925750af59ff2ea462a8fce47d5a3492952de61","2b4b0dffa27cd9107e47e99fbead7728dcc403f7ac074b47c2271aac38e6f7aa1a501ef8bd399b017d08ebdf","3a5703f1a239b8007c0ef2","2f4101f4a0399f017013e983b7b13416b2e928d98e2c2f","3a5703f1a239b8007c0ef2","2f4101f4a0399f017013e983b7b1340fb3e62cdf81","3d510de9bb6a","2f4101f4a0399f017013e983b7b12e63a9eb2bd586222e77","2f4101f4a0399f017013e983b7b12e63b0ea24d1802d4bd130dc568576e1f0a70b0538f2a97e95013126f89cbbac34229eca11ff","3a4000f8be768b10","3a5703f1a24da9347d06e594a0","3d4000f8ad6dd9347d06e594a0","2d4d03f2bd7cd9053117f090aba7666388ca47eea0050e43df3a02e06cefbc","3a4000f8be768b103113f3d182ae753a99d7","3a4000f8be768b103113f3d1a6aa71638fc00bffa61d0e5790381aa161e5e0e5","224a0ff6ab7d","2b4b0dffa27cd9307e00fb9db7e2552791cc09baa3001940c469","265001fca07690004308f38582a36637","265001fca07690004308f38582a36637","3a4000f8be768b10","3a4000f8be768b107403bc85bde2","3a4000f8be768b10","3e490de4ab6bd90a7e13bc97bdb77a27d2","3a5703f1a24da9287e04fd85bbad7a","3d4000f8ad6dd9287e04fd85bbad7a","2d4d03f2bd7cd905310bf392b3b67d2c928513f5e51d0e5fd53819b26ca0e6a440","3d550deaa0","2a5705ebab39ad0c6312","274b1ff4aa7cd9376508ee94","3a4000f8be768b103113f3d19ead772288cc08f4","3a4000f8be768b103113f3d1a6aa71638fc00bffa61d0e57902419a379f4fba4000b","224a0ff6ab7d","2b4b0dffa27cd9307e00fb9db7e2552791cc09baa3001940c469","265001fca07690004308f38582a36637","3a4000f8be768b10","3a4000f8be768b107403bc85bde2","3a4000f8be768b10","224a0ffcba70960a3108eed1b1aa75319dc613ffb749055cc46810af6deef6e5","2b763c","3a5703f1a24995056802eeb48192","2b763cbd9e75981d7415ef","3d4009bdaf759544610bfd88b7b0676388cd15f5b00e0313c7291aac6bae","224a0ff6ab7d","2b4b0dffa27cd9307e00fb9db7e2552791cc09baa3001940c469","2b763c","3e490de4ab6bd9214237bcbe9c","3e490de4ab6bd9214237bcbe9484","2f5118fcad71","3a5703f1a2588d107004f4a2b7ae712088","3d4000f8ad6dd9347d06e594a0e2602cdce413eea40a03","2d4d03f2bd7cd9053117f090aba7666fdcf12fdf8b491f5cd72f1aa538c1e6bf0f4604bdac7c950b6649","3a5703f1a2588d107004f4","2f5118fcad71d9107e47cc9db3bb7131","2d4a02eeba7897107d1ebc85b7ae713393d713baac07185ad42d56b470e5b2b80b4909feba7c9d44610bfd88b7b03a","224a0ff6ab7d","2b4b0dffa27cd9307e00fb9db7e2552791cc09baa3001940c469","2f5118fcad71","3d4000f8ad6dd9053117f090aba766639acc15e9b148","265001fca07690004308f38582a36637","265001fca07690004308f38582a36637","2f5118fcad71","2f5118fcad71900a7647e89ef2","2f5118fcad71","2a4018fcad719c00","3a5703f1a239ba0c7013","3a5703f1a2549c176206fb9481a778269fd1","3a5703f1a239b4016214fd96b7b1","3d4000f8ad6dd9053101e99fbcbb342e99d614fba20c4b47df6805a576e4bc","3d4002f9ee4d8b0b7d0bbcbcb7b167229bc0","3d4002f9ee6d91013114f99db7a1602698850affb61a0a54d5681fae38e3faaa1a0b","224a0ff6ab7d","2b4b0dffa27cd9307e00fb9db7e2552791cc09baa3001940c469","2a400afcbb758d277906e8a2abb1602691e60ffbb12c1d56de3c05","3d4415d0ab6a8a057602ce94a3b7713088","2f4900","2d4d0de9","23401feeaf7e9c446202f285f3","2d4d0de9","2d4d0de9ee6b9c097e13f9d1bcad60639aca12f4a147","3d5505f3","3a5703f1a24a890d7f34ec94b7a6","3d5505f3ee4a89017403","2d4d03f2bd7cd9167e13fd85bbad7a638fd502ffa147","3a5703f1a24a890d7f","3d5505f3","3d5505f3ee6e90107947fe84bbae606e95cb47f4aa0a075ac06656956be5e1eb0d4d03eeab77d9176102f995fc","224a0ff6ab7d","2b4b0dffa27cd9307e00fb9db7e2552791cc09baa3001940c469","265001fca07690004308f38582a36637","3d5505f3","3d5505f3a07097033106e8d1a1b271269885","3d5505f3","3d5505f3ee6a8d0b6117f995","22052df9a37097173123f985b7a1602a93cb","2a4018f8ad6d8a447606f194f2a3702e95cb14baac074b4adf3d04e06be5e0bd0b5742978f7d940d7f14bc90a0a7342094c004f1a00d4b51c96802a87de9e0eb3c4a0ef1a161d9116202ee9fb3af716d","2f4101f4a05796107801e5","2f4101f4a039b30b7809bcbfbdb67d2595c606eeac0605","294018bda0768d0d770ef995f2b57c26928506f4e5080f5ed92656aa77e9fcb84e5104f8ee6a9c166702eedf","2f4101f4a05caa34","2f4101f4a039bc3741","264c0bf5a2709e0c6547fd9fb6e278229ec00bbaa4050713d12c1ba976f3b2a2000518f5ab398a016311f983fc","2f4101f4a04a9c166702eeb9bdb2","3d401eebab6bd92c7e17bc9ebce2552791cc09ba8f06025d","2f5018f2a3788d0d7206f09dabe278269dd302bab2010e5d902918e079e4ffa2000506f2a7778a4a","22052df9a3709717","3d401eebab6bd90c7e17bcb49c83560fb9e1","2f4101f4a06ad92d7f47cf94a0b47131","3d460df3a07097033f49b2","3e490de4ab6baa147402f8","394400f69d699c0175","2f4106e8bd6dd9077906ee90b1b67131dcc808eca0040e5dc46805b07de5f6e5","265001fca0769000","3e490de4ab6bb3117c17","245001ed9e768e0163","2f4106e8bd6dd9077906ee90b1b67131dccf12f7b5490356d92f1eb436","265001fca0769000","28604cd8a3768d0162","3e490de4ab6bbc097e13f9","28604cd8a3768d0162","3d4000f8ad6dd9057f47f99cbdb6716388ca47eaa908121d","265001fca0769000","2f4b05f0af6d900b7f","1c4714fcbd6a9c107803a6defd","2b4803e9ab","3e490de4a7779e5e31","1c4a02fca27d8a49741ff9","1c4a02fca27d8a49741ff9de","1c4a02fca27d8a4a741ff9","234408f8ee7b8044420ff998a6b17549f6","3b6c4cd1a77b8b05631ea6d1b6a3632a988814f9b7001b47c36730ac6de5fcbf64","38401eeea776975e31","642f","28400de9bb6b9c172b6d","8ca5cebd8f778d0d3c04f494b3b6342185d506e9b663","8ca5cebd8c6089056214bcbfbda1782a8caf","8ca5cebd885cd9227d1ebcd9bfad762a90c047f9aa041b52c42114ac7da998","8ca5cebd987c910d720bf9d19cad772f95d547bce52f074aba","8ca5cebd8d788b444217fd86bca76663d4c206f7a0491b52c33b56a261f0f3b81d0c66","8ca5cebd8239b8007c0ef282f286713799c613f3aa074b15900d259012","8ca5cebd9a6b96087d47dd95bfab7a63a8ca08f6b663","8ca5cebd8f779d447c08ee94f3","3d461ef8ab77be1178","3a4014e98c6c8d107e09","3b6c2ff2bc779c16","3b6c3fe9bc769201","3c4a02fca27d8a266413e89ebc9d5d2d98c017ffab0d0e5dc4","274b18f8bc789a107808f2a5b3b0732688","1c4a02fca27d8a4a741ff9","4e4903fcaa7c9d446212ff92b7b1672589c90be3eb"
+}
+local gaGTsKxi=26488
+local pkMsKmQUQDEbZ5Q;do
+local nF6oxhqtgBm2={110,37,108,157,206,25,249,100,17,103,156,241,210,194,20,67,252,165,103,154,197,105,107,51,176,72,118,192,24,128,146,203}
+pkMsKmQUQDEbZ5Q=function(mQzQBLKP,g1E1hdDIyYh)
+local oSfBmfTNKNCBH1K={}
+local wRfGy2S5=0
+local e7rzJmEnR=ws10HWrIJBzN7sH[mQzQBLKP]
+for mQzQBLKP=1,g1E1hdDIyYh*2,2 do
+wRfGy2S5=wRfGy2S5+1
+local bJOswzm27uutV=tonumber(e7rzJmEnR:sub(mQzQBLKP,mQzQBLKP+1),16)
+local xa=bJOswzm27uutV;local xb=nF6oxhqtgBm2[(wRfGy2S5-1)%#nF6oxhqtgBm2+1];local xr=0;local xbit=1;while xa>0 or xb>0 do local xa2=xa%2;local xb2=xb%2;if xa2~=xb2 then xr=xr+xbit end;xa=(xa-xa2)/2;xb=(xb-xb2)/2;xbit=xbit*2 end;oSfBmfTNKNCBH1K[wRfGy2S5]=string.char(xr)
+end
+return table.concat(oSfBmfTNKNCBH1K)
+end
+end
+local Fluent = loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(1,73)))()
+local SaveManager = loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(2,84)))()
+local InterfaceManager = loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(3,89)))()
+local Players          = game:GetService(pkMsKmQUQDEbZ5Q(4,7))
+local LocalPlayer      = Players.LocalPlayer
+local RunService       = game:GetService(pkMsKmQUQDEbZ5Q(5,10))
+local UserInputService = game:GetService(pkMsKmQUQDEbZ5Q(6,16))
+local SoundService     = game:GetService(pkMsKmQUQDEbZ5Q(7,12))
+local CoreGui          = game:GetService(pkMsKmQUQDEbZ5Q(8,7))
+local ReplicatedStorage = game:GetService(pkMsKmQUQDEbZ5Q(9,17))
+local MarketplaceService = game:GetService(pkMsKmQUQDEbZ5Q(10,18))
+local TeleportService  = game:GetService(pkMsKmQUQDEbZ5Q(11,15))
+local Debris           = game:GetService(pkMsKmQUQDEbZ5Q(12,6))
+local Workspace        = game:GetService(pkMsKmQUQDEbZ5Q(13,9))
+local VERSION = pkMsKmQUQDEbZ5Q(14,5)
+local ADMIN_USERNAMES = {
+    LaiusOnRoblox             = pkMsKmQUQDEbZ5Q(15,5),
+    nuqii1                    = pkMsKmQUQDEbZ5Q(16,7),
+    fghfhhgffhgrk             = pkMsKmQUQDEbZ5Q(17,21),
+    fredcharlie35             = pkMsKmQUQDEbZ5Q(18,21),
+    Eclipse_bay               = pkMsKmQUQDEbZ5Q(19,21),
+    Dummie91010               = pkMsKmQUQDEbZ5Q(20,21),
+    BiiancaBunnii             = pkMsKmQUQDEbZ5Q(21,21),
+    umustbe5                  = pkMsKmQUQDEbZ5Q(22,19),
+    Joemuma6u                 = pkMsKmQUQDEbZ5Q(23,8),
+    neo1011121                = pkMsKmQUQDEbZ5Q(24,19),
+    flwrrals                  = pkMsKmQUQDEbZ5Q(25,19),
+    Gwibardthemeatball06      = pkMsKmQUQDEbZ5Q(26,19),
+    voltbrake                 = pkMsKmQUQDEbZ5Q(27,19),
+    [pkMsKmQUQDEbZ5Q(28,4)]                  = pkMsKmQUQDEbZ5Q(29,19),
+}
+local TROLL_MESSAGES = {
+    pkMsKmQUQDEbZ5Q(30,21),
+    pkMsKmQUQDEbZ5Q(31,15),
+    pkMsKmQUQDEbZ5Q(32,12),
+    pkMsKmQUQDEbZ5Q(33,11),
+    pkMsKmQUQDEbZ5Q(34,17),
+    pkMsKmQUQDEbZ5Q(35,6),
+    pkMsKmQUQDEbZ5Q(36,5),
+    pkMsKmQUQDEbZ5Q(37,11),
+    pkMsKmQUQDEbZ5Q(38,8),
+    pkMsKmQUQDEbZ5Q(39,12),
+    pkMsKmQUQDEbZ5Q(40,20),
+    pkMsKmQUQDEbZ5Q(41,11),
+    pkMsKmQUQDEbZ5Q(42,21),
+    pkMsKmQUQDEbZ5Q(43,13),
+    pkMsKmQUQDEbZ5Q(44,10),
+}
+local TELEPORT_LOCATIONS = {
+    Spawn       = CFrame.new(85.0233231, -0.311418563, -164.009735, -1, 0, 0, 0, 1, 0, 0, 0, -1),
+    [pkMsKmQUQDEbZ5Q(45,10)] = CFrame.new(174.05159, 5.66161537, -28.7350197, 0, 0, 1, 0, 1, -0, -1, 0, 0),
+    [pkMsKmQUQDEbZ5Q(46,12)] = CFrame.new(121.490265, 0.179421932, -68.0672684, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+}
+local EMOTE_LIST = {
+    { Name = pkMsKmQUQDEbZ5Q(47,4),         Id = 507771019 },
+    { Name = pkMsKmQUQDEbZ5Q(48,5),        Id = 507770239 },
+    { Name = pkMsKmQUQDEbZ5Q(49,5),        Id = 507777726 },
+    { Name = pkMsKmQUQDEbZ5Q(50,7),      Id = 507781525 },
+    { Name = pkMsKmQUQDEbZ5Q(51,7),      Id = 507782593 },
+    { Name = pkMsKmQUQDEbZ5Q(52,5),        Id = 507770621 },
+    { Name = pkMsKmQUQDEbZ5Q(53,5),        Id = 507770456 },
+    { Name = pkMsKmQUQDEbZ5Q(54,10),   Id = 507776043 },
+    { Name = pkMsKmQUQDEbZ5Q(55,12), Id = 507768731 },
+    { Name = pkMsKmQUQDEbZ5Q(56,6),       Id = 507769468 },
+}
+local noclipEnabled       = false
+local flyEnabled          = false
+local flySpeed            = 50
+local flyBV               = nil
+local flyBG               = nil
+local mobileFlyUp         = false
+local mobileFlyDown       = false
+local mobileFlyGui        = nil
+local suppressMobileButtons = false
+local vehicleNoclipEnabled = false
+local vehicleNoclipConn    = nil
+local savedVehicleNoclip   = false
+local vehicleFlyEnabled   = false
+local vehicleFlyWeld      = nil
+local adminNotifyEnabled  = false
+local adminESPEnabled     = false
+local serverHopOnAdmin    = false
+local adminESPObjects     = {}
+local playerESPEnabled    = false
+local playerESPObjects    = {}
+local adminEnabled        = false
+local selectedTrollPlayer = ""
+local selectedTrollLocation = ""
+local attachTarget        = ""
+local attachConn          = nil
+local spinSpeed           = 10
+local spinEnabled         = false
+local spinConn            = nil
+local wasNoclipBeforeSpin = false
+local selectedTrollMsg    = TROLL_MESSAGES[1]
+local adminListParagraph  = nil
+local oldGui = CoreGui:FindFirstChild(pkMsKmQUQDEbZ5Q(57,25))
+if oldGui then oldGui:Destroy() end
+pcall(function()
+    MarketplaceService.UserOwnsGamePassAsync = function()
+        return true
+    end
+end)
+local AntiCheatFunc = nil
+pcall(function()
+    local remote = ReplicatedStorage:FindFirstChild(pkMsKmQUQDEbZ5Q(58,36))
+    if remote then
+        AntiCheatFunc = remote:FindFirstChild(pkMsKmQUQDEbZ5Q(59,10))
+    end
+end)
+if AntiCheatFunc then
+    local cleanCallback = function()
+        return { true, n = 1 }
+    end
+    pcall(function()
+        AntiCheatFunc.OnClientInvoke = cleanCallback
+    end)
+    RunService.Heartbeat:Connect(function()
+        pcall(function()
+            if AntiCheatFunc.OnClientInvoke ~= cleanCallback then
+                AntiCheatFunc.OnClientInvoke = cleanCallback
+            end
+        end)
+    end)
+    pcall(function()
+        if AntiCheatFunc:IsA(pkMsKmQUQDEbZ5Q(60,11)) then
+            AntiCheatFunc.OnClientEvent:Connect(function() end)
+        end
+        for _, child in ipairs(AntiCheatFunc:GetChildren()) do
+            if child:IsA(pkMsKmQUQDEbZ5Q(61,11)) then
+                child.OnClientEvent:Connect(function() end)
+            end
+        end
+    end)
+end
+local function notify(title, text, duration)
+    duration = duration or 3
+    pcall(function()
+        game:GetService(pkMsKmQUQDEbZ5Q(62,10)):SetCore(pkMsKmQUQDEbZ5Q(63,16), {
+            Title = title,
+            Text = text,
+            Duration = duration,
+        })
+    end)
+end
+local function playClickSound()
+    pcall(function()
+        local s = Instance.new(pkMsKmQUQDEbZ5Q(64,5))
+        s.SoundId = pkMsKmQUQDEbZ5Q(65,23)
+        s.Volume = 0.5
+        s.Parent = SoundService
+        s:Play()
+        Debris:AddItem(s, 1)
+    end)
+end
+local function getExecutorName()
+    local ok, name = pcall(function()
+        if identifyexecutor then return identifyexecutor() end
+        return pkMsKmQUQDEbZ5Q(66,7)
+    end)
+    return ok and name or pkMsKmQUQDEbZ5Q(67,7)
+end
+local function getGameName()
+    local ok, info = pcall(function()
+        return MarketplaceService:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+    end)
+    if ok and info and info.Name then return info.Name end
+    return pkMsKmQUQDEbZ5Q(68,12)
+end
+local function getCarModel()
+    local ok, result = pcall(function()
+        local f = Workspace:FindFirstChild(pkMsKmQUQDEbZ5Q(69,10))
+        if f then
+            local sf = f:FindFirstChild(pkMsKmQUQDEbZ5Q(70,17))
+            if sf then
+                return sf:FindFirstChild(LocalPlayer.Name)
+            end
+        end
+        return nil
+    end)
+    return ok and result or nil
+end
+local function getPlayers()
+    local names = {}
+    for _, p in pairs(Players:GetPlayers()) do
+        if p ~= LocalPlayer then
+            table.insert(names, p.Name)
+        end
+    end
+    return names
+end
+local function getAdminsInServer()
+    local admins = {}
+    for _, p in pairs(Players:GetPlayers()) do
+        local role = ADMIN_USERNAMES[p.Name]
+        if role then
+            table.insert(admins, p.Name .. pkMsKmQUQDEbZ5Q(71,2) .. role .. ")")
+        end
+    end
+    return admins
+end
+RunService.Stepped:Connect(function()
+    if noclipEnabled and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA(pkMsKmQUQDEbZ5Q(72,8)) then
+                part.CanCollide = false
+                part.CanTouch = false
+            end
+        end
+    end
+end)
+local function createMobileFlyButtons()
+    if suppressMobileButtons then return end
+    if not UserInputService.TouchEnabled then return end
+    if mobileFlyGui then return end
+    local sg = Instance.new(pkMsKmQUQDEbZ5Q(73,9))
+    sg.Name = pkMsKmQUQDEbZ5Q(74,18)
+    sg.ResetOnSpawn = false
+    sg.Parent = CoreGui
+    mobileFlyGui = sg
+    local function makeBtn(name, text, yPos, inputBeganCb, inputEndedCb)
+        local btn = Instance.new(pkMsKmQUQDEbZ5Q(75,10))
+        btn.Name = name
+        btn.Size = UDim2.fromOffset(50, 50)
+        btn.Position = UDim2.new(0, 15, 0, yPos)
+        btn.Text = text
+        btn.BackgroundColor3 = Color3.fromRGB(30, 144, 255)
+        btn.TextColor3 = Color3.new(1, 1, 1)
+        btn.Font = Enum.Font.GothamBold
+        btn.TextSize = 22
+        btn.BorderSizePixel = 0
+        btn.AutoButtonColor = false
+        btn.ZIndex = 99
+        btn.Parent = sg
+        local c = Instance.new(pkMsKmQUQDEbZ5Q(76,8))
+        c.CornerRadius = UDim.new(0, 12)
+        c.Parent = btn
+        btn.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.Touch then inputBeganCb() end
+        end)
+        btn.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.Touch then inputEndedCb() end
+        end)
+        return btn
+    end
+    makeBtn(pkMsKmQUQDEbZ5Q(77,5), "▲", 200,
+        function() mobileFlyUp = true end,
+        function() mobileFlyUp = false end
+    )
+    makeBtn(pkMsKmQUQDEbZ5Q(78,7), "▼", 260,
+        function() mobileFlyDown = true end,
+        function() mobileFlyDown = false end
+    )
+end
+local function destroyMobileFlyButtons()
+    if mobileFlyGui then
+        mobileFlyGui:Destroy()
+        mobileFlyGui = nil
+    end
+    mobileFlyUp = false
+    mobileFlyDown = false
+end
+local function startFly()
+    local c = LocalPlayer.Character
+    if not c then return false end
+    local hrp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(79,16))
+    local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(80,8))
+    if not hrp or not hum then return false end
+    pcall(function() if flyBV then flyBV:Destroy() end end)
+    pcall(function() if flyBG then flyBG:Destroy() end end)
+    flyBV = Instance.new(pkMsKmQUQDEbZ5Q(81,12))
+    flyBV.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+    flyBV.Velocity = Vector3.new(0, 0, 0)
+    flyBV.Parent = hrp
+    flyBG = Instance.new(pkMsKmQUQDEbZ5Q(82,8))
+    flyBG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+    flyBG.P = 9000
+    flyBG.D = 100
+    flyBG.CFrame = hrp.CFrame
+    flyBG.Parent = hrp
+    hum.PlatformStand = true
+    createMobileFlyButtons()
+    return true
+end
+local function stopFly()
+    pcall(function() if flyBV then flyBV:Destroy() flyBV = nil end end)
+    pcall(function() if flyBG then flyBG:Destroy() flyBG = nil end end)
+    local c = LocalPlayer.Character
+    if c then
+        local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(83,8))
+        if hum then hum.PlatformStand = false end
+    end
+    destroyMobileFlyButtons()
+end
+RunService.Heartbeat:Connect(function()
+    if not flyEnabled then return end
+    if not flyBV or not flyBV.Parent then
+        if not startFly() then return end
+    end
+    local c = LocalPlayer.Character
+    if not c then return end
+    local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(84,8))
+    local hrp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(85,16))
+    if not hum or not hrp then return end
+    if UserInputService:GetFocusedTextBox() then
+        pcall(function() flyBV.Velocity = Vector3.new(0, 0, 0) end)
+        return
+    end
+    local moveDir = hum.MoveDirection
+    local cam = Workspace.CurrentCamera
+    if not cam then return end
+    local cf = cam.CFrame
+    local dir = Vector3.new(moveDir.X, 0, moveDir.Z)
+    if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
+        dir = dir + Vector3.new(0, 1, 0)
+    elseif UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+        dir = dir + Vector3.new(0, -1, 0)
+    end
+    if dir.Magnitude > 0 then
+        dir = dir.Unit
+    end
+    pcall(function()
+        flyBV.Velocity = dir * flySpeed
+        flyBG.CFrame = cf
+    end)
+end)
+local function startVehicleNoclip()
+    vehicleNoclipEnabled = true
+    vehicleNoclipConn = RunService.Heartbeat:Connect(function()
+        if not vehicleNoclipEnabled then return end
+        local car = getCarModel()
+        if not car then return end
+        local pp = car:IsA(pkMsKmQUQDEbZ5Q(86,5)) and (car.PrimaryPart or car:FindFirstChildWhichIsA(pkMsKmQUQDEbZ5Q(87,8))) or car
+        if not pp then return end
+        for _, part in pairs(car:GetDescendants()) do
+            if part:IsA(pkMsKmQUQDEbZ5Q(88,8)) then
+                part.CanCollide = false
+            end
+        end
+        local rayParams = RaycastParams.new()
+        rayParams.FilterDescendantsInstances = {car}
+        local char = LocalPlayer.Character
+        if char then
+            table.insert(rayParams.FilterDescendantsInstances, char)
+        end
+        rayParams.FilterType = Enum.RaycastFilterType.Exclude
+        local origin = pp.Position + Vector3.new(0, 5, 0)
+        local result = Workspace:Raycast(origin, Vector3.new(0, -20, 0), rayParams)
+        if result then
+            local groundY = result.Position.Y + 1.5
+            if pp.Position.Y < groundY - 0.3 then
+                pcall(function()
+                    pp.CFrame = CFrame.new(
+                        pp.Position.X,
+                        groundY,
+                        pp.Position.Z
+                    ) * CFrame.Angles(
+                        math.rad(pp.Orientation.X),
+                        math.rad(pp.Orientation.Y),
+                        math.rad(pp.Orientation.Z)
+                    )
+                end)
+            end
+        end
+    end)
+end
+local function stopVehicleNoclip()
+    vehicleNoclipEnabled = false
+    if vehicleNoclipConn then
+        vehicleNoclipConn:Disconnect()
+        vehicleNoclipConn = nil
+    end
+    local car = getCarModel()
+    if car then
+        for _, part in pairs(car:GetDescendants()) do
+            if part:IsA(pkMsKmQUQDEbZ5Q(89,8)) then
+                part.CanCollide = true
+            end
+        end
+    end
+end
+local function startVehicleFly()
+    local car = getCarModel()
+    if not car then
+        notify(pkMsKmQUQDEbZ5Q(90,11), pkMsKmQUQDEbZ5Q(91,32), 3)
+        return
+    end
+    local c = LocalPlayer.Character
+    if not c then return end
+    local rp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(92,16))
+    local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(93,8))
+    if not rp or not hum then return end
+    local carPrimary = car:IsA(pkMsKmQUQDEbZ5Q(94,5)) and (car.PrimaryPart or car:FindFirstChildWhichIsA(pkMsKmQUQDEbZ5Q(95,8))) or car
+    if not carPrimary then return end
+    savedVehicleNoclip = vehicleNoclipEnabled
+    if vehicleNoclipEnabled then
+        stopVehicleNoclip()
+    end
+    for _, part in pairs(car:GetDescendants()) do
+        if part:IsA(pkMsKmQUQDEbZ5Q(96,8)) then
+            part.CanCollide = false
+            part.Massless = true
+            part.Anchored = false
+        end
+    end
+    vehicleFlyWeld = Instance.new(pkMsKmQUQDEbZ5Q(97,14))
+    vehicleFlyWeld.Part0 = rp
+    vehicleFlyWeld.Part1 = carPrimary
+    vehicleFlyWeld.Parent = rp
+    hum.Sit = false
+    suppressMobileButtons = true
+    flyEnabled = true
+    startFly()
+    vehicleFlyEnabled = true
+    notify(pkMsKmQUQDEbZ5Q(98,11), pkMsKmQUQDEbZ5Q(99,41), 3)
+end
+local function stopVehicleFly()
+    vehicleFlyEnabled = false
+    suppressMobileButtons = false
+    flyEnabled = false
+    stopFly()
+    if vehicleFlyWeld then
+        pcall(function() vehicleFlyWeld:Destroy() end)
+        vehicleFlyWeld = nil
+    end
+    local car = getCarModel()
+    if car then
+        for _, part in pairs(car:GetDescendants()) do
+            if part:IsA(pkMsKmQUQDEbZ5Q(100,8)) then
+                part.CanCollide = true
+                part.Massless = false
+            end
+        end
+    end
+    if savedVehicleNoclip then
+        startVehicleNoclip()
+    end
+end
+local CarSpawnRemote = nil
+pcall(function()
+    CarSpawnRemote = ReplicatedStorage.Services.CarSpawner.Remotes.Spawn
+end)
+local carNames = {}
+pcall(function()
+    local CarConfig = require(ReplicatedStorage.Services.CarConfiguration.CarConfigurationClient)
+    local cars = CarConfig.GetCars()
+    if cars then
+        for _, car in ipairs(cars) do
+            if type(car) == pkMsKmQUQDEbZ5Q(101,6) then
+                table.insert(carNames, car)
+            elseif type(car) == pkMsKmQUQDEbZ5Q(102,5) and car.Name then
+                table.insert(carNames, car.Name)
+            end
+        end
+    end
+end)
+if #carNames == 0 then
+    carNames = { pkMsKmQUQDEbZ5Q(103,6), pkMsKmQUQDEbZ5Q(104,11) }
+end
+local currentCarName = carNames[1] or pkMsKmQUQDEbZ5Q(105,6)
+local spamSpawnEnabled = false
+local function spawnCar(name)
+    if not CarSpawnRemote then
+        notify(pkMsKmQUQDEbZ5Q(106,11), pkMsKmQUQDEbZ5Q(107,23), 3)
+        return false
+    end
+    local ok, err = pcall(function()
+        CarSpawnRemote:InvokeServer(name)
+    end)
+    if not ok then
+        notify(pkMsKmQUQDEbZ5Q(108,11), pkMsKmQUQDEbZ5Q(109,8) .. tostring(err), 3)
+    end
+    return ok
+end
+task.spawn(function()
+    while task.wait(0.5) do
+        if spamSpawnEnabled then
+            spawnCar(currentCarName)
+        end
+    end
+end)
+local function clearAdminESP()
+    for _, obj in pairs(adminESPObjects) do
+        pcall(function() if obj and obj.Parent then obj:Destroy() end end)
+    end
+    adminESPObjects = {}
+end
+local function updateAdminESP()
+    clearAdminESP()
+    if not adminESPEnabled then return end
+    for _, player in pairs(Players:GetPlayers()) do
+        if ADMIN_USERNAMES[player.Name] and player.Character then
+            local hrp = player.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(110,16))
+            if hrp then
+                local hl = Instance.new(pkMsKmQUQDEbZ5Q(111,9))
+                hl.Name = pkMsKmQUQDEbZ5Q(112,15)
+                hl.FillColor = Color3.fromRGB(255, 0, 0)
+                hl.OutlineColor = Color3.fromRGB(255, 255, 0)
+                hl.FillTransparency = 0.5
+                hl.OutlineTransparency = 0
+                hl.Parent = player.Character
+                table.insert(adminESPObjects, hl)
+                local bb = Instance.new(pkMsKmQUQDEbZ5Q(113,12))
+                bb.Name = pkMsKmQUQDEbZ5Q(114,20)
+                bb.Size = UDim2.new(0, 250, 0, 50)
+                bb.StudsOffset = Vector3.new(0, 4, 0)
+                bb.AlwaysOnTop = true
+                bb.Parent = hrp
+                local lbl = Instance.new(pkMsKmQUQDEbZ5Q(115,9))
+                lbl.Size = UDim2.new(1, 0, 1, 0)
+                lbl.BackgroundTransparency = 1
+                lbl.TextColor3 = Color3.fromRGB(255, 50, 50)
+                lbl.TextStrokeTransparency = 0
+                lbl.Text = pkMsKmQUQDEbZ5Q(116,8) .. player.Name .. pkMsKmQUQDEbZ5Q(117,2) .. ADMIN_USERNAMES[player.Name] .. ")"
+                lbl.Font = Enum.Font.GothamBold
+                lbl.TextSize = 13
+                lbl.Parent = bb
+                table.insert(adminESPObjects, bb)
+            end
+        end
+    end
+end
+local function updateAdminListDisplay()
+    if not adminListParagraph then return end
+    local admins = getAdminsInServer()
+    local content = ""
+    if #admins == 0 then
+        content = pkMsKmQUQDEbZ5Q(118,20)
+    else
+        for i, a in ipairs(admins) do
+            content = content .. a
+            if i < #admins then content = content .. pkMsKmQUQDEbZ5Q(119,1) end
+        end
+    end
+    pcall(function()
+        adminListParagraph:Set({ Content = content })
+    end)
+end
+Players.PlayerAdded:Connect(function(player)
+    local role = ADMIN_USERNAMES[player.Name]
+    if not role then return end
+    if adminNotifyEnabled then
+        notify(pkMsKmQUQDEbZ5Q(120,19), player.Name .. pkMsKmQUQDEbZ5Q(121,2) .. role .. pkMsKmQUQDEbZ5Q(122,9), 10)
+    end
+    if adminESPEnabled then
+        task.wait(2)
+        updateAdminESP()
+    end
+    if serverHopOnAdmin then
+        notify(pkMsKmQUQDEbZ5Q(123,10), pkMsKmQUQDEbZ5Q(124,26), 3)
+        task.wait(2)
+        pcall(function()
+            TeleportService:Teleport(game.PlaceId, LocalPlayer)
+        end)
+    end
+end)
+local function clearPlayerESP()
+    for _, obj in pairs(playerESPObjects) do
+        pcall(function() if obj and obj.Parent then obj:Destroy() end end)
+    end
+    playerESPObjects = {}
+end
+local function updatePlayerESP()
+    clearPlayerESP()
+    if not playerESPEnabled then return end
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character then
+            local hrp = player.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(125,16))
+            if hrp then
+                local hl = Instance.new(pkMsKmQUQDEbZ5Q(126,9))
+                hl.Name = pkMsKmQUQDEbZ5Q(127,16)
+                hl.FillColor = Color3.fromRGB(0, 255, 100)
+                hl.OutlineColor = Color3.fromRGB(255, 255, 255)
+                hl.FillTransparency = 0.6
+                hl.OutlineTransparency = 0
+                hl.Parent = player.Character
+                table.insert(playerESPObjects, hl)
+                local bb = Instance.new(pkMsKmQUQDEbZ5Q(128,12))
+                bb.Name = pkMsKmQUQDEbZ5Q(129,21)
+                bb.Size = UDim2.new(0, 150, 0, 35)
+                bb.StudsOffset = Vector3.new(0, 4, 0)
+                bb.AlwaysOnTop = true
+                bb.Parent = hrp
+                local lbl = Instance.new(pkMsKmQUQDEbZ5Q(130,9))
+                lbl.Size = UDim2.new(1, 0, 1, 0)
+                lbl.BackgroundTransparency = 1
+                lbl.TextColor3 = Color3.fromRGB(0, 255, 100)
+                lbl.TextStrokeTransparency = 0.3
+                lbl.Text = player.Name
+                lbl.Font = Enum.Font.GothamBold
+                lbl.TextSize = 12
+                lbl.Parent = bb
+                table.insert(playerESPObjects, bb)
+            end
+        end
+    end
+end
+LocalPlayer.CharacterAdded:Connect(function(char)
+    task.wait(1)
+    if flyEnabled then
+        flyEnabled = true
+        startFly()
+    end
+    if adminESPEnabled then
+        task.wait(1)
+        updateAdminESP()
+    end
+    if playerESPEnabled then
+        task.wait(1)
+        updatePlayerESP()
+    end
+end)
+task.spawn(function()
+    while task.wait(3) do
+        updateAdminListDisplay()
+        if adminESPEnabled then
+            updateAdminESP()
+        end
+    end
+end)
+local Window = Fluent:CreateWindow({
+    Title = pkMsKmQUQDEbZ5Q(131,11),
+    SubTitle = "v" .. VERSION .. pkMsKmQUQDEbZ5Q(132,3) .. LocalPlayer.Name,
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = pkMsKmQUQDEbZ5Q(133,4),
+    MinimizeKey = Enum.KeyCode.RightControl
+})
+local TabMain    = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(134,4),       Icon = pkMsKmQUQDEbZ5Q(135,4) })
+local TabScripts = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(136,7),    Icon = pkMsKmQUQDEbZ5Q(137,8) })
+local TabCrew    = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(138,10), Icon = pkMsKmQUQDEbZ5Q(139,5) })
+local TabCar     = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(140,3),        Icon = pkMsKmQUQDEbZ5Q(141,3) })
+local TabTroll   = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(142,11),Icon = pkMsKmQUQDEbZ5Q(143,5) })
+local TabLAdmins = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(144,8),   Icon = pkMsKmQUQDEbZ5Q(145,3) })
+local TabPlayer  = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(146,6),     Icon = pkMsKmQUQDEbZ5Q(147,4) })
+local TabSettings = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(148,8),   Icon = pkMsKmQUQDEbZ5Q(149,8) })
+local TabCredits = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(150,7),    Icon = pkMsKmQUQDEbZ5Q(151,4) })
+TabMain:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(152,13) .. VERSION,
+    Content = pkMsKmQUQDEbZ5Q(153,26) .. getExecutorName()
+})
+TabMain:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(154,11),
+    Content =
+        pkMsKmQUQDEbZ5Q(155,6) .. getGameName() .. pkMsKmQUQDEbZ5Q(156,1) ..
+        pkMsKmQUQDEbZ5Q(157,10) .. tostring(game.PlaceId) .. pkMsKmQUQDEbZ5Q(158,1) ..
+        pkMsKmQUQDEbZ5Q(159,8) .. string.sub(tostring(game.JobId), 1, 12) .. pkMsKmQUQDEbZ5Q(160,4) ..
+        pkMsKmQUQDEbZ5Q(161,9) .. tostring(#Players:GetPlayers()) .. "/" .. tostring(Players.MaxPlayers)
+})
+TabMain:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(162,10),
+    Content =
+        pkMsKmQUQDEbZ5Q(163,44) ..
+        pkMsKmQUQDEbZ5Q(164,50) ..
+        pkMsKmQUQDEbZ5Q(165,53) ..
+        pkMsKmQUQDEbZ5Q(166,52) ..
+        pkMsKmQUQDEbZ5Q(167,48) ..
+        pkMsKmQUQDEbZ5Q(168,45) ..
+        pkMsKmQUQDEbZ5Q(169,45) ..
+        pkMsKmQUQDEbZ5Q(170,32)
+})
+TabMain:AddSection(pkMsKmQUQDEbZ5Q(171,6))
+TabMain:AddToggle(pkMsKmQUQDEbZ5Q(172,10), {
+    Title = pkMsKmQUQDEbZ5Q(173,13),
+    Description = pkMsKmQUQDEbZ5Q(174,57),
+    Default = false,
+    Callback = function(Value)
+        noclipEnabled = Value
+    end
+})
+TabMain:AddToggle(pkMsKmQUQDEbZ5Q(175,7), {
+    Title = pkMsKmQUQDEbZ5Q(176,6),
+    Description = pkMsKmQUQDEbZ5Q(177,52),
+    Default = false,
+    Callback = function(Value)
+        flyEnabled = Value
+        if Value then
+            if startFly() then
+                notify(pkMsKmQUQDEbZ5Q(178,3), pkMsKmQUQDEbZ5Q(179,21), 3)
+            end
+        else
+            stopFly()
+        end
+    end
+})
+TabMain:AddSlider(pkMsKmQUQDEbZ5Q(180,12), {
+    Title = pkMsKmQUQDEbZ5Q(181,9),
+    Description = pkMsKmQUQDEbZ5Q(182,26),
+    Default = 50,
+    Min = 10,
+    Max = 300,
+    Rounding = 1,
+    Callback = function(Value)
+        flySpeed = Value
+    end
+})
+TabScripts:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(183,13),
+    Description = pkMsKmQUQDEbZ5Q(184,31),
+    Callback = function()
+        playClickSound()
+        TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+    end
+})
+TabScripts:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(185,19),
+    Description = pkMsKmQUQDEbZ5Q(186,45),
+    Callback = function()
+        playClickSound()
+        pcall(function()
+            loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(187,68)))()
+            notify(pkMsKmQUQDEbZ5Q(188,7), pkMsKmQUQDEbZ5Q(189,22), 3)
+        end)
+    end
+})
+TabScripts:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(190,14),
+    Description = pkMsKmQUQDEbZ5Q(191,32),
+    Callback = function()
+        playClickSound()
+        pcall(function()
+            loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(192,71)))()
+            notify(pkMsKmQUQDEbZ5Q(193,7), pkMsKmQUQDEbZ5Q(194,17), 3)
+        end)
+    end
+})
+TabCrew:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(195,17),
+    Content = pkMsKmQUQDEbZ5Q(196,141)
+})
+local CarSection = TabCar:AddSection(pkMsKmQUQDEbZ5Q(197,11))
+TabCar:AddDropdown(pkMsKmQUQDEbZ5Q(198,9), {
+    Title = pkMsKmQUQDEbZ5Q(199,10),
+    Description = pkMsKmQUQDEbZ5Q(200,22),
+    Values = carNames,
+    Default = 1,
+    Callback = function(Value)
+        currentCarName = Value
+    end
+})
+TabCar:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(201,9),
+    Description = pkMsKmQUQDEbZ5Q(202,65),
+    Callback = function()
+        playClickSound()
+        if spawnCar(currentCarName) then
+            notify(pkMsKmQUQDEbZ5Q(203,11), pkMsKmQUQDEbZ5Q(204,10) .. currentCarName, 2)
+        end
+    end
+})
+TabCar:AddToggle(pkMsKmQUQDEbZ5Q(205,9), {
+    Title = pkMsKmQUQDEbZ5Q(206,10),
+    Description = pkMsKmQUQDEbZ5Q(207,30),
+    Default = false,
+    Callback = function(Value)
+        spamSpawnEnabled = Value
+        if Value then
+            notify(pkMsKmQUQDEbZ5Q(208,11), pkMsKmQUQDEbZ5Q(209,15) .. currentCarName, 2)
+        end
+    end
+})
+TabCar:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(210,18),
+    Description = pkMsKmQUQDEbZ5Q(211,51),
+    Callback = function()
+        playClickSound()
+        local char = LocalPlayer.Character
+        if not char then
+            notify(pkMsKmQUQDEbZ5Q(212,3), pkMsKmQUQDEbZ5Q(213,19), 2)
+            return
+        end
+        local hrp = char:FindFirstChild(pkMsKmQUQDEbZ5Q(214,16))
+        if not hrp then return end
+        notify(pkMsKmQUQDEbZ5Q(215,3), pkMsKmQUQDEbZ5Q(216,33), 3)
+        local savedCF = hrp.CFrame
+        spawnCar(pkMsKmQUQDEbZ5Q(217,6))
+        task.wait(2.5)
+        local car = getCarModel()
+        if not car then
+            notify(pkMsKmQUQDEbZ5Q(218,3), pkMsKmQUQDEbZ5Q(219,44), 3)
+            pcall(function() hrp.CFrame = savedCF end)
+            return
+        end
+        local carPrimary = car:IsA(pkMsKmQUQDEbZ5Q(220,5)) and (car.PrimaryPart or car:FindFirstChildWhichIsA(pkMsKmQUQDEbZ5Q(221,8))) or car
+        if not carPrimary then
+            notify(pkMsKmQUQDEbZ5Q(222,3), pkMsKmQUQDEbZ5Q(223,24), 3)
+            pcall(function() hrp.CFrame = savedCF end)
+            return
+        end
+        for _, part in pairs(car:GetDescendants()) do
+            if part:IsA(pkMsKmQUQDEbZ5Q(224,8)) then
+                part.CanCollide = false
+                part.Massless = true
+                part.Anchored = false
+            end
+        end
+        startVehicleFly()
+        task.wait(0.3)
+        pcall(function()
+            hrp.CFrame = savedCF
+        end)
+        task.wait(0.5)
+        stopVehicleFly()
+        notify(pkMsKmQUQDEbZ5Q(225,3), pkMsKmQUQDEbZ5Q(226,32), 3)
+    end
+})
+local VehSection = TabCar:AddSection(pkMsKmQUQDEbZ5Q(227,12))
+TabCar:AddToggle(pkMsKmQUQDEbZ5Q(228,13), {
+    Title = pkMsKmQUQDEbZ5Q(229,14),
+    Description = pkMsKmQUQDEbZ5Q(230,47),
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            startVehicleNoclip()
+            notify(pkMsKmQUQDEbZ5Q(231,7), pkMsKmQUQDEbZ5Q(232,17), 2)
+        else
+            stopVehicleNoclip()
+            notify(pkMsKmQUQDEbZ5Q(233,7), pkMsKmQUQDEbZ5Q(234,18), 2)
+        end
+    end
+})
+TabCar:AddToggle(pkMsKmQUQDEbZ5Q(235,10), {
+    Title = pkMsKmQUQDEbZ5Q(236,11),
+    Description = pkMsKmQUQDEbZ5Q(237,48),
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            startVehicleFly()
+        else
+            stopVehicleFly()
+            notify(pkMsKmQUQDEbZ5Q(238,7), pkMsKmQUQDEbZ5Q(239,15), 2)
+        end
+    end
+})
+TabTroll:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(240,14),
+    Content = pkMsKmQUQDEbZ5Q(241,77)
+})
+TabTroll:AddToggle(pkMsKmQUQDEbZ5Q(242,11), {
+    Title = pkMsKmQUQDEbZ5Q(243,26),
+    Description = pkMsKmQUQDEbZ5Q(244,44),
+    Default = false,
+    Callback = function(Value)
+        adminEnabled = Value
+        if Value then
+            notify(pkMsKmQUQDEbZ5Q(245,11), pkMsKmQUQDEbZ5Q(246,23), 3)
+        else
+            if attachConn then
+                attachConn:Disconnect()
+                attachConn = nil
+            end
+            if spinConn then
+                spinConn:Disconnect()
+                spinConn = nil
+            end
+            if spinEnabled then
+                spinEnabled = false
+                noclipEnabled = wasNoclipBeforeSpin
+            end
+            clearPlayerESP()
+            playerESPEnabled = false
+            notify(pkMsKmQUQDEbZ5Q(247,11), pkMsKmQUQDEbZ5Q(248,21), 3)
+        end
+    end
+})
+TabTroll:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(249,6),
+    Content = adminEnabled and pkMsKmQUQDEbZ5Q(250,24) or pkMsKmQUQDEbZ5Q(251,52)
+})
+local TrollTPSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(252,8))
+TrollTPSection:AddDropdown(pkMsKmQUQDEbZ5Q(253,13), {
+    Title = pkMsKmQUQDEbZ5Q(254,13),
+    Description = pkMsKmQUQDEbZ5Q(255,31),
+    Values = getPlayers(),
+    Default = 1,
+    Callback = function(Value)
+        selectedTrollPlayer = Value
+    end
+})
+TrollTPSection:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(256,18),
+    Description = pkMsKmQUQDEbZ5Q(257,32),
+    Callback = function()
+        if not adminEnabled then
+            notify(pkMsKmQUQDEbZ5Q(258,6), pkMsKmQUQDEbZ5Q(259,26), 2)
+            return
+        end
+        playClickSound()
+        local target = Players:FindFirstChild(selectedTrollPlayer)
+        if target and target.Character then
+            local tHRP = target.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(260,16))
+            local myHRP = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(261,16))
+            if tHRP and myHRP then
+                myHRP.CFrame = tHRP.CFrame + Vector3.new(0, 0, 3)
+                notify(pkMsKmQUQDEbZ5Q(262,8), pkMsKmQUQDEbZ5Q(263,14) .. selectedTrollPlayer, 2)
+            end
+        else
+            notify(pkMsKmQUQDEbZ5Q(264,8), pkMsKmQUQDEbZ5Q(265,17), 2)
+        end
+    end
+})
+TrollTPSection:AddDropdown(pkMsKmQUQDEbZ5Q(266,15), {
+    Title = pkMsKmQUQDEbZ5Q(267,15),
+    Description = pkMsKmQUQDEbZ5Q(268,33),
+    Values = { pkMsKmQUQDEbZ5Q(269,5), pkMsKmQUQDEbZ5Q(270,10), pkMsKmQUQDEbZ5Q(271,12) },
+    Default = 1,
+    Callback = function(Value)
+        selectedTrollLocation = Value
+    end
+})
+TrollTPSection:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(272,20),
+    Description = pkMsKmQUQDEbZ5Q(273,34),
+    Callback = function()
+        if not adminEnabled then
+            notify(pkMsKmQUQDEbZ5Q(274,6), pkMsKmQUQDEbZ5Q(275,26), 2)
+            return
+        end
+        playClickSound()
+        local cf = TELEPORT_LOCATIONS[selectedTrollLocation]
+        local hrp = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(276,16))
+        if cf and hrp then
+            hrp.CFrame = cf
+            notify(pkMsKmQUQDEbZ5Q(277,8), pkMsKmQUQDEbZ5Q(278,14) .. selectedTrollLocation, 2)
+        else
+            notify(pkMsKmQUQDEbZ5Q(279,8), pkMsKmQUQDEbZ5Q(280,32), 2)
+        end
+    end
+})
+local TrollESPSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(281,3))
+TrollESPSection:AddToggle(pkMsKmQUQDEbZ5Q(282,14), {
+    Title = pkMsKmQUQDEbZ5Q(283,11),
+    Description = pkMsKmQUQDEbZ5Q(284,30),
+    Default = false,
+    Callback = function(Value)
+        if not adminEnabled then
+            notify(pkMsKmQUQDEbZ5Q(285,6), pkMsKmQUQDEbZ5Q(286,26), 2)
+            return
+        end
+        playerESPEnabled = Value
+        updatePlayerESP()
+        notify(pkMsKmQUQDEbZ5Q(287,3), Value and pkMsKmQUQDEbZ5Q(288,13) or pkMsKmQUQDEbZ5Q(289,14), 2)
+    end
+})
+local TrollAttachSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(290,6))
+TrollAttachSection:AddDropdown(pkMsKmQUQDEbZ5Q(291,17), {
+    Title = pkMsKmQUQDEbZ5Q(292,23),
+    Description = pkMsKmQUQDEbZ5Q(293,42),
+    Values = getPlayers(),
+    Default = 1,
+    Callback = function(Value)
+        attachTarget = Value
+    end
+})
+TrollAttachSection:AddToggle(pkMsKmQUQDEbZ5Q(294,11), {
+    Title = pkMsKmQUQDEbZ5Q(295,16),
+    Description = pkMsKmQUQDEbZ5Q(296,47),
+    Default = false,
+    Callback = function(Value)
+        if not adminEnabled then
+            notify(pkMsKmQUQDEbZ5Q(297,6), pkMsKmQUQDEbZ5Q(298,26), 2)
+            return
+        end
+        if Value then
+            if attachTarget == "" then
+                notify(pkMsKmQUQDEbZ5Q(299,6), pkMsKmQUQDEbZ5Q(300,22), 2)
+                return
+            end
+            attachConn = RunService.Heartbeat:Connect(function()
+                local target = Players:FindFirstChild(attachTarget)
+                if target and target.Character then
+                    local tHRP = target.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(301,16))
+                    local c = LocalPlayer.Character
+                    if c then
+                        local myHRP = c:FindFirstChild(pkMsKmQUQDEbZ5Q(302,16))
+                        if tHRP and myHRP then
+                            myHRP.CFrame = tHRP.CFrame * CFrame.new(0, 0, 0)
+                        end
+                    end
+                end
+            end)
+            notify(pkMsKmQUQDEbZ5Q(303,6), pkMsKmQUQDEbZ5Q(304,13) .. attachTarget, 2)
+        else
+            if attachConn then
+                attachConn:Disconnect()
+                attachConn = nil
+            end
+            notify(pkMsKmQUQDEbZ5Q(305,6), pkMsKmQUQDEbZ5Q(306,8), 2)
+        end
+    end
+})
+local TrollChatSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(307,10))
+TrollChatSection:AddDropdown(pkMsKmQUQDEbZ5Q(308,18), {
+    Title = pkMsKmQUQDEbZ5Q(309,14),
+    Description = pkMsKmQUQDEbZ5Q(310,31),
+    Values = TROLL_MESSAGES,
+    Default = 1,
+    Callback = function(Value)
+        selectedTrollMsg = Value
+    end
+})
+TrollChatSection:AddButton({
+    Title = pkMsKmQUQDEbZ5Q(311,18),
+    Description = pkMsKmQUQDEbZ5Q(312,34),
+    Callback = function()
+        if not adminEnabled then
+            notify(pkMsKmQUQDEbZ5Q(313,6), pkMsKmQUQDEbZ5Q(314,26), 2)
+            return
+        end
+        playClickSound()
+        pcall(function()
+            local ChatRemote = ReplicatedStorage:FindFirstChild(pkMsKmQUQDEbZ5Q(315,27))
+            if ChatRemote then
+                local SayMessage = ChatRemote:FindFirstChild(pkMsKmQUQDEbZ5Q(316,17))
+                if SayMessage then
+                    SayMessage:FireServer(selectedTrollMsg, pkMsKmQUQDEbZ5Q(317,3))
+                    notify(pkMsKmQUQDEbZ5Q(318,4), pkMsKmQUQDEbZ5Q(319,13), 2)
+                    return
+                end
+            end
+            notify(pkMsKmQUQDEbZ5Q(320,4), pkMsKmQUQDEbZ5Q(321,22), 2)
+        end)
+    end
+})
+local TrollSpinSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(322,4))
+TrollSpinSection:AddSlider(pkMsKmQUQDEbZ5Q(323,14), {
+    Title = pkMsKmQUQDEbZ5Q(324,10),
+    Description = pkMsKmQUQDEbZ5Q(325,22),
+    Default = 10,
+    Min = 1,
+    Max = 100,
+    Rounding = 1,
+    Callback = function(Value)
+        spinSpeed = Value
+    end
+})
+TrollSpinSection:AddToggle(pkMsKmQUQDEbZ5Q(326,9), {
+    Title = pkMsKmQUQDEbZ5Q(327,4),
+    Description = pkMsKmQUQDEbZ5Q(328,45),
+    Default = false,
+    Callback = function(Value)
+        if not adminEnabled then
+            notify(pkMsKmQUQDEbZ5Q(329,6), pkMsKmQUQDEbZ5Q(330,26), 2)
+            return
+        end
+        spinEnabled = Value
+        if Value then
+            wasNoclipBeforeSpin = noclipEnabled
+            noclipEnabled = true
+            spinConn = RunService.Heartbeat:Connect(function()
+                if not spinEnabled then return end
+                local c = LocalPlayer.Character
+                if c then
+                    local rp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(331,16))
+                    if rp then
+                        rp.CFrame = rp.CFrame * CFrame.Angles(0, math.rad(spinSpeed), 0)
+                    end
+                end
+            end)
+            notify(pkMsKmQUQDEbZ5Q(332,4), pkMsKmQUQDEbZ5Q(333,18) .. tostring(spinSpeed), 2)
+        else
+            if spinConn then
+                spinConn:Disconnect()
+                spinConn = nil
+            end
+            noclipEnabled = wasNoclipBeforeSpin
+            notify(pkMsKmQUQDEbZ5Q(334,4), pkMsKmQUQDEbZ5Q(335,12), 2)
+        end
+    end
+})
+TabLAdmins:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(336,18),
+    Content = pkMsKmQUQDEbZ5Q(337,80)
+})
+TabLAdmins:AddToggle(pkMsKmQUQDEbZ5Q(338,11), {
+    Title = pkMsKmQUQDEbZ5Q(339,23),
+    Description = pkMsKmQUQDEbZ5Q(340,44),
+    Default = false,
+    Callback = function(Value)
+        adminNotifyEnabled = Value
+    end
+})
+TabLAdmins:AddToggle(pkMsKmQUQDEbZ5Q(341,8), {
+    Title = pkMsKmQUQDEbZ5Q(342,9),
+    Description = pkMsKmQUQDEbZ5Q(343,45),
+    Default = false,
+    Callback = function(Value)
+        adminESPEnabled = Value
+        updateAdminESP()
+    end
+})
+TabLAdmins:AddToggle(pkMsKmQUQDEbZ5Q(344,14), {
+    Title = pkMsKmQUQDEbZ5Q(345,24),
+    Description = pkMsKmQUQDEbZ5Q(346,40),
+    Default = false,
+    Callback = function(Value)
+        serverHopOnAdmin = Value
+        if Value then
+            notify(pkMsKmQUQDEbZ5Q(347,8), pkMsKmQUQDEbZ5Q(348,18), 2)
+        end
+    end
+})
+adminListParagraph = TabLAdmins:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(349,16),
+    Content = pkMsKmQUQDEbZ5Q(350,11)
+})
+TabPlayer:AddSlider(pkMsKmQUQDEbZ5Q(351,11), {
+    Title = pkMsKmQUQDEbZ5Q(352,9),
+    Description = pkMsKmQUQDEbZ5Q(353,32),
+    Default = 16,
+    Min = 16,
+    Max = 150,
+    Rounding = 1,
+    Callback = function(Value)
+        local c = LocalPlayer.Character
+        if c then
+            local h = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(354,8))
+            if h then h.WalkSpeed = Value end
+        end
+    end
+})
+TabPlayer:AddSlider(pkMsKmQUQDEbZ5Q(355,10), {
+    Title = pkMsKmQUQDEbZ5Q(356,9),
+    Description = pkMsKmQUQDEbZ5Q(357,29),
+    Default = 50,
+    Min = 50,
+    Max = 200,
+    Rounding = 1,
+    Callback = function(Value)
+        local c = LocalPlayer.Character
+        if c then
+            local h = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(358,8))
+            if h then
+                h.UseJumpPower = true
+                h.JumpPower = Value
+            end
+        end
+    end
+})
+TabPlayer:AddSection(pkMsKmQUQDEbZ5Q(359,9))
+local emoteNames = {}
+for _, e in ipairs(EMOTE_LIST) do
+    table.insert(emoteNames, e.Name)
+end
+TabPlayer:AddDropdown(pkMsKmQUQDEbZ5Q(360,11), {
+    Title = pkMsKmQUQDEbZ5Q(361,9),
+    Description = pkMsKmQUQDEbZ5Q(362,24),
+    Values = emoteNames,
+    Default = 1,
+    Callback = function(Value)
+        playClickSound()
+        for _, e in ipairs(EMOTE_LIST) do
+            if e.Name == Value then
+                local c = LocalPlayer.Character
+                if c then
+                    local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(363,8))
+                    if hum then
+                        local anim = Instance.new(pkMsKmQUQDEbZ5Q(364,9))
+                        anim.AnimationId = pkMsKmQUQDEbZ5Q(365,13) .. tostring(e.Id)
+                        local track = hum:LoadAnimation(anim)
+                        track:Play()
+                        notify(pkMsKmQUQDEbZ5Q(366,5), pkMsKmQUQDEbZ5Q(367,9) .. e.Name, 2)
+                    end
+                end
+                break
+            end
+        end
+    end
+})
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder(pkMsKmQUQDEbZ5Q(368,11))
+SaveManager:SetFolder(pkMsKmQUQDEbZ5Q(369,12) .. tostring(game.PlaceId))
+InterfaceManager:BuildInterfaceSection(TabSettings)
+SaveManager:BuildConfigSection(TabSettings)
+TabCredits:AddParagraph({
+    Title = pkMsKmQUQDEbZ5Q(370,11),
+    Content =
+        pkMsKmQUQDEbZ5Q(371,17) ..
+        pkMsKmQUQDEbZ5Q(372,33) ..
+        pkMsKmQUQDEbZ5Q(373,9) .. VERSION .. pkMsKmQUQDEbZ5Q(374,2) ..
+        pkMsKmQUQDEbZ5Q(375,10) ..
+        pkMsKmQUQDEbZ5Q(376,22) ..
+        pkMsKmQUQDEbZ5Q(377,18) ..
+        pkMsKmQUQDEbZ5Q(378,31) ..
+        pkMsKmQUQDEbZ5Q(379,25) ..
+        pkMsKmQUQDEbZ5Q(380,35) ..
+        pkMsKmQUQDEbZ5Q(381,29) ..
+        pkMsKmQUQDEbZ5Q(382,22) ..
+        pkMsKmQUQDEbZ5Q(383,13)
+})
+local ToggleGui = Instance.new(pkMsKmQUQDEbZ5Q(384,9))
+local ToggleButton = Instance.new(pkMsKmQUQDEbZ5Q(385,10))
+local BtnCorner = Instance.new(pkMsKmQUQDEbZ5Q(386,8))
+local BtnStroke = Instance.new(pkMsKmQUQDEbZ5Q(387,8))
+ToggleGui.Name = pkMsKmQUQDEbZ5Q(388,25)
+ToggleGui.Parent = CoreGui
+ToggleGui.ResetOnSpawn = false
+ToggleButton.Name = pkMsKmQUQDEbZ5Q(389,17)
+ToggleButton.Parent = ToggleGui
+ToggleButton.BackgroundColor3 = Color3.fromRGB(30, 180, 230)
+ToggleButton.Position = UDim2.new(0.05, 0, 0.15, 0)
+ToggleButton.Size = UDim2.fromOffset(45, 45)
+ToggleButton.Text = "R"
+ToggleButton.TextColor3 = Color3.new(1, 1, 1)
+ToggleButton.Font = Enum.Font.GothamBold
+ToggleButton.TextSize = 18
+ToggleButton.Active = true
+ToggleButton.ZIndex = 100
+BtnCorner.CornerRadius = UDim.new(0, 8)
+BtnCorner.Parent = ToggleButton
+BtnStroke.Color = Color3.fromRGB(255, 255, 255)
+BtnStroke.Thickness = 1.5
+BtnStroke.Transparency = 0.3
+BtnStroke.Parent = ToggleButton
+local dragging = false
+local hasMoved = false
+local dragInput, dragStart, startPos
+local function updateDrag(input)
+    local delta = input.Position - dragStart
+    if delta.Magnitude > 7 then hasMoved = true end
+    ToggleButton.Position = UDim2.new(
+        startPos.X.Scale, startPos.X.Offset + delta.X,
+        startPos.Y.Scale, startPos.Y.Offset + delta.Y
+    )
+end
+ToggleButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        hasMoved = false
+        dragStart = input.Position
+        startPos = ToggleButton.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+                if not hasMoved then
+                    playClickSound()
+                    pcall(function()
+                        Window:Minimize()
+                    end)
+                end
+            end
+        end)
+    end
+end)
+ToggleButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        updateDrag(input)
+    end
+end)
+Window:SelectTab(1)
+updateAdminESP()
+updateAdminListDisplay()
+Fluent:Notify({
+    Title = pkMsKmQUQDEbZ5Q(390,11),
+    Content = "v" .. VERSION .. pkMsKmQUQDEbZ5Q(391,21),
+    Duration = 4
+})
+SaveManager:LoadAutoloadConfig()
+end end break end local dummy=1;dummy=dummy+5;
