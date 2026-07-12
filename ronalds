@@ -1,5 +1,4 @@
--- ronalds.exe v2.0.0 | Shield Protected
--- Unauthorized decompilation or redistribution is strictly prohibited.
+-- ronalds.exe v2.0.0 
 
 local qxrXmwN = type(_G)
 if qxrXmwN ~= "table" then return end
