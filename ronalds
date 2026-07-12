@@ -23,2604 +23,1278 @@ local e7rzJmEnR=ws10HWrIJBzN7sH[mQzQBLKP]
 for mQzQBLKP=1,g1E1hdDIyYh*2,2 do
 wRfGy2S5=wRfGy2S5+1
 local bJOswzm27uutV=tonumber(e7rzJmEnR:sub(mQzQBLKP,mQzQBLKP+1),16)
-oSfBmfTNKNCBH1K[wRfGy2S5]=string.char(bJOswzm27uutV~nF6oxhqtgBm2[(wRfGy2S5-1)%#nF6oxhqtgBm2+1])
+local xa=bJOswzm27uutV;local xb=nF6oxhqtgBm2[(wRfGy2S5-1)%#nF6oxhqtgBm2+1];local xr=0;local xbit=1;while xa>0 or xb>0 do local xa2=xa%2;local xb2=xb%2;if xa2~=xb2 then xr=xr+xbit end;xa=(xa-xa2)/2;xb=(xb-xb2)/2;xbit=xbit*2 end;oSfBmfTNKNCBH1K[wRfGy2S5]=string.char(xr)
 end
 return table.concat(oSfBmfTNKNCBH1K)
 end
 end
-
-
 local Fluent = loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(1,73)))()
-
 local SaveManager = loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(2,84)))()
-
 local InterfaceManager = loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(3,89)))()
-
 local Players          = game:GetService(pkMsKmQUQDEbZ5Q(4,7))
-
 local LocalPlayer      = Players.LocalPlayer
-
 local RunService       = game:GetService(pkMsKmQUQDEbZ5Q(5,10))
-
 local UserInputService = game:GetService(pkMsKmQUQDEbZ5Q(6,16))
-
 local SoundService     = game:GetService(pkMsKmQUQDEbZ5Q(7,12))
-
 local CoreGui          = game:GetService(pkMsKmQUQDEbZ5Q(8,7))
-
 local ReplicatedStorage = game:GetService(pkMsKmQUQDEbZ5Q(9,17))
-
 local MarketplaceService = game:GetService(pkMsKmQUQDEbZ5Q(10,18))
-
 local TeleportService  = game:GetService(pkMsKmQUQDEbZ5Q(11,15))
-
 local Debris           = game:GetService(pkMsKmQUQDEbZ5Q(12,6))
-
 local Workspace        = game:GetService(pkMsKmQUQDEbZ5Q(13,9))
-
 local VERSION = pkMsKmQUQDEbZ5Q(14,5)
-
 local ADMIN_USERNAMES = {
-
     LaiusOnRoblox             = pkMsKmQUQDEbZ5Q(15,5),
-
     nuqii1                    = pkMsKmQUQDEbZ5Q(16,7),
-
     fghfhhgffhgrk             = pkMsKmQUQDEbZ5Q(17,21),
-
     fredcharlie35             = pkMsKmQUQDEbZ5Q(18,21),
-
     Eclipse_bay               = pkMsKmQUQDEbZ5Q(19,21),
-
     Dummie91010               = pkMsKmQUQDEbZ5Q(20,21),
-
     BiiancaBunnii             = pkMsKmQUQDEbZ5Q(21,21),
-
     umustbe5                  = pkMsKmQUQDEbZ5Q(22,19),
-
     Joemuma6u                 = pkMsKmQUQDEbZ5Q(23,8),
-
     neo1011121                = pkMsKmQUQDEbZ5Q(24,19),
-
     flwrrals                  = pkMsKmQUQDEbZ5Q(25,19),
-
     Gwibardthemeatball06      = pkMsKmQUQDEbZ5Q(26,19),
-
     voltbrake                 = pkMsKmQUQDEbZ5Q(27,19),
-
     [pkMsKmQUQDEbZ5Q(28,4)]                  = pkMsKmQUQDEbZ5Q(29,19),
-
 }
-
 local TROLL_MESSAGES = {
-
     pkMsKmQUQDEbZ5Q(30,21),
-
     pkMsKmQUQDEbZ5Q(31,15),
-
     pkMsKmQUQDEbZ5Q(32,12),
-
     pkMsKmQUQDEbZ5Q(33,11),
-
     pkMsKmQUQDEbZ5Q(34,17),
-
     pkMsKmQUQDEbZ5Q(35,6),
-
     pkMsKmQUQDEbZ5Q(36,5),
-
     pkMsKmQUQDEbZ5Q(37,11),
-
     pkMsKmQUQDEbZ5Q(38,8),
-
     pkMsKmQUQDEbZ5Q(39,12),
-
     pkMsKmQUQDEbZ5Q(40,20),
-
     pkMsKmQUQDEbZ5Q(41,11),
-
     pkMsKmQUQDEbZ5Q(42,21),
-
     pkMsKmQUQDEbZ5Q(43,13),
-
     pkMsKmQUQDEbZ5Q(44,10),
-
 }
-
 local TELEPORT_LOCATIONS = {
-
     Spawn       = CFrame.new(85.0233231, -0.311418563, -164.009735, -1, 0, 0, 0, 1, 0, 0, 0, -1),
-
     [pkMsKmQUQDEbZ5Q(45,10)] = CFrame.new(174.05159, 5.66161537, -28.7350197, 0, 0, 1, 0, 1, -0, -1, 0, 0),
-
     [pkMsKmQUQDEbZ5Q(46,12)] = CFrame.new(121.490265, 0.179421932, -68.0672684, 1, 0, 0, 0, 1, 0, 0, 0, 1),
-
 }
-
 local EMOTE_LIST = {
-
     { Name = pkMsKmQUQDEbZ5Q(47,4),         Id = 507771019 },
-
     { Name = pkMsKmQUQDEbZ5Q(48,5),        Id = 507770239 },
-
     { Name = pkMsKmQUQDEbZ5Q(49,5),        Id = 507777726 },
-
     { Name = pkMsKmQUQDEbZ5Q(50,7),      Id = 507781525 },
-
     { Name = pkMsKmQUQDEbZ5Q(51,7),      Id = 507782593 },
-
     { Name = pkMsKmQUQDEbZ5Q(52,5),        Id = 507770621 },
-
     { Name = pkMsKmQUQDEbZ5Q(53,5),        Id = 507770456 },
-
     { Name = pkMsKmQUQDEbZ5Q(54,10),   Id = 507776043 },
-
     { Name = pkMsKmQUQDEbZ5Q(55,12), Id = 507768731 },
-
     { Name = pkMsKmQUQDEbZ5Q(56,6),       Id = 507769468 },
-
 }
-
 local noclipEnabled       = false
-
 local flyEnabled          = false
-
 local flySpeed            = 50
-
 local flyBV               = nil
-
 local flyBG               = nil
-
 local mobileFlyUp         = false
-
 local mobileFlyDown       = false
-
 local mobileFlyGui        = nil
-
 local suppressMobileButtons = false
-
 local vehicleNoclipEnabled = false
-
 local vehicleNoclipConn    = nil
-
 local savedVehicleNoclip   = false
-
 local vehicleFlyEnabled   = false
-
 local vehicleFlyWeld      = nil
-
 local adminNotifyEnabled  = false
-
 local adminESPEnabled     = false
-
 local serverHopOnAdmin    = false
-
 local adminESPObjects     = {}
-
 local playerESPEnabled    = false
-
 local playerESPObjects    = {}
-
 local adminEnabled        = false
-
 local selectedTrollPlayer = ""
-
 local selectedTrollLocation = ""
-
 local attachTarget        = ""
-
 local attachConn          = nil
-
 local spinSpeed           = 10
-
 local spinEnabled         = false
-
 local spinConn            = nil
-
 local wasNoclipBeforeSpin = false
-
 local selectedTrollMsg    = TROLL_MESSAGES[1]
-
 local adminListParagraph  = nil
-
 local oldGui = CoreGui:FindFirstChild(pkMsKmQUQDEbZ5Q(57,25))
-
-if oldGui then oldGui😀estroy() end
-
+if oldGui then oldGui:Destroy() end
 pcall(function()
-
     MarketplaceService.UserOwnsGamePassAsync = function()
-
         return true
-
     end
-
 end)
-
 local AntiCheatFunc = nil
-
 pcall(function()
-
     local remote = ReplicatedStorage:FindFirstChild(pkMsKmQUQDEbZ5Q(58,36))
-
     if remote then
-
         AntiCheatFunc = remote:FindFirstChild(pkMsKmQUQDEbZ5Q(59,10))
-
     end
-
 end)
-
 if AntiCheatFunc then
-
     local cleanCallback = function()
-
         return { true, n = 1 }
-
     end
-
     pcall(function()
-
         AntiCheatFunc.OnClientInvoke = cleanCallback
-
     end)
-
     RunService.Heartbeat:Connect(function()
-
         pcall(function()
-
             if AntiCheatFunc.OnClientInvoke ~= cleanCallback then
-
                 AntiCheatFunc.OnClientInvoke = cleanCallback
-
             end
-
         end)
-
     end)
-
     pcall(function()
-
         if AntiCheatFunc:IsA(pkMsKmQUQDEbZ5Q(60,11)) then
-
             AntiCheatFunc.OnClientEvent:Connect(function() end)
-
         end
-
         for _, child in ipairs(AntiCheatFunc:GetChildren()) do
-
             if child:IsA(pkMsKmQUQDEbZ5Q(61,11)) then
-
                 child.OnClientEvent:Connect(function() end)
-
             end
-
         end
-
     end)
-
 end
-
 local function notify(title, text, duration)
-
     duration = duration or 3
-
     pcall(function()
-
         game:GetService(pkMsKmQUQDEbZ5Q(62,10)):SetCore(pkMsKmQUQDEbZ5Q(63,16), {
-
             Title = title,
-
             Text = text,
-
             Duration = duration,
-
         })
-
     end)
-
 end
-
 local function playClickSound()
-
     pcall(function()
-
         local s = Instance.new(pkMsKmQUQDEbZ5Q(64,5))
-
         s.SoundId = pkMsKmQUQDEbZ5Q(65,23)
-
         s.Volume = 0.5
-
         s.Parent = SoundService
-
         s:Play()
-
         Debris:AddItem(s, 1)
-
     end)
-
 end
-
 local function getExecutorName()
-
     local ok, name = pcall(function()
-
         if identifyexecutor then return identifyexecutor() end
-
         return pkMsKmQUQDEbZ5Q(66,7)
-
     end)
-
     return ok and name or pkMsKmQUQDEbZ5Q(67,7)
-
 end
-
 local function getGameName()
-
     local ok, info = pcall(function()
-
         return MarketplaceService:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
-
     end)
-
     if ok and info and info.Name then return info.Name end
-
     return pkMsKmQUQDEbZ5Q(68,12)
-
 end
-
 local function getCarModel()
-
     local ok, result = pcall(function()
-
         local f = Workspace:FindFirstChild(pkMsKmQUQDEbZ5Q(69,10))
-
         if f then
-
             local sf = f:FindFirstChild(pkMsKmQUQDEbZ5Q(70,17))
-
             if sf then
-
                 return sf:FindFirstChild(LocalPlayer.Name)
-
             end
-
         end
-
         return nil
-
     end)
-
     return ok and result or nil
-
 end
-
 local function getPlayers()
-
     local names = {}
-
     for _, p in pairs(Players:GetPlayers()) do
-
         if p ~= LocalPlayer then
-
             table.insert(names, p.Name)
-
         end
-
     end
-
     return names
-
 end
-
 local function getAdminsInServer()
-
     local admins = {}
-
     for _, p in pairs(Players:GetPlayers()) do
-
         local role = ADMIN_USERNAMES[p.Name]
-
         if role then
-
             table.insert(admins, p.Name .. pkMsKmQUQDEbZ5Q(71,2) .. role .. ")")
-
         end
-
     end
-
     return admins
-
 end
-
 RunService.Stepped:Connect(function()
-
     if noclipEnabled and LocalPlayer.Character then
-
         for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
-
             if part:IsA(pkMsKmQUQDEbZ5Q(72,8)) then
-
                 part.CanCollide = false
-
                 part.CanTouch = false
-
             end
-
         end
-
     end
-
 end)
-
 local function createMobileFlyButtons()
-
     if suppressMobileButtons then return end
-
     if not UserInputService.TouchEnabled then return end
-
     if mobileFlyGui then return end
-
     local sg = Instance.new(pkMsKmQUQDEbZ5Q(73,9))
-
     sg.Name = pkMsKmQUQDEbZ5Q(74,18)
-
     sg.ResetOnSpawn = false
-
     sg.Parent = CoreGui
-
     mobileFlyGui = sg
-
     local function makeBtn(name, text, yPos, inputBeganCb, inputEndedCb)
-
         local btn = Instance.new(pkMsKmQUQDEbZ5Q(75,10))
-
         btn.Name = name
-
         btn.Size = UDim2.fromOffset(50, 50)
-
         btn.Position = UDim2.new(0, 15, 0, yPos)
-
         btn.Text = text
-
         btn.BackgroundColor3 = Color3.fromRGB(30, 144, 255)
-
         btn.TextColor3 = Color3.new(1, 1, 1)
-
         btn.Font = Enum.Font.GothamBold
-
         btn.TextSize = 22
-
         btn.BorderSizePixel = 0
-
         btn.AutoButtonColor = false
-
         btn.ZIndex = 99
-
         btn.Parent = sg
-
         local c = Instance.new(pkMsKmQUQDEbZ5Q(76,8))
-
         c.CornerRadius = UDim.new(0, 12)
-
         c.Parent = btn
-
         btn.InputBegan:Connect(function(input)
-
             if input.UserInputType == Enum.UserInputType.Touch then inputBeganCb() end
-
         end)
-
         btn.InputEnded:Connect(function(input)
-
             if input.UserInputType == Enum.UserInputType.Touch then inputEndedCb() end
-
         end)
-
         return btn
-
     end
-
     makeBtn(pkMsKmQUQDEbZ5Q(77,5), "▲", 200,
-
         function() mobileFlyUp = true end,
-
         function() mobileFlyUp = false end
-
     )
-
     makeBtn(pkMsKmQUQDEbZ5Q(78,7), "▼", 260,
-
         function() mobileFlyDown = true end,
-
         function() mobileFlyDown = false end
-
     )
-
 end
-
 local function destroyMobileFlyButtons()
-
     if mobileFlyGui then
-
-        mobileFlyGui😀estroy()
-
+        mobileFlyGui:Destroy()
         mobileFlyGui = nil
-
     end
-
     mobileFlyUp = false
-
     mobileFlyDown = false
-
 end
-
 local function startFly()
-
     local c = LocalPlayer.Character
-
     if not c then return false end
-
     local hrp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(79,16))
-
     local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(80,8))
-
     if not hrp or not hum then return false end
-
-    pcall(function() if flyBV then flyBV😀estroy() end end)
-
-    pcall(function() if flyBG then flyBG😀estroy() end end)
-
+    pcall(function() if flyBV then flyBV:Destroy() end end)
+    pcall(function() if flyBG then flyBG:Destroy() end end)
     flyBV = Instance.new(pkMsKmQUQDEbZ5Q(81,12))
-
     flyBV.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-
     flyBV.Velocity = Vector3.new(0, 0, 0)
-
     flyBV.Parent = hrp
-
     flyBG = Instance.new(pkMsKmQUQDEbZ5Q(82,8))
-
     flyBG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
-
     flyBG.P = 9000
-
     flyBG.D = 100
-
     flyBG.CFrame = hrp.CFrame
-
     flyBG.Parent = hrp
-
     hum.PlatformStand = true
-
     createMobileFlyButtons()
-
     return true
-
 end
-
 local function stopFly()
-
-    pcall(function() if flyBV then flyBV😀estroy() flyBV = nil end end)
-
-    pcall(function() if flyBG then flyBG😀estroy() flyBG = nil end end)
-
+    pcall(function() if flyBV then flyBV:Destroy() flyBV = nil end end)
+    pcall(function() if flyBG then flyBG:Destroy() flyBG = nil end end)
     local c = LocalPlayer.Character
-
     if c then
-
         local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(83,8))
-
         if hum then hum.PlatformStand = false end
-
     end
-
     destroyMobileFlyButtons()
-
 end
-
 RunService.Heartbeat:Connect(function()
-
     if not flyEnabled then return end
-
     if not flyBV or not flyBV.Parent then
-
         if not startFly() then return end
-
     end
-
     local c = LocalPlayer.Character
-
     if not c then return end
-
     local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(84,8))
-
     local hrp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(85,16))
-
     if not hum or not hrp then return end
-
-
-
     if UserInputService:GetFocusedTextBox() then
-
         pcall(function() flyBV.Velocity = Vector3.new(0, 0, 0) end)
-
         return
-
     end
-
     local moveDir = hum.MoveDirection
-
     local cam = Workspace.CurrentCamera
-
     if not cam then return end
-
     local cf = cam.CFrame
-
-
-
-
-
     local dir = Vector3.new(moveDir.X, 0, moveDir.Z)
-
-
-
-
-
     if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
-
         dir = dir + Vector3.new(0, 1, 0)
-
     elseif UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
-
         dir = dir + Vector3.new(0, -1, 0)
-
     end
-
     if dir.Magnitude > 0 then
-
         dir = dir.Unit
-
     end
-
     pcall(function()
-
         flyBV.Velocity = dir * flySpeed
-
         flyBG.CFrame = cf
-
     end)
-
 end)
-
 local function startVehicleNoclip()
-
     vehicleNoclipEnabled = true
-
     vehicleNoclipConn = RunService.Heartbeat:Connect(function()
-
         if not vehicleNoclipEnabled then return end
-
         local car = getCarModel()
-
         if not car then return end
-
         local pp = car:IsA(pkMsKmQUQDEbZ5Q(86,5)) and (car.PrimaryPart or car:FindFirstChildWhichIsA(pkMsKmQUQDEbZ5Q(87,8))) or car
-
         if not pp then return end
-
-
-
         for _, part in pairs(car:GetDescendants()) do
-
             if part:IsA(pkMsKmQUQDEbZ5Q(88,8)) then
-
                 part.CanCollide = false
-
             end
-
         end
-
-
-
         local rayParams = RaycastParams.new()
-
         rayParams.FilterDescendantsInstances = {car}
-
         local char = LocalPlayer.Character
-
         if char then
-
             table.insert(rayParams.FilterDescendantsInstances, char)
-
         end
-
         rayParams.FilterType = Enum.RaycastFilterType.Exclude
-
         local origin = pp.Position + Vector3.new(0, 5, 0)
-
         local result = Workspace:Raycast(origin, Vector3.new(0, -20, 0), rayParams)
-
         if result then
-
             local groundY = result.Position.Y + 1.5
-
-
-
             if pp.Position.Y < groundY - 0.3 then
-
                 pcall(function()
-
                     pp.CFrame = CFrame.new(
-
                         pp.Position.X,
-
                         groundY,
-
                         pp.Position.Z
-
                     ) * CFrame.Angles(
-
                         math.rad(pp.Orientation.X),
-
                         math.rad(pp.Orientation.Y),
-
                         math.rad(pp.Orientation.Z)
-
                     )
-
                 end)
-
             end
-
         end
-
     end)
-
 end
-
 local function stopVehicleNoclip()
-
     vehicleNoclipEnabled = false
-
     if vehicleNoclipConn then
-
-        vehicleNoclipConn😀isconnect()
-
+        vehicleNoclipConn:Disconnect()
         vehicleNoclipConn = nil
-
     end
-
     local car = getCarModel()
-
     if car then
-
         for _, part in pairs(car:GetDescendants()) do
-
             if part:IsA(pkMsKmQUQDEbZ5Q(89,8)) then
-
                 part.CanCollide = true
-
             end
-
         end
-
     end
-
 end
-
 local function startVehicleFly()
-
     local car = getCarModel()
-
     if not car then
-
         notify(pkMsKmQUQDEbZ5Q(90,11), pkMsKmQUQDEbZ5Q(91,32), 3)
-
         return
-
     end
-
     local c = LocalPlayer.Character
-
     if not c then return end
-
     local rp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(92,16))
-
     local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(93,8))
-
     if not rp or not hum then return end
-
     local carPrimary = car:IsA(pkMsKmQUQDEbZ5Q(94,5)) and (car.PrimaryPart or car:FindFirstChildWhichIsA(pkMsKmQUQDEbZ5Q(95,8))) or car
-
     if not carPrimary then return end
-
-
-
     savedVehicleNoclip = vehicleNoclipEnabled
-
     if vehicleNoclipEnabled then
-
         stopVehicleNoclip()
-
     end
-
-
-
     for _, part in pairs(car:GetDescendants()) do
-
         if part:IsA(pkMsKmQUQDEbZ5Q(96,8)) then
-
             part.CanCollide = false
-
             part.Massless = true
-
             part.Anchored = false
-
         end
-
     end
-
-
-
     vehicleFlyWeld = Instance.new(pkMsKmQUQDEbZ5Q(97,14))
-
     vehicleFlyWeld.Part0 = rp
-
     vehicleFlyWeld.Part1 = carPrimary
-
     vehicleFlyWeld.Parent = rp
-
-
-
     hum.Sit = false
-
-
-
     suppressMobileButtons = true
-
-
-
     flyEnabled = true
-
     startFly()
-
     vehicleFlyEnabled = true
-
     notify(pkMsKmQUQDEbZ5Q(98,11), pkMsKmQUQDEbZ5Q(99,41), 3)
-
 end
-
 local function stopVehicleFly()
-
     vehicleFlyEnabled = false
-
     suppressMobileButtons = false
-
     flyEnabled = false
-
     stopFly()
-
     if vehicleFlyWeld then
-
-        pcall(function() vehicleFlyWeld😀estroy() end)
-
+        pcall(function() vehicleFlyWeld:Destroy() end)
         vehicleFlyWeld = nil
-
     end
-
-
-
     local car = getCarModel()
-
     if car then
-
         for _, part in pairs(car:GetDescendants()) do
-
             if part:IsA(pkMsKmQUQDEbZ5Q(100,8)) then
-
                 part.CanCollide = true
-
                 part.Massless = false
-
             end
-
         end
-
     end
-
-
-
     if savedVehicleNoclip then
-
         startVehicleNoclip()
-
     end
-
 end
-
 local CarSpawnRemote = nil
-
 pcall(function()
-
     CarSpawnRemote = ReplicatedStorage.Services.CarSpawner.Remotes.Spawn
-
 end)
-
 local carNames = {}
-
 pcall(function()
-
     local CarConfig = require(ReplicatedStorage.Services.CarConfiguration.CarConfigurationClient)
-
     local cars = CarConfig.GetCars()
-
     if cars then
-
         for _, car in ipairs(cars) do
-
             if type(car) == pkMsKmQUQDEbZ5Q(101,6) then
-
                 table.insert(carNames, car)
-
             elseif type(car) == pkMsKmQUQDEbZ5Q(102,5) and car.Name then
-
                 table.insert(carNames, car.Name)
-
             end
-
         end
-
     end
-
 end)
-
 if #carNames == 0 then
-
     carNames = { pkMsKmQUQDEbZ5Q(103,6), pkMsKmQUQDEbZ5Q(104,11) }
-
 end
-
 local currentCarName = carNames[1] or pkMsKmQUQDEbZ5Q(105,6)
-
 local spamSpawnEnabled = false
-
 local function spawnCar(name)
-
     if not CarSpawnRemote then
-
         notify(pkMsKmQUQDEbZ5Q(106,11), pkMsKmQUQDEbZ5Q(107,23), 3)
-
         return false
-
     end
-
     local ok, err = pcall(function()
-
         CarSpawnRemote:InvokeServer(name)
-
     end)
-
     if not ok then
-
         notify(pkMsKmQUQDEbZ5Q(108,11), pkMsKmQUQDEbZ5Q(109,8) .. tostring(err), 3)
-
     end
-
     return ok
-
 end
-
 task.spawn(function()
-
     while task.wait(0.5) do
-
         if spamSpawnEnabled then
-
             spawnCar(currentCarName)
-
         end
-
     end
-
 end)
-
 local function clearAdminESP()
-
     for _, obj in pairs(adminESPObjects) do
-
-        pcall(function() if obj and obj.Parent then obj😀estroy() end end)
-
+        pcall(function() if obj and obj.Parent then obj:Destroy() end end)
     end
-
     adminESPObjects = {}
-
 end
-
 local function updateAdminESP()
-
     clearAdminESP()
-
     if not adminESPEnabled then return end
-
     for _, player in pairs(Players:GetPlayers()) do
-
         if ADMIN_USERNAMES[player.Name] and player.Character then
-
             local hrp = player.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(110,16))
-
             if hrp then
-
-
-
                 local hl = Instance.new(pkMsKmQUQDEbZ5Q(111,9))
-
                 hl.Name = pkMsKmQUQDEbZ5Q(112,15)
-
                 hl.FillColor = Color3.fromRGB(255, 0, 0)
-
                 hl.OutlineColor = Color3.fromRGB(255, 255, 0)
-
                 hl.FillTransparency = 0.5
-
                 hl.OutlineTransparency = 0
-
                 hl.Parent = player.Character
-
                 table.insert(adminESPObjects, hl)
-
-
-
                 local bb = Instance.new(pkMsKmQUQDEbZ5Q(113,12))
-
                 bb.Name = pkMsKmQUQDEbZ5Q(114,20)
-
                 bb.Size = UDim2.new(0, 250, 0, 50)
-
                 bb.StudsOffset = Vector3.new(0, 4, 0)
-
                 bb.AlwaysOnTop = true
-
                 bb.Parent = hrp
-
                 local lbl = Instance.new(pkMsKmQUQDEbZ5Q(115,9))
-
                 lbl.Size = UDim2.new(1, 0, 1, 0)
-
                 lbl.BackgroundTransparency = 1
-
                 lbl.TextColor3 = Color3.fromRGB(255, 50, 50)
-
                 lbl.TextStrokeTransparency = 0
-
                 lbl.Text = pkMsKmQUQDEbZ5Q(116,8) .. player.Name .. pkMsKmQUQDEbZ5Q(117,2) .. ADMIN_USERNAMES[player.Name] .. ")"
-
                 lbl.Font = Enum.Font.GothamBold
-
                 lbl.TextSize = 13
-
                 lbl.Parent = bb
-
                 table.insert(adminESPObjects, bb)
-
             end
-
         end
-
     end
-
 end
-
 local function updateAdminListDisplay()
-
     if not adminListParagraph then return end
-
     local admins = getAdminsInServer()
-
     local content = ""
-
     if #admins == 0 then
-
         content = pkMsKmQUQDEbZ5Q(118,20)
-
     else
-
         for i, a in ipairs(admins) do
-
             content = content .. a
-
             if i < #admins then content = content .. pkMsKmQUQDEbZ5Q(119,1) end
-
         end
-
     end
-
     pcall(function()
-
-
-
         adminListParagraph:Set({ Content = content })
-
     end)
-
 end
-
 Players.PlayerAdded:Connect(function(player)
-
     local role = ADMIN_USERNAMES[player.Name]
-
     if not role then return end
-
     if adminNotifyEnabled then
-
         notify(pkMsKmQUQDEbZ5Q(120,19), player.Name .. pkMsKmQUQDEbZ5Q(121,2) .. role .. pkMsKmQUQDEbZ5Q(122,9), 10)
-
     end
-
     if adminESPEnabled then
-
         task.wait(2)
-
         updateAdminESP()
-
     end
-
     if serverHopOnAdmin then
-
         notify(pkMsKmQUQDEbZ5Q(123,10), pkMsKmQUQDEbZ5Q(124,26), 3)
-
         task.wait(2)
-
         pcall(function()
-
             TeleportService:Teleport(game.PlaceId, LocalPlayer)
-
         end)
-
     end
-
 end)
-
 local function clearPlayerESP()
-
     for _, obj in pairs(playerESPObjects) do
-
-        pcall(function() if obj and obj.Parent then obj😀estroy() end end)
-
+        pcall(function() if obj and obj.Parent then obj:Destroy() end end)
     end
-
     playerESPObjects = {}
-
 end
-
 local function updatePlayerESP()
-
     clearPlayerESP()
-
     if not playerESPEnabled then return end
-
     for _, player in pairs(Players:GetPlayers()) do
-
         if player ~= LocalPlayer and player.Character then
-
             local hrp = player.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(125,16))
-
             if hrp then
-
                 local hl = Instance.new(pkMsKmQUQDEbZ5Q(126,9))
-
                 hl.Name = pkMsKmQUQDEbZ5Q(127,16)
-
                 hl.FillColor = Color3.fromRGB(0, 255, 100)
-
                 hl.OutlineColor = Color3.fromRGB(255, 255, 255)
-
                 hl.FillTransparency = 0.6
-
                 hl.OutlineTransparency = 0
-
                 hl.Parent = player.Character
-
                 table.insert(playerESPObjects, hl)
-
                 local bb = Instance.new(pkMsKmQUQDEbZ5Q(128,12))
-
                 bb.Name = pkMsKmQUQDEbZ5Q(129,21)
-
                 bb.Size = UDim2.new(0, 150, 0, 35)
-
                 bb.StudsOffset = Vector3.new(0, 4, 0)
-
                 bb.AlwaysOnTop = true
-
                 bb.Parent = hrp
-
                 local lbl = Instance.new(pkMsKmQUQDEbZ5Q(130,9))
-
                 lbl.Size = UDim2.new(1, 0, 1, 0)
-
                 lbl.BackgroundTransparency = 1
-
                 lbl.TextColor3 = Color3.fromRGB(0, 255, 100)
-
                 lbl.TextStrokeTransparency = 0.3
-
                 lbl.Text = player.Name
-
                 lbl.Font = Enum.Font.GothamBold
-
                 lbl.TextSize = 12
-
                 lbl.Parent = bb
-
                 table.insert(playerESPObjects, bb)
-
             end
-
         end
-
     end
-
 end
-
 LocalPlayer.CharacterAdded:Connect(function(char)
-
     task.wait(1)
-
     if flyEnabled then
-
         flyEnabled = true
-
         startFly()
-
     end
-
     if adminESPEnabled then
-
         task.wait(1)
-
         updateAdminESP()
-
     end
-
     if playerESPEnabled then
-
         task.wait(1)
-
         updatePlayerESP()
-
     end
-
 end)
-
 task.spawn(function()
-
     while task.wait(3) do
-
         updateAdminListDisplay()
-
         if adminESPEnabled then
-
             updateAdminESP()
-
         end
-
     end
-
 end)
-
 local Window = Fluent:CreateWindow({
-
     Title = pkMsKmQUQDEbZ5Q(131,11),
-
     SubTitle = "v" .. VERSION .. pkMsKmQUQDEbZ5Q(132,3) .. LocalPlayer.Name,
-
     TabWidth = 160,
-
     Size = UDim2.fromOffset(580, 460),
-
     Acrylic = true,
-
     Theme = pkMsKmQUQDEbZ5Q(133,4),
-
     MinimizeKey = Enum.KeyCode.RightControl
-
 })
-
 local TabMain    = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(134,4),       Icon = pkMsKmQUQDEbZ5Q(135,4) })
-
 local TabScripts = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(136,7),    Icon = pkMsKmQUQDEbZ5Q(137,8) })
-
 local TabCrew    = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(138,10), Icon = pkMsKmQUQDEbZ5Q(139,5) })
-
 local TabCar     = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(140,3),        Icon = pkMsKmQUQDEbZ5Q(141,3) })
-
 local TabTroll   = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(142,11),Icon = pkMsKmQUQDEbZ5Q(143,5) })
-
 local TabLAdmins = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(144,8),   Icon = pkMsKmQUQDEbZ5Q(145,3) })
-
 local TabPlayer  = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(146,6),     Icon = pkMsKmQUQDEbZ5Q(147,4) })
-
 local TabSettings = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(148,8),   Icon = pkMsKmQUQDEbZ5Q(149,8) })
-
 local TabCredits = Window:AddTab({ Title = pkMsKmQUQDEbZ5Q(150,7),    Icon = pkMsKmQUQDEbZ5Q(151,4) })
-
 TabMain:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(152,13) .. VERSION,
-
     Content = pkMsKmQUQDEbZ5Q(153,26) .. getExecutorName()
-
 })
-
 TabMain:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(154,11),
-
     Content =
-
         pkMsKmQUQDEbZ5Q(155,6) .. getGameName() .. pkMsKmQUQDEbZ5Q(156,1) ..
-
         pkMsKmQUQDEbZ5Q(157,10) .. tostring(game.PlaceId) .. pkMsKmQUQDEbZ5Q(158,1) ..
-
         pkMsKmQUQDEbZ5Q(159,8) .. string.sub(tostring(game.JobId), 1, 12) .. pkMsKmQUQDEbZ5Q(160,4) ..
-
         pkMsKmQUQDEbZ5Q(161,9) .. tostring(#Players:GetPlayers()) .. "/" .. tostring(Players.MaxPlayers)
-
 })
-
 TabMain:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(162,10),
-
     Content =
-
         pkMsKmQUQDEbZ5Q(163,44) ..
-
         pkMsKmQUQDEbZ5Q(164,50) ..
-
         pkMsKmQUQDEbZ5Q(165,53) ..
-
         pkMsKmQUQDEbZ5Q(166,52) ..
-
         pkMsKmQUQDEbZ5Q(167,48) ..
-
         pkMsKmQUQDEbZ5Q(168,45) ..
-
         pkMsKmQUQDEbZ5Q(169,45) ..
-
         pkMsKmQUQDEbZ5Q(170,32)
-
 })
-
 TabMain:AddSection(pkMsKmQUQDEbZ5Q(171,6))
-
 TabMain:AddToggle(pkMsKmQUQDEbZ5Q(172,10), {
-
     Title = pkMsKmQUQDEbZ5Q(173,13),
-
     Description = pkMsKmQUQDEbZ5Q(174,57),
-
     Default = false,
-
     Callback = function(Value)
-
         noclipEnabled = Value
-
     end
-
 })
-
 TabMain:AddToggle(pkMsKmQUQDEbZ5Q(175,7), {
-
     Title = pkMsKmQUQDEbZ5Q(176,6),
-
     Description = pkMsKmQUQDEbZ5Q(177,52),
-
     Default = false,
-
     Callback = function(Value)
-
         flyEnabled = Value
-
         if Value then
-
             if startFly() then
-
                 notify(pkMsKmQUQDEbZ5Q(178,3), pkMsKmQUQDEbZ5Q(179,21), 3)
-
             end
-
         else
-
             stopFly()
-
         end
-
     end
-
 })
-
 TabMain:AddSlider(pkMsKmQUQDEbZ5Q(180,12), {
-
     Title = pkMsKmQUQDEbZ5Q(181,9),
-
     Description = pkMsKmQUQDEbZ5Q(182,26),
-
     Default = 50,
-
     Min = 10,
-
     Max = 300,
-
     Rounding = 1,
-
     Callback = function(Value)
-
         flySpeed = Value
-
     end
-
 })
-
 TabScripts:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(183,13),
-
     Description = pkMsKmQUQDEbZ5Q(184,31),
-
     Callback = function()
-
         playClickSound()
-
         TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
-
     end
-
 })
-
 TabScripts:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(185,19),
-
     Description = pkMsKmQUQDEbZ5Q(186,45),
-
     Callback = function()
-
         playClickSound()
-
         pcall(function()
-
             loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(187,68)))()
-
             notify(pkMsKmQUQDEbZ5Q(188,7), pkMsKmQUQDEbZ5Q(189,22), 3)
-
         end)
-
     end
-
 })
-
 TabScripts:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(190,14),
-
     Description = pkMsKmQUQDEbZ5Q(191,32),
-
     Callback = function()
-
         playClickSound()
-
         pcall(function()
-
             loadstring(game:HttpGet(pkMsKmQUQDEbZ5Q(192,71)))()
-
             notify(pkMsKmQUQDEbZ5Q(193,7), pkMsKmQUQDEbZ5Q(194,17), 3)
-
         end)
-
     end
-
 })
-
 TabCrew:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(195,17),
-
     Content = pkMsKmQUQDEbZ5Q(196,141)
-
 })
-
 local CarSection = TabCar:AddSection(pkMsKmQUQDEbZ5Q(197,11))
-
 TabCar:AddDropdown(pkMsKmQUQDEbZ5Q(198,9), {
-
     Title = pkMsKmQUQDEbZ5Q(199,10),
-
     Description = pkMsKmQUQDEbZ5Q(200,22),
-
     Values = carNames,
-
     Default = 1,
-
     Callback = function(Value)
-
         currentCarName = Value
-
     end
-
 })
-
 TabCar:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(201,9),
-
     Description = pkMsKmQUQDEbZ5Q(202,65),
-
     Callback = function()
-
         playClickSound()
-
         if spawnCar(currentCarName) then
-
             notify(pkMsKmQUQDEbZ5Q(203,11), pkMsKmQUQDEbZ5Q(204,10) .. currentCarName, 2)
-
         end
-
     end
-
 })
-
 TabCar:AddToggle(pkMsKmQUQDEbZ5Q(205,9), {
-
     Title = pkMsKmQUQDEbZ5Q(206,10),
-
     Description = pkMsKmQUQDEbZ5Q(207,30),
-
     Default = false,
-
     Callback = function(Value)
-
         spamSpawnEnabled = Value
-
         if Value then
-
             notify(pkMsKmQUQDEbZ5Q(208,11), pkMsKmQUQDEbZ5Q(209,15) .. currentCarName, 2)
-
         end
-
     end
-
 })
-
 TabCar:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(210,18),
-
     Description = pkMsKmQUQDEbZ5Q(211,51),
-
     Callback = function()
-
         playClickSound()
-
         local char = LocalPlayer.Character
-
         if not char then
-
             notify(pkMsKmQUQDEbZ5Q(212,3), pkMsKmQUQDEbZ5Q(213,19), 2)
-
             return
-
         end
-
         local hrp = char:FindFirstChild(pkMsKmQUQDEbZ5Q(214,16))
-
         if not hrp then return end
-
         notify(pkMsKmQUQDEbZ5Q(215,3), pkMsKmQUQDEbZ5Q(216,33), 3)
-
-
-
         local savedCF = hrp.CFrame
-
-
-
         spawnCar(pkMsKmQUQDEbZ5Q(217,6))
-
-
-
         task.wait(2.5)
-
-
-
         local car = getCarModel()
-
         if not car then
-
             notify(pkMsKmQUQDEbZ5Q(218,3), pkMsKmQUQDEbZ5Q(219,44), 3)
-
             pcall(function() hrp.CFrame = savedCF end)
-
             return
-
         end
-
         local carPrimary = car:IsA(pkMsKmQUQDEbZ5Q(220,5)) and (car.PrimaryPart or car:FindFirstChildWhichIsA(pkMsKmQUQDEbZ5Q(221,8))) or car
-
         if not carPrimary then
-
             notify(pkMsKmQUQDEbZ5Q(222,3), pkMsKmQUQDEbZ5Q(223,24), 3)
-
             pcall(function() hrp.CFrame = savedCF end)
-
             return
-
         end
-
-
-
         for _, part in pairs(car:GetDescendants()) do
-
             if part:IsA(pkMsKmQUQDEbZ5Q(224,8)) then
-
                 part.CanCollide = false
-
                 part.Massless = true
-
                 part.Anchored = false
-
             end
-
         end
-
-
-
         startVehicleFly()
-
         task.wait(0.3)
-
-
-
         pcall(function()
-
             hrp.CFrame = savedCF
-
         end)
-
         task.wait(0.5)
-
-
-
         stopVehicleFly()
-
         notify(pkMsKmQUQDEbZ5Q(225,3), pkMsKmQUQDEbZ5Q(226,32), 3)
-
     end
-
 })
-
 local VehSection = TabCar:AddSection(pkMsKmQUQDEbZ5Q(227,12))
-
 TabCar:AddToggle(pkMsKmQUQDEbZ5Q(228,13), {
-
     Title = pkMsKmQUQDEbZ5Q(229,14),
-
     Description = pkMsKmQUQDEbZ5Q(230,47),
-
     Default = false,
-
     Callback = function(Value)
-
         if Value then
-
             startVehicleNoclip()
-
             notify(pkMsKmQUQDEbZ5Q(231,7), pkMsKmQUQDEbZ5Q(232,17), 2)
-
         else
-
             stopVehicleNoclip()
-
             notify(pkMsKmQUQDEbZ5Q(233,7), pkMsKmQUQDEbZ5Q(234,18), 2)
-
         end
-
     end
-
 })
-
 TabCar:AddToggle(pkMsKmQUQDEbZ5Q(235,10), {
-
     Title = pkMsKmQUQDEbZ5Q(236,11),
-
     Description = pkMsKmQUQDEbZ5Q(237,48),
-
     Default = false,
-
     Callback = function(Value)
-
         if Value then
-
             startVehicleFly()
-
         else
-
             stopVehicleFly()
-
             notify(pkMsKmQUQDEbZ5Q(238,7), pkMsKmQUQDEbZ5Q(239,15), 2)
-
         end
-
     end
-
 })
-
 TabTroll:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(240,14),
-
     Content = pkMsKmQUQDEbZ5Q(241,77)
-
 })
-
 TabTroll:AddToggle(pkMsKmQUQDEbZ5Q(242,11), {
-
     Title = pkMsKmQUQDEbZ5Q(243,26),
-
     Description = pkMsKmQUQDEbZ5Q(244,44),
-
     Default = false,
-
     Callback = function(Value)
-
         adminEnabled = Value
-
         if Value then
-
             notify(pkMsKmQUQDEbZ5Q(245,11), pkMsKmQUQDEbZ5Q(246,23), 3)
-
         else
-
-
-
             if attachConn then
-
-                attachConn😀isconnect()
-
+                attachConn:Disconnect()
                 attachConn = nil
-
             end
-
             if spinConn then
-
-                spinConn😀isconnect()
-
+                spinConn:Disconnect()
                 spinConn = nil
-
             end
-
             if spinEnabled then
-
                 spinEnabled = false
-
                 noclipEnabled = wasNoclipBeforeSpin
-
             end
-
             clearPlayerESP()
-
             playerESPEnabled = false
-
             notify(pkMsKmQUQDEbZ5Q(247,11), pkMsKmQUQDEbZ5Q(248,21), 3)
-
         end
-
     end
-
 })
-
 TabTroll:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(249,6),
-
     Content = adminEnabled and pkMsKmQUQDEbZ5Q(250,24) or pkMsKmQUQDEbZ5Q(251,52)
-
 })
-
 local TrollTPSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(252,8))
-
 TrollTPSection:AddDropdown(pkMsKmQUQDEbZ5Q(253,13), {
-
     Title = pkMsKmQUQDEbZ5Q(254,13),
-
     Description = pkMsKmQUQDEbZ5Q(255,31),
-
     Values = getPlayers(),
-
     Default = 1,
-
     Callback = function(Value)
-
         selectedTrollPlayer = Value
-
     end
-
 })
-
 TrollTPSection:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(256,18),
-
     Description = pkMsKmQUQDEbZ5Q(257,32),
-
     Callback = function()
-
         if not adminEnabled then
-
             notify(pkMsKmQUQDEbZ5Q(258,6), pkMsKmQUQDEbZ5Q(259,26), 2)
-
             return
-
         end
-
         playClickSound()
-
         local target = Players:FindFirstChild(selectedTrollPlayer)
-
         if target and target.Character then
-
             local tHRP = target.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(260,16))
-
             local myHRP = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(261,16))
-
             if tHRP and myHRP then
-
                 myHRP.CFrame = tHRP.CFrame + Vector3.new(0, 0, 3)
-
                 notify(pkMsKmQUQDEbZ5Q(262,8), pkMsKmQUQDEbZ5Q(263,14) .. selectedTrollPlayer, 2)
-
             end
-
         else
-
             notify(pkMsKmQUQDEbZ5Q(264,8), pkMsKmQUQDEbZ5Q(265,17), 2)
-
         end
-
     end
-
 })
-
 TrollTPSection:AddDropdown(pkMsKmQUQDEbZ5Q(266,15), {
-
     Title = pkMsKmQUQDEbZ5Q(267,15),
-
     Description = pkMsKmQUQDEbZ5Q(268,33),
-
     Values = { pkMsKmQUQDEbZ5Q(269,5), pkMsKmQUQDEbZ5Q(270,10), pkMsKmQUQDEbZ5Q(271,12) },
-
     Default = 1,
-
     Callback = function(Value)
-
         selectedTrollLocation = Value
-
     end
-
 })
-
 TrollTPSection:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(272,20),
-
     Description = pkMsKmQUQDEbZ5Q(273,34),
-
     Callback = function()
-
         if not adminEnabled then
-
             notify(pkMsKmQUQDEbZ5Q(274,6), pkMsKmQUQDEbZ5Q(275,26), 2)
-
             return
-
         end
-
         playClickSound()
-
         local cf = TELEPORT_LOCATIONS[selectedTrollLocation]
-
         local hrp = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(276,16))
-
         if cf and hrp then
-
             hrp.CFrame = cf
-
             notify(pkMsKmQUQDEbZ5Q(277,8), pkMsKmQUQDEbZ5Q(278,14) .. selectedTrollLocation, 2)
-
         else
-
             notify(pkMsKmQUQDEbZ5Q(279,8), pkMsKmQUQDEbZ5Q(280,32), 2)
-
         end
-
     end
-
 })
-
 local TrollESPSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(281,3))
-
 TrollESPSection:AddToggle(pkMsKmQUQDEbZ5Q(282,14), {
-
     Title = pkMsKmQUQDEbZ5Q(283,11),
-
     Description = pkMsKmQUQDEbZ5Q(284,30),
-
     Default = false,
-
     Callback = function(Value)
-
         if not adminEnabled then
-
             notify(pkMsKmQUQDEbZ5Q(285,6), pkMsKmQUQDEbZ5Q(286,26), 2)
-
             return
-
         end
-
         playerESPEnabled = Value
-
         updatePlayerESP()
-
         notify(pkMsKmQUQDEbZ5Q(287,3), Value and pkMsKmQUQDEbZ5Q(288,13) or pkMsKmQUQDEbZ5Q(289,14), 2)
-
     end
-
 })
-
 local TrollAttachSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(290,6))
-
 TrollAttachSection:AddDropdown(pkMsKmQUQDEbZ5Q(291,17), {
-
     Title = pkMsKmQUQDEbZ5Q(292,23),
-
     Description = pkMsKmQUQDEbZ5Q(293,42),
-
     Values = getPlayers(),
-
     Default = 1,
-
     Callback = function(Value)
-
         attachTarget = Value
-
     end
-
 })
-
 TrollAttachSection:AddToggle(pkMsKmQUQDEbZ5Q(294,11), {
-
     Title = pkMsKmQUQDEbZ5Q(295,16),
-
     Description = pkMsKmQUQDEbZ5Q(296,47),
-
     Default = false,
-
     Callback = function(Value)
-
         if not adminEnabled then
-
             notify(pkMsKmQUQDEbZ5Q(297,6), pkMsKmQUQDEbZ5Q(298,26), 2)
-
             return
-
         end
-
         if Value then
-
             if attachTarget == "" then
-
                 notify(pkMsKmQUQDEbZ5Q(299,6), pkMsKmQUQDEbZ5Q(300,22), 2)
-
                 return
-
             end
-
             attachConn = RunService.Heartbeat:Connect(function()
-
                 local target = Players:FindFirstChild(attachTarget)
-
                 if target and target.Character then
-
                     local tHRP = target.Character:FindFirstChild(pkMsKmQUQDEbZ5Q(301,16))
-
                     local c = LocalPlayer.Character
-
                     if c then
-
                         local myHRP = c:FindFirstChild(pkMsKmQUQDEbZ5Q(302,16))
-
                         if tHRP and myHRP then
-
                             myHRP.CFrame = tHRP.CFrame * CFrame.new(0, 0, 0)
-
                         end
-
                     end
-
                 end
-
             end)
-
             notify(pkMsKmQUQDEbZ5Q(303,6), pkMsKmQUQDEbZ5Q(304,13) .. attachTarget, 2)
-
         else
-
             if attachConn then
-
-                attachConn😀isconnect()
-
+                attachConn:Disconnect()
                 attachConn = nil
-
             end
-
             notify(pkMsKmQUQDEbZ5Q(305,6), pkMsKmQUQDEbZ5Q(306,8), 2)
-
         end
-
     end
-
 })
-
 local TrollChatSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(307,10))
-
 TrollChatSection:AddDropdown(pkMsKmQUQDEbZ5Q(308,18), {
-
     Title = pkMsKmQUQDEbZ5Q(309,14),
-
     Description = pkMsKmQUQDEbZ5Q(310,31),
-
     Values = TROLL_MESSAGES,
-
     Default = 1,
-
     Callback = function(Value)
-
         selectedTrollMsg = Value
-
     end
-
 })
-
 TrollChatSection:AddButton({
-
     Title = pkMsKmQUQDEbZ5Q(311,18),
-
     Description = pkMsKmQUQDEbZ5Q(312,34),
-
     Callback = function()
-
         if not adminEnabled then
-
             notify(pkMsKmQUQDEbZ5Q(313,6), pkMsKmQUQDEbZ5Q(314,26), 2)
-
             return
-
         end
-
         playClickSound()
-
         pcall(function()
-
             local ChatRemote = ReplicatedStorage:FindFirstChild(pkMsKmQUQDEbZ5Q(315,27))
-
             if ChatRemote then
-
                 local SayMessage = ChatRemote:FindFirstChild(pkMsKmQUQDEbZ5Q(316,17))
-
                 if SayMessage then
-
                     SayMessage:FireServer(selectedTrollMsg, pkMsKmQUQDEbZ5Q(317,3))
-
                     notify(pkMsKmQUQDEbZ5Q(318,4), pkMsKmQUQDEbZ5Q(319,13), 2)
-
                     return
-
                 end
-
             end
-
             notify(pkMsKmQUQDEbZ5Q(320,4), pkMsKmQUQDEbZ5Q(321,22), 2)
-
         end)
-
     end
-
 })
-
 local TrollSpinSection = TabTroll:AddSection(pkMsKmQUQDEbZ5Q(322,4))
-
 TrollSpinSection:AddSlider(pkMsKmQUQDEbZ5Q(323,14), {
-
     Title = pkMsKmQUQDEbZ5Q(324,10),
-
     Description = pkMsKmQUQDEbZ5Q(325,22),
-
     Default = 10,
-
     Min = 1,
-
     Max = 100,
-
     Rounding = 1,
-
     Callback = function(Value)
-
         spinSpeed = Value
-
     end
-
 })
-
 TrollSpinSection:AddToggle(pkMsKmQUQDEbZ5Q(326,9), {
-
     Title = pkMsKmQUQDEbZ5Q(327,4),
-
     Description = pkMsKmQUQDEbZ5Q(328,45),
-
     Default = false,
-
     Callback = function(Value)
-
         if not adminEnabled then
-
             notify(pkMsKmQUQDEbZ5Q(329,6), pkMsKmQUQDEbZ5Q(330,26), 2)
-
             return
-
         end
-
         spinEnabled = Value
-
         if Value then
-
             wasNoclipBeforeSpin = noclipEnabled
-
             noclipEnabled = true
-
             spinConn = RunService.Heartbeat:Connect(function()
-
                 if not spinEnabled then return end
-
                 local c = LocalPlayer.Character
-
                 if c then
-
                     local rp = c:FindFirstChild(pkMsKmQUQDEbZ5Q(331,16))
-
                     if rp then
-
                         rp.CFrame = rp.CFrame * CFrame.Angles(0, math.rad(spinSpeed), 0)
-
                     end
-
                 end
-
             end)
-
             notify(pkMsKmQUQDEbZ5Q(332,4), pkMsKmQUQDEbZ5Q(333,18) .. tostring(spinSpeed), 2)
-
         else
-
             if spinConn then
-
-                spinConn😀isconnect()
-
+                spinConn:Disconnect()
                 spinConn = nil
-
             end
-
             noclipEnabled = wasNoclipBeforeSpin
-
             notify(pkMsKmQUQDEbZ5Q(334,4), pkMsKmQUQDEbZ5Q(335,12), 2)
-
         end
-
     end
-
 })
-
 TabLAdmins:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(336,18),
-
     Content = pkMsKmQUQDEbZ5Q(337,80)
-
 })
-
 TabLAdmins:AddToggle(pkMsKmQUQDEbZ5Q(338,11), {
-
     Title = pkMsKmQUQDEbZ5Q(339,23),
-
     Description = pkMsKmQUQDEbZ5Q(340,44),
-
     Default = false,
-
     Callback = function(Value)
-
         adminNotifyEnabled = Value
-
     end
-
 })
-
 TabLAdmins:AddToggle(pkMsKmQUQDEbZ5Q(341,8), {
-
     Title = pkMsKmQUQDEbZ5Q(342,9),
-
     Description = pkMsKmQUQDEbZ5Q(343,45),
-
     Default = false,
-
     Callback = function(Value)
-
         adminESPEnabled = Value
-
         updateAdminESP()
-
     end
-
 })
-
 TabLAdmins:AddToggle(pkMsKmQUQDEbZ5Q(344,14), {
-
     Title = pkMsKmQUQDEbZ5Q(345,24),
-
     Description = pkMsKmQUQDEbZ5Q(346,40),
-
     Default = false,
-
     Callback = function(Value)
-
         serverHopOnAdmin = Value
-
         if Value then
-
             notify(pkMsKmQUQDEbZ5Q(347,8), pkMsKmQUQDEbZ5Q(348,18), 2)
-
         end
-
     end
-
 })
-
 adminListParagraph = TabLAdmins:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(349,16),
-
     Content = pkMsKmQUQDEbZ5Q(350,11)
-
 })
-
 TabPlayer:AddSlider(pkMsKmQUQDEbZ5Q(351,11), {
-
     Title = pkMsKmQUQDEbZ5Q(352,9),
-
     Description = pkMsKmQUQDEbZ5Q(353,32),
-
     Default = 16,
-
     Min = 16,
-
     Max = 150,
-
     Rounding = 1,
-
     Callback = function(Value)
-
         local c = LocalPlayer.Character
-
         if c then
-
             local h = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(354,8))
-
             if h then h.WalkSpeed = Value end
-
         end
-
     end
-
 })
-
 TabPlayer:AddSlider(pkMsKmQUQDEbZ5Q(355,10), {
-
     Title = pkMsKmQUQDEbZ5Q(356,9),
-
     Description = pkMsKmQUQDEbZ5Q(357,29),
-
     Default = 50,
-
     Min = 50,
-
     Max = 200,
-
     Rounding = 1,
-
     Callback = function(Value)
-
         local c = LocalPlayer.Character
-
         if c then
-
             local h = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(358,8))
-
             if h then
-
                 h.UseJumpPower = true
-
                 h.JumpPower = Value
-
             end
-
         end
-
     end
-
 })
-
 TabPlayer:AddSection(pkMsKmQUQDEbZ5Q(359,9))
-
 local emoteNames = {}
-
 for _, e in ipairs(EMOTE_LIST) do
-
     table.insert(emoteNames, e.Name)
-
 end
-
 TabPlayer:AddDropdown(pkMsKmQUQDEbZ5Q(360,11), {
-
     Title = pkMsKmQUQDEbZ5Q(361,9),
-
     Description = pkMsKmQUQDEbZ5Q(362,24),
-
     Values = emoteNames,
-
     Default = 1,
-
     Callback = function(Value)
-
         playClickSound()
-
         for _, e in ipairs(EMOTE_LIST) do
-
             if e.Name == Value then
-
                 local c = LocalPlayer.Character
-
                 if c then
-
                     local hum = c:FindFirstChildOfClass(pkMsKmQUQDEbZ5Q(363,8))
-
                     if hum then
-
                         local anim = Instance.new(pkMsKmQUQDEbZ5Q(364,9))
-
                         anim.AnimationId = pkMsKmQUQDEbZ5Q(365,13) .. tostring(e.Id)
-
                         local track = hum:LoadAnimation(anim)
-
                         track:Play()
-
                         notify(pkMsKmQUQDEbZ5Q(366,5), pkMsKmQUQDEbZ5Q(367,9) .. e.Name, 2)
-
                     end
-
                 end
-
                 break
-
             end
-
         end
-
     end
-
 })
-
 SaveManager:SetLibrary(Fluent)
-
 InterfaceManager:SetLibrary(Fluent)
-
 SaveManager:IgnoreThemeSettings()
-
 SaveManager:SetIgnoreIndexes({})
-
 InterfaceManager:SetFolder(pkMsKmQUQDEbZ5Q(368,11))
-
 SaveManager:SetFolder(pkMsKmQUQDEbZ5Q(369,12) .. tostring(game.PlaceId))
-
 InterfaceManager:BuildInterfaceSection(TabSettings)
-
 SaveManager:BuildConfigSection(TabSettings)
-
 TabCredits:AddParagraph({
-
     Title = pkMsKmQUQDEbZ5Q(370,11),
-
     Content =
-
         pkMsKmQUQDEbZ5Q(371,17) ..
-
         pkMsKmQUQDEbZ5Q(372,33) ..
-
         pkMsKmQUQDEbZ5Q(373,9) .. VERSION .. pkMsKmQUQDEbZ5Q(374,2) ..
-
         pkMsKmQUQDEbZ5Q(375,10) ..
-
         pkMsKmQUQDEbZ5Q(376,22) ..
-
         pkMsKmQUQDEbZ5Q(377,18) ..
-
         pkMsKmQUQDEbZ5Q(378,31) ..
-
         pkMsKmQUQDEbZ5Q(379,25) ..
-
         pkMsKmQUQDEbZ5Q(380,35) ..
-
         pkMsKmQUQDEbZ5Q(381,29) ..
-
         pkMsKmQUQDEbZ5Q(382,22) ..
-
         pkMsKmQUQDEbZ5Q(383,13)
-
 })
-
 local ToggleGui = Instance.new(pkMsKmQUQDEbZ5Q(384,9))
-
 local ToggleButton = Instance.new(pkMsKmQUQDEbZ5Q(385,10))
-
 local BtnCorner = Instance.new(pkMsKmQUQDEbZ5Q(386,8))
-
 local BtnStroke = Instance.new(pkMsKmQUQDEbZ5Q(387,8))
-
 ToggleGui.Name = pkMsKmQUQDEbZ5Q(388,25)
-
 ToggleGui.Parent = CoreGui
-
 ToggleGui.ResetOnSpawn = false
-
 ToggleButton.Name = pkMsKmQUQDEbZ5Q(389,17)
-
 ToggleButton.Parent = ToggleGui
-
 ToggleButton.BackgroundColor3 = Color3.fromRGB(30, 180, 230)
-
 ToggleButton.Position = UDim2.new(0.05, 0, 0.15, 0)
-
 ToggleButton.Size = UDim2.fromOffset(45, 45)
-
 ToggleButton.Text = "R"
-
 ToggleButton.TextColor3 = Color3.new(1, 1, 1)
-
 ToggleButton.Font = Enum.Font.GothamBold
-
 ToggleButton.TextSize = 18
-
 ToggleButton.Active = true
-
 ToggleButton.ZIndex = 100
-
 BtnCorner.CornerRadius = UDim.new(0, 8)
-
 BtnCorner.Parent = ToggleButton
-
 BtnStroke.Color = Color3.fromRGB(255, 255, 255)
-
 BtnStroke.Thickness = 1.5
-
 BtnStroke.Transparency = 0.3
-
 BtnStroke.Parent = ToggleButton
-
 local dragging = false
-
 local hasMoved = false
-
 local dragInput, dragStart, startPos
-
 local function updateDrag(input)
-
     local delta = input.Position - dragStart
-
     if delta.Magnitude > 7 then hasMoved = true end
-
     ToggleButton.Position = UDim2.new(
-
         startPos.X.Scale, startPos.X.Offset + delta.X,
-
         startPos.Y.Scale, startPos.Y.Offset + delta.Y
-
     )
-
 end
-
 ToggleButton.InputBegan:Connect(function(input)
-
     if input.UserInputType == Enum.UserInputType.MouseButton1
-
     or input.UserInputType == Enum.UserInputType.Touch then
-
         dragging = true
-
         hasMoved = false
-
         dragStart = input.Position
-
         startPos = ToggleButton.Position
-
         input.Changed:Connect(function()
-
             if input.UserInputState == Enum.UserInputState.End then
-
                 dragging = false
-
                 if not hasMoved then
-
                     playClickSound()
-
                     pcall(function()
-
                         Window:Minimize()
-
                     end)
-
                 end
-
             end
-
         end)
-
     end
-
 end)
-
 ToggleButton.InputChanged:Connect(function(input)
-
     if input.UserInputType == Enum.UserInputType.MouseMovement
-
     or input.UserInputType == Enum.UserInputType.Touch then
-
         dragInput = input
-
     end
-
 end)
-
 UserInputService.InputChanged:Connect(function(input)
-
     if input == dragInput and dragging then
-
         updateDrag(input)
-
     end
-
 end)
-
 Window:SelectTab(1)
-
 updateAdminESP()
-
 updateAdminListDisplay()
-
 Fluent:Notify({
-
     Title = pkMsKmQUQDEbZ5Q(390,11),
-
     Content = "v" .. VERSION .. pkMsKmQUQDEbZ5Q(391,21),
-
     Duration = 4
-
 })
-
 SaveManager:LoadAutoloadConfig()
 end end break end local dummy=1;dummy=dummy+5;
