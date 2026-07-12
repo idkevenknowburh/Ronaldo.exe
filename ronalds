@@ -1,4 +1,4 @@
--- Lua 5.3+ / Luau compatibility polyfills
+-- Credit to morecoder & me of course (Sheitsa) for the obf at Sheitsa Hub V2, maybe if ur a script dev or possible SKIDDER, well whatever...but you can go view another source code mane. REPORT ANY BUGS OR STUFF TO MY REDDIT USER OR TO SEE MY PORTFOLIO HERE:
 if not math.ldexp then math.ldexp = function(x, n) return x * 2 ^ n end end
 if not math.frexp then math.frexp = function(x)
     if x == 0 then return 0, 0 end
